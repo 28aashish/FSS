@@ -1,13 +1,13 @@
 from io import StringIO
 import json
 import os
-
+import subprocess
 
 if __name__ == "__main__":
-    MAX_NUM_MACDIV=50
-    MAX_LAT=50
-    f = open('../cppFiles/stdafx.h','w')
-    ansf = open('./analysis.csv','w')
+    MAX_BRAM=17
+    MAX_NUM_MACDIV=33
+    MAX_LAT=33
+    f = open('./Scheduler/cppFiles/stdafx.h','w')
     stringer="""// All global header file includes
 #ifndef _STDAFX_H_
 #define _STDAFX_H_
@@ -64,15 +64,15 @@ EXTERN f_type g_errThreshold;
 #define PORT_of_BRAM 2
 //Total Instruction BRAM 
 //⚠ ⚠ ⚠ ⚠ ⚠ ⚠ ⚠ ⚠ at max 16
-#define Total_BRAMs_for_Data 8
+#define Total_BRAMs_for_Data {0}
 //iff numMAC_DIVUnits = 4 i.e. 4 MAC Unit and 4 Div Unit
-#define numMAC_DIVUnits {0}
+#define numMAC_DIVUnits {1}
 
 //#define delay_DIV 31
 //#define delay_MAC 22
 
-#define delay_DIV {1}
-#define delay_MAC {2}
+#define delay_DIV {2}
+#define delay_MAC {3}
 
 // Map Delays
 EXTERN map<string, int> opDelay INITIALIZER({{{{"+", 12}}, {{"-", 12}}, {{"*",9}}, {{"/", delay_DIV}}, {{"rd", 2}}, 
@@ -109,17 +109,29 @@ EXTERN ofstream debugFile;
 
 // #include <chrono>       // time seed generartion
 // #include <random>       // random number generartion"""
-    ans="""{0},{1},{2},{3}
+    ans="""{0},{1},{2},{3},{4}
 """
-    i=8
-    j=31
-    k=22
-    f.write(stringer.format(i,j,k))
-    for i in range(1,MAX_NUM_MACDIV,1):
-        for j in range(1,MAX_LAT,1):
-            for k in range(1,MAX_LAT,1):
-                print("NUM {0} DIV {1} MAC {2}".format(i,j,k))
-                f.write(stringer.format(i,j,k))
-                os.system('make all_no TEST_MATRIX=rajat11 > log')
-                x=os.system('grep Instructions log | cut -d " " -f 5')
-                ansf.write(ans.format(i,j,k,x))
+#    i=8
+#    j=31
+#    k=22
+#    f.write(stringer.format(i,j,k))
+#    f.close()
+    ansf = open('./analysis.csv','w')
+    ansf.write("""NUM_BRAM.numMAC_DIVUnits,delay_DIV,delay_MAC
+""")
+    ansf.close()
+    for i0 in range(2,MAX_BRAM,1):
+        for i in range(1,MAX_NUM_MACDIV,1):
+            for j in range(1,MAX_LAT,1):
+                for k in range(1,MAX_LAT,1):
+                    f = open('./Scheduler/cppFiles/stdafx.h','w')
+                    print("NUM_BRAM {0} numMAC_DIVUnits {1} delay_DIV {2} delay_MAC {3}".format(i0,i,j,k))
+                    f.write(stringer.format(i0,i,j,k))
+                    f.close()
+                    os.system('make all_nox TEST_MATRIX=rajat11')
+                    os.system('make all_noy TEST_MATRIX=rajat11 > log')
+                    x=subprocess.getoutput('grep Instructions log | cut -d " " -f 5')
+                    ansf = open('./analysis.csv','a')
+                    ansf.write(ans.format(i0,i,j,k,x))
+                    ansf.close()
+

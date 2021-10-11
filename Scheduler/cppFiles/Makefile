@@ -8,7 +8,7 @@ TEST_MATRIX=rajat11
 
 # CXXFLAGS = -std=c++0x -g
 
-.PHONY: clean cleanall cleanPreprocess all run no_mat
+.PHONY: clean cleanall cleanPreprocess all run cbuild_only c_run
 
 all: main
 
@@ -53,7 +53,7 @@ cleanPreprocess:
 cleanall:
 	rm -f *.mat *.o *.txt *.csv *.png *.dot main preprocessTest
 
-no_mat:
+cbuild_only:
 	$(CXX) $(CXXFLAGS) -c processTests.cpp
 	$(CXX) $(CXXFLAGS) -c CCS.cpp
 	$(CXX) $(CXXFLAGS) -o preprocessTest processTests.o CCS.o
@@ -62,7 +62,7 @@ no_mat:
 	$(CXX) $(CXXFLAGS) -c Schedule.cpp
 	$(CXX) $(CXXFLAGS) -c main.cpp
 	$(CXX) $(CXXFLAGS) -o main CCS.o Graph.o sparseLU.o Schedule.o main.o
-mat:
+c_run:
 	$(CXX) $(CXXFLAGS) -c processTests.cpp
 	$(CXX) $(CXXFLAGS) -c CCS.cpp
 	$(CXX) $(CXXFLAGS) -o preprocessTest processTests.o CCS.o

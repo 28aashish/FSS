@@ -1,17 +1,19 @@
 
 TEST_MATRIX =
 PYTHON3 = python3
-.PHONY: clean preprocess process all all_no cleanall cleanup all_graph all_no_graph
+.PHONY: clean preprocess process all all_wo_matlab build_wo_matlab run_wo_matlab cleanall cleanup all_graph 
 
 #all: cleanall preprocess process buildHardware
 all: cleanall preprocess process buildHardware
 all_mat: cleanall preprocess buildHardware
-all_no: cleanall
-	(cd Scheduler/cppFiles;make no_mat)
-	(cd Scheduler/cppFiles; ./main $(TEST_MATRIX))
-all_nox: cleanall
-	(cd Scheduler/cppFiles;make no_mat)
-all_noy:
+
+all_wo_matlab: cleanall
+	(cd Scheduler/cppFiles;make c_run)
+
+build_wo_matlab: cleanall
+	(cd Scheduler/cppFiles;make cbuild_only)
+
+run_wo_matlab:
 	(cd Scheduler/cppFiles; ./main $(TEST_MATRIX))
 
 all_graph: cleanall preprocess process grapher
@@ -23,7 +25,7 @@ buildHardware:
 	(yes | cp -if ./Scheduler/cppFiles/FPGA*.h ./Hardware/C_files)
 	(yes | cp -if ./Scheduler/cppFiles/float_to_int.h ./Hardware/C_files)
 	(yes | cp -if ./Scheduler/cppFiles/int_to_float.h ./Hardware/C_files)
-	(cd ./Hardware;$(PYTHON3) HDL_inteconnect.py)
+	(cd ./Hardware;$(PYTHON3) ../Scheduler/pyFiles/HDL_inteconnect.py)
 	${PYTHON3} ./Scheduler/pyFiles/SW_Code.py
 
 buildHDtest:
