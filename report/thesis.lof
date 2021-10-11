@@ -5,25 +5,24 @@
 \contentsline {figure}{\numberline {2.1}{\ignorespaces NOC based hardware configuration (in \cite {Kapre})\relax }}{3}{figure.caption.10}
 \contentsline {figure}{\numberline {2.2}{\ignorespaces Hardware Architecture used by Nechma \cite {Nechma}\relax }}{4}{figure.caption.11}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Storage formats for sparse matrices\relax }}{6}{figure.caption.12}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Algorithms for Sparse LU Decomposition\relax }}{7}{figure.caption.13}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Effect of AMD ordering on the factorization of the $135\times 135$ Matrix\relax }}{8}{figure.caption.14}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Naming conventions used in algorithm \ref {algo:GP}\relax }}{9}{figure.caption.15}
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Non-zero pattern in LU decomposition\relax }}{10}{figure.caption.16}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Storage formats for sparse matrices\relax }}{5}{figure.caption.12}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Non-zero elements of L and U with original matrix A\relax }}{6}{figure.caption.13}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Non-zero elements of L and U with AMD ordered matrix permuted A\relax }}{6}{figure.caption.14}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Non-zero pattern in LU decomposition\relax }}{8}{figure.caption.15}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces DAG generated for $10\times 10$ Sample Matrix\relax }}{8}{figure.caption.16}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Naming conventions used in algorithm\relax }}{9}{figure.caption.17}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Overview of the proposed hardware architecture\relax }}{13}{figure.caption.17}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces A matrix non-zero location\relax }}{11}{figure.caption.18}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Convention of LU Matrix Position\relax }}{11}{figure.caption.19}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Non-zero location of Matrix\relax }}{14}{figure.caption.20}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Generated DAC\relax }}{15}{figure.caption.21}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces DAC node convention\relax }}{15}{figure.caption.22}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Priority-Based Algorithm\relax }}{16}{figure.caption.23}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Flowchart of Priority List based Scheduling Process \cite {AnuragWork}\relax }}{18}{figure.caption.24}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Allocation tables used by scheduling algorithm \cite {YogeshWork}\relax }}{19}{figure.caption.25}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Hardware architecure\relax }}{15}{figure.caption.18}
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Timing diagram for understanding the operation of Quad port BRAM\relax }}{17}{figure.caption.20}
-\contentsline {figure}{\numberline {5.2}{\ignorespaces BRAM unit with 4 time multiplexed ports\relax }}{17}{figure.caption.19}
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Generation Clock and Select Signals\relax }}{18}{figure.caption.21}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Hardware architecture\relax }}{21}{figure.caption.26}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6.1}{\ignorespaces Non-zero pattern in LU decomposition\relax }}{21}{figure.caption.22}
-\contentsline {figure}{\numberline {6.2}{\ignorespaces Example of Symbolic Analysis\relax }}{22}{figure.caption.23}
-\contentsline {figure}{\numberline {6.3}{\ignorespaces Example showing multiple possible computation flows for the single MAC element\relax }}{23}{figure.caption.24}
-\contentsline {figure}{\numberline {6.4}{\ignorespaces Computational flow graph for example matrix shown in figure \ref {fig:sym:exampleMat}\relax }}{23}{figure.caption.25}
-\contentsline {figure}{\numberline {6.5}{\ignorespaces Resource allocation tables used by schedular\relax }}{26}{figure.caption.26}
-\contentsline {figure}{\numberline {6.6}{\ignorespaces Selecting write ports\relax }}{27}{figure.caption.27}
-\contentsline {figure}{\numberline {6.7}{\ignorespaces Selecting operations\relax }}{28}{figure.caption.28}
-\contentsline {figure}{\numberline {6.8}{\ignorespaces Final allocation\relax }}{29}{figure.caption.29}
-\addvspace {10\p@ }
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Workflow of Software\relax }}{24}{figure.caption.27}
+\contentsline {figure}{\numberline {6.2}{\ignorespaces IP generation report\relax }}{25}{figure.caption.28}
+\contentsline {figure}{\numberline {6.3}{\ignorespaces MicroBlaze interconnect\relax }}{25}{figure.caption.29}

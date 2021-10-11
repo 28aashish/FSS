@@ -11,11 +11,17 @@
 #define INITIALIZER(...)       
 #endif
 
+
+/*
+
+**************************⚠ ⚠ ⚠ ⚠ ⚠ ⚠ ⚠ ⚠ ⚠ ⚠ ⚠ ⚠ ***************************
+**************************Transferred to stdafx.h ***********************************
+*************************************************************************************
 #define instBRAMSize 4096
 //2^24 Bytes i.e 16MB
 //#define BRAMSize 16777216
 #define BRAMSize 1024
-
+*/
 /*
 * Read Latency : valid output will be available at the corresponding port in the 
                     n-th cycle. e.g. read latency = 1 -> output will be available

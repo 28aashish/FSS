@@ -1,95 +1,67 @@
 \section{Sparse LU Decomposition}
 
-The matrix multiplication equation \(A = LU\), with L unit lower triangular U upper
-triangular, and  can be rewritten to give the expressions for L and U as follows:
+We need to solve equation $A=LU$ where $L$ is the lower triangular matrix and $U$ is the upper triangular matrix. The equation we will get for each element of $L$ and $U$ is given in the following:-
 \begin{subequations}
     \centering
     \begin{align}
-        U_{(i,j)} & = A_{(i,j)} - \sum\limits_{k = 1}^{i-1} L_{(i,k)}U_{(k,j)} \\
-        L_{(i,j)} & = \frac{A_{(i,j)} - \sum\limits_{k = 1}^{j-1} L_{(i,k)}U_{(k,j)}}{U_{(j,j)}}
+        U_{(i,j)} & = A_{(i,j)} - \sum\limits_{k = 1}^{i-1} L_{(i,k)}U_{(k,j)} \label{eqn:LUD:LUequation0}\\
+        L_{(i,j)} & = \frac{A_{(i,j)} - \sum\limits_{k = 1}^{j-1} L_{(i,k)}U_{(k,j)}}{U_{(j,j)}} \label{eqn:LUD:LUequation1}
     \end{align}
     \label{eqn:LUD:LUequation}
 \end{subequations}
 
-The same Gaussian elimination can be used in a factorization of sparse matrices.
-Since the column vectors are sparse, some of the inner products reduces to zero and hence
-can be excluded for the update rule. However, since it may be
-necessary to pivot based on previously updated elements, a sparse Gaussian elimination
-algorithm cannot know the exact nonzero structure of these vectors in advance of all
-numerical computation. \\
-Direct methods of sparse LU decomposition are widely divided into three categories.
-Left-looking, Right-Looking and Crout \cite{crout}. These methods are characterized
-by the factor update (Multiply and Accumulate) and normalization (Division) rules.
-\\
-\\
-\textbf{Left-Looking}
-\\
-Left-looking algorithms factorizes the matrix in column-by-column manner. Factors
-of current column are updated using the previously computed columns with
-equation \(A_{(i,j)} = A_{(i,j)} - L_{(i,k)} \times U_{(k,j)} \), where 
-\(k = [1, \cdots, min(i,j)]\). Updated factors are then normalized with the pivot value.
-\\
-\\
-\textbf{Right-Looking} 
-\\
-The Right looking algorithm first factorizes a column from the lower triangular part 
-of a matrix, then uses the resulting non-zero elements of that column to update 
-the affected components in the rest of the matrix by using the equation
-\(A_{(i,k)} = A_{(i,k)} - L_{(i,j)} \times U_{(j,k)} \), where \(k = [j+1, \cdots, N]\),
-j is the index of current factored column, and N is the column dimension of matrix A
-\\
-\\
-\textbf{Crout}
-\\
-Similar to the Left-looking algorithm, the Crout method performs updates with 
-previously factored elements before normalizing a given vector. The difference 
-is that the Crout method operates both on columns and rows, while the Left-looking
-algorithm only operates on columns. (See figure \ref{fig:LUD:algos})
+
+We can use Gauss–Jordan elimination to factorize the matrix, although for sparse nature matrix would not be efficient. Therefore we need to go through Direct methods of sparse LU Decomposition. There are majorly three kinds of Direct Methods solving Left-looking, Right-Looking, and Crout \cite{crout}. We will be using Gilbert-Peierls Algorithm: A Column-Oriented LU Factorization with partial pivoting.
+Symbolic analysis is a process to determine the set of non-zero locations ($\chi$)
+in solving the lower triangular system $L_j x = b$, where $J_j$ is a unit diagonal 
+lower triangular matrix representing only first ($j-1$) columns. Listing all 
+the non-zero locations \(\chi\) gives the numerical computation time proportional to
+the number floating point operations i.e. \bigo{f},
+
+
+\begin{algorithm}[H]
+    \caption{Gilbert-Peierls Algorithm: Solving Triangular System $L_j x = b$
+        \label{algo:GP_tri}}
+    \begin{algorithmic}[1]
+        \Require{$L_j$ is a lower triangular matrix, $x, b$ are sparse column vectors}
+        \Statex
+        \State $x := b$
+        \For{$\textrm{ each } j \in \chi$}
+            \For{$\textrm{ each } i > j \textrm{ for which } l_{ij} \neq 0$}
+                \State $x_i := x_i - l_{ij} x_j$
+            \EndFor
+        \EndFor
+    \end{algorithmic}
+\end{algorithm}
 
 \begin{figure}[H]
     \centering
-    \begin{subfigure}[b]{0.33\textwidth}
-        \includegraphics[width = 0.95\linewidth]{./Theory/leftLooking.JPG}
-        \caption{Left-Looking}
-        \label{fig:LUD:leftLooking}
-    \end{subfigure}%
-    \begin{subfigure}[b]{0.33\textwidth}
-        \includegraphics[width = 0.95\linewidth]{./Theory/rightLooking.JPG}
-        \caption{Right-Looking}
-        \label{fig:LUD:rightLooking}
-    \end{subfigure}%
-    \begin{subfigure}[b]{0.33\textwidth}
-        \includegraphics[width = 0.95\linewidth]{./Theory/crout.JPG}
-        \caption{Crout}
-        \label{fig:LUD:crout}
-    \end{subfigure}
-    \caption{Algorithms for Sparse LU Decomposition}
-    \label{fig:LUD:algos}
+    \includegraphics[width = 0.50\textwidth]{./Theory/nnzPattern.JPG}
+    \caption{Non-zero pattern in LU decomposition}
+    \label{fig:GP:nnzPattern}
 \end{figure}
 
-\subsection{AMD Ordering}
-An Approximate Minimum Degree ordering algorithm (AMD) for
-pre-ordering a symmetric sparse matrix prior to numerical factorization
-is presented. The Cholesky factorization of ordered symmetric matrices tends to be 
-sparser than that of the original ones. This method can be extended to asymmetric matrix, say $A$, by applying 
-the AMD on $A + A'$. Pre-ordering the matrices reduces the number of fill-ins in the 
-factors and hence reduces the number of required floating point operations dramatically.
+The algorithm suggests that the element of the result vector ($x_{ij}$) can become non-zero only of the corresponding element in the vector $b$ ($b_{i}$) is non-zero or there exits a non-zero element $l_{i,j}$ where $j$ is less than $i$ and $x_{j}$ is non zero. 
 
-\begin{figure}
+\begin{subequations}
     \centering
-    \includegraphics[width = 0.9\linewidth]{./Theory/amd.pdf}
-    \caption{Effect of AMD ordering on the factorization of the $135\times135$ Matrix}
-    \label{fig:AMD:AMDeffect}
+    \begin{align}
+        (b_i \neq 0) &\implies (x_i \neq 0) \\
+        (x_j \neq 0) and \exists i(l_{ij} \neq 0) &\implies (x_i \neq 0)
+    \end{align}
+    \label{eqn:GP:findingX}
+\end{subequations}
+
+Symbolic Analysis can visualize these two implications using the figure \ref{fig:GP:nnzPattern}.In the column factorization algorithms like Gilbert-Peierls, we know the locations of all the non-zero elements for the columns with indices lower than $j$ we can determine the non-zero sites ($\chi$) before solving for that column and the entire lower triangular system.
+
+
+We can consider following example with $10\times10$ in the figure with \ref{fig:SPLsolve0}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 0.65\textwidth]{./Theory/PpT-SPLsolve0.png}
+    \caption{DAG generated for $10\times10$ Sample Matrix}
+    \label{fig:SPLsolve0}
 \end{figure}
 
-The figure \ref{fig:AMD:AMDeffect} demonstrates the effect of AMD ordering on the 
-\textit{Rajat11}, a matrix of order $135\times135$. As reduction in the \textit{NNZ} 
-increases significantly as the order increases. \\
-A linear problem $Ax = b$ can be solved by solving the reordered problem where $P$ is the 
-AMD permutation matrix.
+As per the non-zero value obtained from the value of b in $Lx=b$ will be sharing A memory map for the execution of the algorithm \cite{davis2006direct}
 
-\begin{equation}
-    \centering
-    (P^TAP)(P^Tx) = P^Tb
-    \label{eqn:AMD:ModifiedLinear}
-\end{equation}

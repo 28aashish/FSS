@@ -257,7 +257,6 @@ bool CCS::removeElement(int row, int column)
     // update column pointers
     for(j = column+1; j < this->numCols; j++)
         this->colPtr[j] -= 1;
-    return true;
 }
 
 //****************************************************************************//

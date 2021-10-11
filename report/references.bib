@@ -72,21 +72,80 @@ doi={10.1109/FPT.2009.5377665},
 ISSN={}, 
 month={Dec},}
 
-@InProceedings{WuWei,
-author="Wu, Wei
-and Shan, Yi
-and Chen, Xiaoming
-and Wang, Yu
-and Yang, Huazhong",
-editor="Koch, Andreas
-and Krishnamurthy, Ram
-and McAllister, John
-and Woods, Roger
-and El-Ghazawi, Tarek",
-title="FPGA Accelerated Parallel Sparse Matrix Factorization for Circuit Simulations",
-booktitle="Reconfigurable Computing: Architectures, Tools and Applications",
-year="2011",
-publisher="Springer Berlin Heidelberg",
-address="Berlin, Heidelberg",
-pages="302--315"
+@InProceedings{SparseSuite,
+author = {Davis, Timothy A. and Hu, Yifan},
+title = {The University of Florida Sparse Matrix Collection},
+year = {2011},
+issue_date = {November 2011},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+volume = {38},
+number = {1},
+issn = {0098-3500},
+url = {https://doi.org/10.1145/2049662.2049663},
+doi = {10.1145/2049662.2049663},
+abstract = {We describe the University of Florida Sparse Matrix Collection, a large and actively
+growing set of sparse matrices that arise in real applications. The Collection is
+widely used by the numerical linear algebra community for the development and performance
+evaluation of sparse matrix algorithms. It allows for robust and repeatable experiments:
+robust because performance results with artificially generated matrices can be misleading,
+and repeatable because matrices are curated and made publicly available in many formats.
+Its matrices cover a wide spectrum of domains, include those arising from problems
+with underlying 2D or 3D geometry (as structural engineering, computational fluid
+dynamics, model reduction, electromagnetics, semiconductor devices, thermodynamics,
+materials, acoustics, computer graphics/vision, robotics/kinematics, and other discretizations)
+and those that typically do not have such geometry (optimization, circuit simulation,
+economic and financial modeling, theoretical and quantum chemistry, chemical process
+simulation, mathematics and statistics, power networks, and other networks and graphs).
+We provide software for accessing and managing the Collection, from MATLAB™, Mathematica™,
+Fortran, and C, as well as an online search capability. Graph visualization of the
+matrices is provided, and a new multilevel coarsening scheme is proposed to facilitate
+this task.},
+journal = {ACM Trans. Math. Softw.},
+month = dec,
+articleno = {1},
+numpages = {25},
+keywords = {sparse matrices, Graph drawing, multilevel algorithms, performance evaluation}
+}
+
+@InProceedings{YogeshWork,
+  author={Mahajan, Yogesh and Obla, Shashank and Namboothiripad, Mini K. and Datar, Mandar J. and Sharma, Niraj N. and Patkar, Sachin B.},
+  booktitle={2020 33rd International Conference on VLSI Design and 2020 19th International Conference on Embedded Systems (VLSID)},
+  title={FPGA-Based Acceleration of LU decomposition for Analog and RF Circuit Simulation},
+  year={2020},
+  volume={},
+  number={},
+  pages={131-136},
+  doi={10.1109/VLSID49098.2020.00040}
+}
+@book{davis2006direct,
+  title={Direct methods for sparse linear systems},
+  author={Davis, Timothy A},
+  year={2006},
+  publisher={SIAM}
+}
+
+@manual{Xilinx_BRAM,
+    online=Xilinx_BRAM_website,
+    author = "Xilinx",
+    title = "Block Memory Generator v8.3 LogiCORE IP Product Guide Vivado Design Suite",
+    url  = "https://www.xilinx.com/support/documentation/ip_documentation/blk_mem_gen/v8_3/pg058-blk-mem-gen.pdf",
+    addendum = "(accessed: 15.04.2021)",
+    keywords = "Xilinx,Vivado IP"
+}
+@manual{Xilinx_Floatpt,
+    online=Xilinx_Floating_point_website,
+    author = "Xilinx",
+    title = "Floating-Point Operator v7.1 LogiCORE IP Product Guide Vivado Design Suite",
+    url  = "https://www.xilinx.com/support/documentation/ip_documentation/blk_mem_gen/v8_3/pg058-blk-mem-gen.pdf",
+    addendum = "(accessed: 17.04.2020)",
+    keywords = "Xilinx,Vivado IP"
+}
+
+@InProceedings{AnuragWork,
+  author={Anurag Choudhury},
+  title={FPGA Implementation of LU Decomposition Algorithm on Crossbar Network},
+  year={2020},
+  volume={Thesis Indian Institute of Technology Bombay},
+  number={},
 }

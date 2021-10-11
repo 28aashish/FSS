@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -std=c++11 -O3 #-DMAKE_GRAPH# -DPRINT_DEBUG_1
+CXXFLAGS = -std=c++11 -O3 -w #-DMAKE_GRAPH# -DPRINT_DEBUG_1
 
 MATLAB =/usr/local/bin/matlab
 PYTHON3 = python3
@@ -35,7 +35,7 @@ main: CCS.o Graph.o sparseLU.o Schedule.o main.o
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
 clean: 
-	rm -f main main.o sparseLU.o Graph.o CCS.o Schedule.o *.dot
+	rm -f main main.o sparseLU.o Graph.o CCS.o Schedule.o *.dot *.json
 
 buildPreprocessTests: processTests.o CCS.o
 	$(CXX) $(CXXFLAGS) -o preprocessTest $^
@@ -54,6 +54,15 @@ cleanall:
 	rm -f *.mat *.o *.txt *.csv *.png *.dot main preprocessTest
 
 no_mat:
+	$(CXX) $(CXXFLAGS) -c processTests.cpp
+	$(CXX) $(CXXFLAGS) -c CCS.cpp
+	$(CXX) $(CXXFLAGS) -o preprocessTest processTests.o CCS.o
+	$(CXX) $(CXXFLAGS) -c Graph.cpp
+	$(CXX) $(CXXFLAGS) -c sparseLU.cpp
+	$(CXX) $(CXXFLAGS) -c Schedule.cpp
+	$(CXX) $(CXXFLAGS) -c main.cpp
+	$(CXX) $(CXXFLAGS) -o main CCS.o Graph.o sparseLU.o Schedule.o main.o
+mat:
 	$(CXX) $(CXXFLAGS) -c processTests.cpp
 	$(CXX) $(CXXFLAGS) -c CCS.cpp
 	$(CXX) $(CXXFLAGS) -o preprocessTest processTests.o CCS.o

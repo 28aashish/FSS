@@ -1,5 +1,7 @@
 \ProvidesPackage{ddpThesis}[2018/10/09 v1.0 DDP Thesis Style]
 \usepackage[english]{babel}
+\usepackage{blindtext}
+\usepackage{romannum}
 \usepackage[autostyle]{csquotes}
 \RequirePackage{fancyhdr}
 \RequirePackage{extramarks}
@@ -24,6 +26,8 @@
 \RequirePackage{afterpage}
 \RequirePackage{setspace}
 % \RequirePackage{svg}
+\usepackage{amsmath}
+\usepackage{tcolorbox}
 
 \RequirePackage{algorithm}
 % \RequirePackage{algorithmicx}
@@ -135,8 +139,13 @@
 	\begin{center}	
 		\begin{tabular}{p{0.6\linewidth}c}
 		           	  & \rule{4cm}{1pt}\\	
-			          &  \name\\
-	   Date: #1       & (\rollNo) \\
+			          &  \textbf{\name}\\
+	                 & \textbf{Roll No.\rollNo} \\
+                     & IIT Bombay \\
+                     \\
+                     \\
+                     \\
+        Date: #1       
 		\end{tabular}	
 	\end{center}
 }
@@ -213,7 +222,7 @@
         \textbf{\large \name}\\
         \vspace{0.25cm}
         \textbf{\large (Roll No. \rollNo)}\\
-        \vspace{1.8cm}
+        \vspace{1.2cm}
         {Under the guidance of}\\
         \vspace{0.20cm}
         \textbf{\large \guide}\\
