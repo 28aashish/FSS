@@ -28,7 +28,9 @@ buildHardware:
 
 buildHDtest:
 	$(PYTHON3) ./Scheduler/pyFiles/S_Tester.py
-
+	(cd ./Scheduler/S_tester;$(CXX) automate_Tester.cpp)
+	(cd ./Scheduler/S_tester;./a.out)
+	
 cleanall:
 	(cd Scheduler/cppFiles; make cleanall)
 

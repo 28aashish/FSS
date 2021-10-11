@@ -190,7 +190,9 @@ void development(struct HardwareConfig &simpleHardware)
         myfile<<"\"ADDR_WIDTH_DATA_BRAM\":"<<(int)ceil(log2(simpleHardware.BRAMs[0]->size))<<","<<endl;
         myfile<<"\"CTRL_WIDTH\":"<<instruction_list[0].size()<<","<<endl;
         myfile<<"\"AU_SEL_WIDTH\":"<<simpleHardware.AUMuxSelWidth<<","<<endl;
-        myfile<<"\"BRAM_SEL_WIDTH\":"<<simpleHardware.BRAMMuxSelWidth<<endl;
+        myfile<<"\"BRAM_SEL_WIDTH\":"<<simpleHardware.BRAMMuxSelWidth<<","<<endl;
+        myfile<<"\"MAC_LAT\":"<<delay_MAC<<","<<endl;
+        myfile<<"\"DIV_LAT\":"<<delay_DIV<<endl;
         myfile<<"}"<<endl;
         myfile.close();
 /*
@@ -328,7 +330,9 @@ void test(struct HardwareConfig &simpleHardware, string testName,  string postfi
         myfile<<"\"ADDR_WIDTH_DATA_BRAM\":"<<(int)ceil(log2(simpleHardware.BRAMs[0]->size))<<","<<endl;
         myfile<<"\"CTRL_WIDTH\":"<<instruction_list[0].size()<<","<<endl;
         myfile<<"\"AU_SEL_WIDTH\":"<<simpleHardware.AUMuxSelWidth<<","<<endl;
-        myfile<<"\"BRAM_SEL_WIDTH\":"<<simpleHardware.BRAMMuxSelWidth<<endl;
+        myfile<<"\"BRAM_SEL_WIDTH\":"<<simpleHardware.BRAMMuxSelWidth<<","<<endl;
+        myfile<<"\"MAC_LAT\":"<<delay_MAC<<","<<endl;
+        myfile<<"\"DIV_LAT\":"<<delay_DIV<<endl;
         myfile<<"}"<<endl;
         myfile.close();
 

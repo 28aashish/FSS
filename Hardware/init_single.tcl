@@ -27,6 +27,7 @@ make_bd_pins_external  [get_bd_cells blk_mem_gen_0]
 make_bd_intf_pins_external  [get_bd_cells blk_mem_gen_0]
 save_bd_design
 close_bd_design [get_bd_designs design_CTRL]
+
 ######################################################################
 ######################### Design MAC ################################
 ######################################################################
@@ -35,7 +36,7 @@ close_bd_design [get_bd_designs design_CTRL]
 ###### CONFIG.C_Mult_Usage {Full_Usage}
 ###### CONFIG.Axi_Optimize_Goal {Performance}
 ###### CONFIG.Result_Precision_Type {Single} 
-###### CONFIG.C_Latency {22}
+###### CONFIG.C_Latency 22
 ##############
 create_bd_design "design_MAC"
 create_bd_cell -type ip -vlnv xilinx.com:ip:floating_point:7.1 floating_point_0
@@ -50,11 +51,11 @@ close_bd_design [get_bd_designs design_MAC]
 ######################### Design DIV ################################
 ######################################################################
 ###################
-###### CONFIG.Operation_Type {Divide} 
+###### CONFIG.Operation_Type {Divide}
 ###### CONFIG.C_Mult_Usage {Full_Usage}
 ###### CONFIG.Axi_Optimize_Goal {Performance}
 ###### CONFIG.Result_Precision_Type {Single} 
-###### CONFIG.C_Latency {31}
+###### CONFIG.C_Latency 31
 ##############
 create_bd_design "design_DIV"
 create_bd_cell -type ip -vlnv xilinx.com:ip:floating_point:7.1 floating_point_0

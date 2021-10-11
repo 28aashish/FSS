@@ -11,7 +11,96 @@ ADDR_WIDTH_DATA_BRAM=10
 CTRL_WIDTH=357
 AU_SEL_WIDTH=5
 BRAM_SEL_WIDTH=5
-    
+MAC_LAT=5
+DIV_LAT=5
+
+def make_tcl():
+    tcl=open("./init_single.tcl", 'w')
+    tcl.write("""######################################################################
+######################## Design BRAM_A ###############################
+######################################################################
+###################
+""")
+    stringer="""###### {0} is the depth
+##############
+create_bd_design "design_BRAM_A"
+create_bd_cell -type ip -vlnv xilinx.com:ip:blk_mem_gen:8.3 blk_mem_gen_0
+set_property -dict [list CONFIG.Memory_Type {{True_Dual_Port_RAM}} CONFIG.Write_Depth_A {{{0}}} CONFIG.Register_PortA_Output_of_Memory_Primitives {{false}} CONFIG.Register_PortB_Output_of_Memory_Primitives {{false}} CONFIG.use_bram_block {{Stand_Alone}} CONFIG.Enable_32bit_Address {{false}} CONFIG.Use_Byte_Write_Enable {{false}} CONFIG.Byte_Size {{9}} CONFIG.Enable_B {{Use_ENB_Pin}} CONFIG.Use_RSTA_Pin {{false}} CONFIG.Use_RSTB_Pin {{false}} CONFIG.Port_B_Clock {{100}} CONFIG.Port_B_Write_Rate {{50}} CONFIG.Port_B_Enable_Rate {{100}}] [get_bd_cells blk_mem_gen_0]
+make_bd_pins_external  [get_bd_cells blk_mem_gen_0]
+make_bd_intf_pins_external  [get_bd_cells blk_mem_gen_0]
+save_bd_design
+close_bd_design [get_bd_designs design_BRAM_A]
+
+"""
+    if NUM_PORT==1:
+        stringer="""###### {0} is the depth
+##############
+create_bd_design "design_BRAM_A"
+create_bd_cell -type ip -vlnv xilinx.com:ip:blk_mem_gen:8.3 blk_mem_gen_0
+set_property -dict [list CONFIG.Memory_Type {{Single_port_RAM}} CONFIG.Write_Depth_A {{{0}}} CONFIG.Register_PortA_Output_of_Memory_Primitives {{false}} CONFIG.use_bram_block {{Stand_Alone}} CONFIG.Enable_32bit_Address {{false}} CONFIG.Use_Byte_Write_Enable {{false}} CONFIG.Byte_Size {{9}} CONFIG.Enable_B {{Use_ENB_Pin}} CONFIG.Use_RSTA_Pin {{false}}] [get_bd_cells blk_mem_gen_0]
+make_bd_pins_external  [get_bd_cells blk_mem_gen_0]
+make_bd_intf_pins_external  [get_bd_cells blk_mem_gen_0]
+save_bd_design
+close_bd_design [get_bd_designs design_BRAM_A]
+
+"""
+    tcl.write(stringer.format(2**ADDR_WIDTH_DATA_BRAM))
+    stringer="""######################################################################
+######################### Design CTRL ################################
+######################################################################
+###################
+###### Write_Width_A is {0}
+###### {1} is the depth
+##############
+create_bd_design "design_CTRL"
+#update_compile_order -fileset sources_1
+create_bd_cell -type ip -vlnv xilinx.com:ip:blk_mem_gen:8.3 blk_mem_gen_0
+set_property -dict [list CONFIG.Write_Width_A {{{0}}} CONFIG.Write_Depth_A {{{1}}} CONFIG.Register_PortA_Output_of_Memory_Primitives {{false}} CONFIG.use_bram_block {{Stand_Alone}} CONFIG.Enable_32bit_Address {{false}} CONFIG.Use_Byte_Write_Enable {{false}} CONFIG.Byte_Size {{9}} CONFIG.Read_Width_A {{{0}}} CONFIG.Write_Width_B {{{0}}} CONFIG.Read_Width_B {{{0}}} CONFIG.Use_RSTA_Pin {{false}}] [get_bd_cells blk_mem_gen_0]
+make_bd_pins_external  [get_bd_cells blk_mem_gen_0]
+make_bd_intf_pins_external  [get_bd_cells blk_mem_gen_0]
+save_bd_design
+close_bd_design [get_bd_designs design_CTRL]
+
+"""
+    tcl.write(stringer.format(CTRL_WIDTH,2**ADDR_WIDTH))
+    stringer="""######################################################################
+######################### Design MAC ################################
+######################################################################
+###################
+###### CONFIG.Operation_Type {{FMA}} 
+###### CONFIG.C_Mult_Usage {{Full_Usage}}
+###### CONFIG.Axi_Optimize_Goal {{Performance}}
+###### CONFIG.Result_Precision_Type {{Single}} 
+###### CONFIG.C_Latency {0}
+##############
+create_bd_design "design_MAC"
+create_bd_cell -type ip -vlnv xilinx.com:ip:floating_point:7.1 floating_point_0
+set_property -dict [list CONFIG.Operation_Type {{FMA}} CONFIG.C_Mult_Usage {{Full_Usage}} CONFIG.Axi_Optimize_Goal {{Performance}} CONFIG.Result_Precision_Type {{Single}} CONFIG.C_Result_Exponent_Width {{8}} CONFIG.C_Result_Fraction_Width {{24}} CONFIG.C_Latency {{{0}}} CONFIG.C_Rate {{1}}] [get_bd_cells floating_point_0]
+make_bd_pins_external  [get_bd_cells floating_point_0]
+make_bd_intf_pins_external  [get_bd_cells floating_point_0]
+save_bd_design
+close_bd_design [get_bd_designs design_MAC]
+
+
+######################################################################
+######################### Design DIV ################################
+######################################################################
+###################
+###### CONFIG.Operation_Type {{Divide}}
+###### CONFIG.C_Mult_Usage {{Full_Usage}}
+###### CONFIG.Axi_Optimize_Goal {{Performance}}
+###### CONFIG.Result_Precision_Type {{Single}} 
+###### CONFIG.C_Latency {1}
+##############
+create_bd_design "design_DIV"
+create_bd_cell -type ip -vlnv xilinx.com:ip:floating_point:7.1 floating_point_0
+set_property -dict [list CONFIG.Operation_Type {{Divide}} CONFIG.Axi_Optimize_Goal {{Performance}} CONFIG.Result_Precision_Type {{Single}} CONFIG.C_Result_Exponent_Width {{8}} CONFIG.C_Result_Fraction_Width {{24}} CONFIG.C_Mult_Usage {{No_Usage}} CONFIG.C_Latency {{{1}}} CONFIG.C_Rate {{1}}] [get_bd_cells floating_point_0]
+make_bd_pins_external  [get_bd_cells floating_point_0]
+make_bd_intf_pins_external  [get_bd_cells floating_point_0]
+save_bd_design
+close_bd_design [get_bd_designs design_DIV]
+"""
+    tcl.write(stringer.format(MAC_LAT,DIV_LAT))
 def hardwareMUX_vhdl():
     MUX_AU_IN  = open("./autoFiles/HDFile/MUX_AU_IN.vhd", 'w')
     MUX_BRAM_IN  = open("./autoFiles/HDFile/MUX_BRAM_IN.vhd", 'w')
@@ -355,7 +444,7 @@ architecture yoStyle of LUDHardware is
         BRAM_PORTA_din : in STD_LOGIC_VECTOR ( 31 downto 0 );
         BRAM_PORTA_dout : out STD_LOGIC_VECTOR ( 31 downto 0 );
         BRAM_PORTA_en : in STD_LOGIC;
-        BRAM_PORTA_we : in STD_LOGIC_VECTOR ( 0 to 0 );
+        BRAM_PORTA_we : in STD_LOGIC_VECTOR ( 0 to 0 )
     """
 	
 #    for idx in range(65, 65 + 2 if 1 < NUM_PORT else 1):
@@ -790,18 +879,29 @@ begin
 
     stringer="""
     mac_{0}_{1}_sel <= CTRL_Signal(CTRL_WIDTH-16*ADDR_WIDTH-{2}*AU_SEL_WIDTH-17 downto CTRL_WIDTH-16*ADDR_WIDTH-{3}*AU_SEL_WIDTH-16);"""
+    if NUM_PORT==1:
+        stringer="""
+    mac_{0}_{1}_sel <= CTRL_Signal(CTRL_WIDTH-4*ADDR_WIDTH-{2}*AU_SEL_WIDTH-5 downto CTRL_WIDTH-4*ADDR_WIDTH-{3}*AU_SEL_WIDTH-4);"""
+    
     for id0 in range(65, 65 + NUM_MAC_DIV_S):
         for id1 in range(97, 97 + 3):
             vhdFile.write(stringer.format(chr(id0),chr(id1),(id0-65)*3+id1-97,(id0-65)*3+id1-97+1))   
 
     stringer="""
     div_{0}_{1}_sel <= CTRL_Signal(CTRL_WIDTH-16*ADDR_WIDTH-{2}*AU_SEL_WIDTH-17 downto CTRL_WIDTH-16*ADDR_WIDTH-{3}*AU_SEL_WIDTH-16);"""
+    if NUM_PORT==1:
+        stringer="""
+    div_{0}_{1}_sel <= CTRL_Signal(CTRL_WIDTH-4*ADDR_WIDTH-{2}*AU_SEL_WIDTH-5 downto CTRL_WIDTH-4*ADDR_WIDTH-{3}*AU_SEL_WIDTH-4);"""
+
     for id0 in range(65, 65 + NUM_MAC_DIV_S):
         for id1 in range(97, 97 + 2):
             vhdFile.write(stringer.format(chr(id0),chr(id1),NUM_MAC_DIV_S*3+(id0-65)*2+id1-97,NUM_MAC_DIV_S*3+(id0-65)*2+id1-97+1))      
 
     stringer="""
     block_{0}_{1}_sel <= CTRL_Signal(CTRL_WIDTH-16*ADDR_WIDTH-20*AU_SEL_WIDTH-{2}*BRAM_SEL_WIDTH-17 downto CTRL_WIDTH-16*ADDR_WIDTH-20*AU_SEL_WIDTH-{3}*BRAM_SEL_WIDTH-16);"""
+    if NUM_PORT == 1:
+        stringer="""
+    block_{0}_{1}_sel <= CTRL_Signal(CTRL_WIDTH-4*ADDR_WIDTH-5*AU_SEL_WIDTH-{2}*BRAM_SEL_WIDTH-5 downto CTRL_WIDTH-4*ADDR_WIDTH-5*AU_SEL_WIDTH-{3}*BRAM_SEL_WIDTH-4);"""
     if NUM_PORT == 4:
         stringer="""
     bram_{0}_{1}_sel <= CTRL_Signal(CTRL_WIDTH-16*ADDR_WIDTH-20*AU_SEL_WIDTH-{2}*BRAM_SEL_WIDTH-17 downto CTRL_WIDTH-16*ADDR_WIDTH-20*AU_SEL_WIDTH-{3}*BRAM_SEL_WIDTH-16);"""
@@ -850,9 +950,7 @@ begin
         vhdFile.write(stringer.format(chr(id0)))
     vhdFile.write("""
     
-end architecture;
-
-    """)
+end architecture;""")
     vhdFile.close()
 
 def hardwareTesterWrapper_vhdl():
@@ -2399,10 +2497,13 @@ if __name__ == "__main__":
     CTRL_WIDTH=data['CTRL_WIDTH']
     AU_SEL_WIDTH=data['AU_SEL_WIDTH']
     BRAM_SEL_WIDTH=data['BRAM_SEL_WIDTH']
+    MAC_LAT=data['MAC_LAT']
+    DIV_LAT=data['DIV_LAT']
     # Iterating through the json
     # list 
     # Closing file
     f.close()
+    make_tcl()
 hardwareMUX_vhdl()
 hardwareTester_vhdl()
 LUDHardware_vhdl()

@@ -1,0 +1,7 @@
+\begin{Abstract}
+\noindent
+Solving the sparse linear system is one of the most critical steps in many scientific applications such as circuit simulation, training of neural networks, power system modeling, and 5G communication. These operations are iterative and majorly consist of sparse form. In such scenarios, it becomes essential to develop a more efficient way to solve the equations using graph algorithms instead of traditional techniques like Gaussian elimination. The project presents a scalable FPGA-based LU solver system geared towards the matrices that arise in circuit simulations. The LU decomposition approach specified in this project has three main parts. The first part does a symbolic analysis of the matrix. The structure of the sparse system remains the same during the entire simulation and hence can be analyzed symbolically only once to generate a directed acyclic graph. The second part takes this directed flow graph and hardware features such as the number of arithmetic units and BRAMs as inputs and generates a static schedule using the priority list-based ASAP strategy for cross-bar type network. The final software toolchain is a hardware implementation of the cross-bar network.
+
+% \afterpage{\blankpage}
+% \clearpage
+\end{Abstract}

@@ -42,7 +42,7 @@ int main(){{
     float delta,percent_error;
 
     //Verification for L
-    cout<<"Verifying L values:-";
+    cout<<"Verifying L values:-"<<endl;
     invalid_values = 0;
     for(int i=0;i<BRAM_COUNT;i++){
         for(int j=0;j<BRAM_DEPTH;j++){
