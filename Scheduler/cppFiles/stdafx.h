@@ -45,24 +45,24 @@ EXTERN f_type g_errThreshold;
 #define CTRL_DELAY 2
 
 // Hardware Requirements
-#define instBRAMSize 4096
-#define BRAMSize 1024
+#define instBRAMSize 16384
+#define BRAMSize 4096
 
 //IP Requirements
         
 //Instruction BRAM Ports
-#define PORT_of_BRAM 2
+#define PORT_of_BRAM 1
 //Total Instruction BRAM 
 //⚠ ⚠ ⚠ ⚠ ⚠ ⚠ ⚠ ⚠ at max 16
-#define Total_BRAMs_for_Data 8
+#define Total_BRAMs_for_Data 4
 //iff numMAC_DIVUnits = 4 i.e. 4 MAC Unit and 4 Div Unit
-#define numMAC_DIVUnits 4
+#define numMAC_DIVUnits 1
 
 //#define delay_DIV 31
 //#define delay_MAC 22
 
-#define delay_DIV 31
-#define delay_MAC 22
+#define delay_DIV 10
+#define delay_MAC 11
 
 // Map Delays
 EXTERN map<string, int> opDelay INITIALIZER({{"+", 12}, {"-", 12}, {"*",9}, {"/", delay_DIV}, {"rd", 2}, 

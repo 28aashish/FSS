@@ -1,4 +1,3 @@
-
 TEST_MATRIX =
 PYTHON3 = python3
 .PHONY: clean preprocess process all all_wo_matlab build_wo_matlab run_wo_matlab cleanall cleanup all_graph 
@@ -6,10 +5,9 @@ PYTHON3 = python3
 #all: cleanall preprocess process buildHardware
 all: cleanall preprocess process buildHardware
 all_mat: cleanall preprocess buildHardware
-
-all_wo_matlab: cleanall
-	(cd Scheduler/cppFiles;make c_run)
-
+all_wo_matlab: cleanall 
+	(cd Scheduler/cppFiles; make c_run)
+	
 build_wo_matlab: cleanall
 	(cd Scheduler/cppFiles;make cbuild_only)
 

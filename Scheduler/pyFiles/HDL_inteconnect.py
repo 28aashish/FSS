@@ -130,8 +130,8 @@ entity MUX_BRAM_IN is
         DOUT : out std_logic_vector(31 downto 0)
     );
 end entity;"""
-    MUX_AU_IN.write(stringer.format(math.ceil(math.log2(NUM_MAC_DIV_S*2+NUM_BRAM*NUM_PORT)),NUM_MAC_DIV_S*2+NUM_BRAM*NUM_PORT))
-    MUX_BRAM_IN.write(stringer.format(math.ceil(math.log2(NUM_MAC_DIV_S*2+NUM_BRAM*NUM_PORT)),NUM_MAC_DIV_S*2+NUM_BRAM*NUM_PORT-1))
+    MUX_AU_IN.write(stringer.format(AU_SEL_WIDTH,NUM_MAC_DIV_S*2+NUM_BRAM*NUM_PORT))
+    MUX_BRAM_IN.write(stringer.format(BRAM_SEL_WIDTH,NUM_MAC_DIV_S*2+NUM_BRAM*NUM_PORT-1))
     MUX_AU_IN.write(
 """
 architecture behav of MUX_AU_IN is
@@ -149,9 +149,9 @@ sel_process : process(SEL, DIN)
     stringer="""
     when "{0}" => DOUT <= DIN({1});"""
     for idx in range(NUM_MAC_DIV_S*2+NUM_BRAM*NUM_PORT+1):
-        MUX_AU_IN.write(stringer.format(format(idx,'b').zfill(math.ceil(math.log2(NUM_MAC_DIV_S*2+NUM_BRAM*NUM_PORT))),idx))
-        if idx !=NUM_MAC_DIV_S*2+NUM_BRAM*NUM_PORT:
-            MUX_BRAM_IN.write(stringer.format(format(idx,'b').zfill(math.ceil(math.log2(NUM_MAC_DIV_S*2+NUM_BRAM*NUM_PORT))),idx))
+        MUX_AU_IN.write(stringer.format(format(idx,'b').zfill(AU_SEL_WIDTH),idx))
+    for idx in range(NUM_MAC_DIV_S*2+NUM_BRAM*NUM_PORT):
+        MUX_BRAM_IN.write(stringer.format(format(idx,'b').zfill(BRAM_SEL_WIDTH),idx))
     MUX_AU_IN.write("""
     when others => DOUT <= (others => 'X');
     end case;
@@ -878,36 +878,27 @@ begin
 
 
     stringer="""
-    mac_{0}_{1}_sel <= CTRL_Signal(CTRL_WIDTH-16*ADDR_WIDTH-{2}*AU_SEL_WIDTH-17 downto CTRL_WIDTH-16*ADDR_WIDTH-{3}*AU_SEL_WIDTH-16);"""
-    if NUM_PORT==1:
-        stringer="""
-    mac_{0}_{1}_sel <= CTRL_Signal(CTRL_WIDTH-4*ADDR_WIDTH-{2}*AU_SEL_WIDTH-5 downto CTRL_WIDTH-4*ADDR_WIDTH-{3}*AU_SEL_WIDTH-4);"""
+    mac_{0}_{1}_sel <= CTRL_Signal(CTRL_WIDTH-{4}*ADDR_WIDTH-{2}*AU_SEL_WIDTH-{5} downto CTRL_WIDTH-{4}*ADDR_WIDTH-{3}*AU_SEL_WIDTH-{4});"""
     
     for id0 in range(65, 65 + NUM_MAC_DIV_S):
         for id1 in range(97, 97 + 3):
-            vhdFile.write(stringer.format(chr(id0),chr(id1),(id0-65)*3+id1-97,(id0-65)*3+id1-97+1))   
+            vhdFile.write(stringer.format(chr(id0),chr(id1),(id0-65)*3+id1-97,(id0-65)*3+id1-97+1,NUM_BRAM*NUM_PORT,NUM_PORT*NUM_BRAM+1))   
 
     stringer="""
-    div_{0}_{1}_sel <= CTRL_Signal(CTRL_WIDTH-16*ADDR_WIDTH-{2}*AU_SEL_WIDTH-17 downto CTRL_WIDTH-16*ADDR_WIDTH-{3}*AU_SEL_WIDTH-16);"""
-    if NUM_PORT==1:
-        stringer="""
-    div_{0}_{1}_sel <= CTRL_Signal(CTRL_WIDTH-4*ADDR_WIDTH-{2}*AU_SEL_WIDTH-5 downto CTRL_WIDTH-4*ADDR_WIDTH-{3}*AU_SEL_WIDTH-4);"""
+    div_{0}_{1}_sel <= CTRL_Signal(CTRL_WIDTH-{4}*ADDR_WIDTH-{2}*AU_SEL_WIDTH-{5} downto CTRL_WIDTH-{4}*ADDR_WIDTH-{3}*AU_SEL_WIDTH-{4});"""
 
     for id0 in range(65, 65 + NUM_MAC_DIV_S):
         for id1 in range(97, 97 + 2):
-            vhdFile.write(stringer.format(chr(id0),chr(id1),NUM_MAC_DIV_S*3+(id0-65)*2+id1-97,NUM_MAC_DIV_S*3+(id0-65)*2+id1-97+1))      
+            vhdFile.write(stringer.format(chr(id0),chr(id1),NUM_MAC_DIV_S*3+(id0-65)*2+id1-97,NUM_MAC_DIV_S*3+(id0-65)*2+id1-97+1,NUM_BRAM*NUM_PORT,NUM_BRAM*NUM_PORT+1))      
 
     stringer="""
-    block_{0}_{1}_sel <= CTRL_Signal(CTRL_WIDTH-16*ADDR_WIDTH-20*AU_SEL_WIDTH-{2}*BRAM_SEL_WIDTH-17 downto CTRL_WIDTH-16*ADDR_WIDTH-20*AU_SEL_WIDTH-{3}*BRAM_SEL_WIDTH-16);"""
-    if NUM_PORT == 1:
-        stringer="""
-    block_{0}_{1}_sel <= CTRL_Signal(CTRL_WIDTH-4*ADDR_WIDTH-5*AU_SEL_WIDTH-{2}*BRAM_SEL_WIDTH-5 downto CTRL_WIDTH-4*ADDR_WIDTH-5*AU_SEL_WIDTH-{3}*BRAM_SEL_WIDTH-4);"""
+    block_{0}_{1}_sel <= CTRL_Signal(CTRL_WIDTH-{4}*ADDR_WIDTH-{6}*AU_SEL_WIDTH-{2}*BRAM_SEL_WIDTH-{5} downto CTRL_WIDTH-{4}*ADDR_WIDTH-{6}*AU_SEL_WIDTH-{3}*BRAM_SEL_WIDTH-{4});"""
     if NUM_PORT == 4:
         stringer="""
-    bram_{0}_{1}_sel <= CTRL_Signal(CTRL_WIDTH-16*ADDR_WIDTH-20*AU_SEL_WIDTH-{2}*BRAM_SEL_WIDTH-17 downto CTRL_WIDTH-16*ADDR_WIDTH-20*AU_SEL_WIDTH-{3}*BRAM_SEL_WIDTH-16);"""
+    bram_{0}_{1}_sel <= CTRL_Signal(CTRL_WIDTH-{4}*ADDR_WIDTH-{6}*AU_SEL_WIDTH-{2}*BRAM_SEL_WIDTH-{5} downto CTRL_WIDTH-{4}*ADDR_WIDTH-{6}*AU_SEL_WIDTH-{3}*BRAM_SEL_WIDTH-{4});"""
     for id0 in range(65, 65 + NUM_BRAM):
         for id1 in range(97, 97 + NUM_PORT):
-            vhdFile.write(stringer.format(chr(id0),chr(id1),(id0-65)*NUM_PORT+id1-97,(id0-65)*NUM_PORT+id1-97+1))
+            vhdFile.write(stringer.format(chr(id0),chr(id1),(id0-65)*NUM_PORT+id1-97,(id0-65)*NUM_PORT+id1-97+1,NUM_PORT*NUM_BRAM,NUM_BRAM*NUM_PORT+1,NUM_MAC_DIV_S*5))
     vhdFile.write("""
 
     --  CTRL_Signal(0) is actually a complete signal which is required by this module during debugging

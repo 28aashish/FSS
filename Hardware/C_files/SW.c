@@ -7,8 +7,8 @@
 #include "xil_io.h"
 #include "FPGALoad_INST.h"
 #include "FPGALoad_A.h"
-#define BRAMs 8
-#define BRAMs_Size 1024
+#define BRAMs 4
+#define BRAMs_Size 4096
     
 int main()
 {
@@ -65,14 +65,14 @@ void printall()
     
 	        Xil_Out32(XPAR_MYIP_AXI_LUD_WRAPPER_0_BASEADDR + 4*(4+i), j); //Writing address
 	        //delay();
-	        Xil_Out32(XPAR_MYIP_AXI_LUD_WRAPPER_0_BASEADDR + 4*(28+i), 1); //Making enable 1
+	        Xil_Out32(XPAR_MYIP_AXI_LUD_WRAPPER_0_BASEADDR + 4*(16+i), 1); //Making enable 1
 	        //delay();
-	        Xil_Out32(XPAR_MYIP_AXI_LUD_WRAPPER_0_BASEADDR + 4*(36+i), 0); //Making write enable 0
+	        Xil_Out32(XPAR_MYIP_AXI_LUD_WRAPPER_0_BASEADDR + 4*(20+i), 0); //Making write enable 0
 	        //delay();
-	        val = Xil_In32(XPAR_MYIP_AXI_LUD_WRAPPER_0_BASEADDR + 4*(20+i)); //Reading from dout
+	        val = Xil_In32(XPAR_MYIP_AXI_LUD_WRAPPER_0_BASEADDR + 4*(12+i)); //Reading from dout
 	        val_float = int_to_float(val);
 	        //delay();
-	        Xil_Out32(XPAR_MYIP_AXI_LUD_WRAPPER_0_BASEADDR + 4*(28+i), 0); //Making enable 0
+	        Xil_Out32(XPAR_MYIP_AXI_LUD_WRAPPER_0_BASEADDR + 4*(16+i), 0); //Making enable 0
 
 	        //delay();
 	        //printf("Value(%d,%d) = %7.4e,(%d)\n",i,j,val_float,val);

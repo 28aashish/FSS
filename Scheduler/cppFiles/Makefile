@@ -57,6 +57,7 @@ cbuild_only:
 	$(CXX) $(CXXFLAGS) -c processTests.cpp
 	$(CXX) $(CXXFLAGS) -c CCS.cpp
 	$(CXX) $(CXXFLAGS) -o preprocessTest processTests.o CCS.o
+	$(PYTHON3) ../pyFiles/preprocess.py $(TEST_MATRIX)
 	$(CXX) $(CXXFLAGS) -c Graph.cpp
 	$(CXX) $(CXXFLAGS) -c sparseLU.cpp
 	$(CXX) $(CXXFLAGS) -c Schedule.cpp
@@ -66,6 +67,7 @@ c_run:
 	$(CXX) $(CXXFLAGS) -c processTests.cpp
 	$(CXX) $(CXXFLAGS) -c CCS.cpp
 	$(CXX) $(CXXFLAGS) -o preprocessTest processTests.o CCS.o
+	$(PYTHON3) ../pyFiles/preprocess.py $(TEST_MATRIX)
 	$(CXX) $(CXXFLAGS) -c Graph.cpp
 	$(CXX) $(CXXFLAGS) -c sparseLU.cpp
 	$(CXX) $(CXXFLAGS) -c Schedule.cpp
