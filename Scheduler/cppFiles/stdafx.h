@@ -42,21 +42,21 @@ EXTERN f_type g_errThreshold;
 // #define MAKE_GRAPH
 #define GRAPH_DPI "100"
 
-#define CTRL_DELAY 2
+#define CTRL_DELAY 1
 
 // Hardware Requirements
-#define instBRAMSize 16384
-#define BRAMSize 4096
+#define instBRAMSize 4096
+#define BRAMSize 1024
 
 //IP Requirements
         
 //Instruction BRAM Ports
-#define PORT_of_BRAM 1
+#define PORT_of_BRAM 2
 //Total Instruction BRAM 
 //⚠ ⚠ ⚠ ⚠ ⚠ ⚠ ⚠ ⚠ at max 16
-#define Total_BRAMs_for_Data 4
+#define Total_BRAMs_for_Data 10
 //iff numMAC_DIVUnits = 4 i.e. 4 MAC Unit and 4 Div Unit
-#define numMAC_DIVUnits 1
+#define numMAC_DIVUnits 4   
 
 //#define delay_DIV 31
 //#define delay_MAC 22

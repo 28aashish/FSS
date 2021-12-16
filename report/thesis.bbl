@@ -10,17 +10,6 @@ T.~Nechma and M.~Zwolinski, ``Parallel sparse matrix solution for circuit
   simulation on fpgas,'' {\em IEEE Transactions on Computers}, vol.~64,
   pp.~1090--1103, April 2015.
 
-\bibitem{AnuragWork}
-A.~Choudhury, ``Fpga implementation of lu decomposition algorithm on crossbar
-  network,'' M.Tech Thesis Report, IIT Bombay, 2020.
-
-\bibitem{YogeshWork}
-Y.~Mahajan, S.~Obla, M.~K. Namboothiripad, M.~J. Datar, N.~N. Sharma, and S.~B.
-  Patkar, ``Fpga-based acceleration of lu decomposition for analog and rf
-  circuit simulation,'' in {\em 2020 33rd International Conference on VLSI
-  Design and 2020 19th International Conference on Embedded Systems (VLSID)},
-  pp.~131--136, 2020.
-
 \bibitem{SparseSuite}
 T.~A. Davis and Y.~Hu, ``The university of florida sparse matrix collection,''
   vol.~38, (New York, NY, USA), Association for Computing Machinery, Dec. 2011.
@@ -37,6 +26,17 @@ T.~A. Davis, {\em Direct methods for sparse linear systems}.
 J.~Gilbert and T.~Peierls, ``Sparse partial pivoting in time proportional to
   arithmetic operations,'' {\em SIAM Journal on Scientific and Statistical
   Computing}, vol.~9, no.~5, pp.~862--874, 1988.
+
+\bibitem{AnuragWork}
+A.~Choudhury, ``Fpga implementation of lu decomposition algorithm on crossbar
+  network,'' M.Tech Thesis Report, IIT Bombay, 2020.
+
+\bibitem{YogeshWork}
+Y.~Mahajan, S.~Obla, M.~K. Namboothiripad, M.~J. Datar, N.~N. Sharma, and S.~B.
+  Patkar, ``Fpga-based acceleration of lu decomposition for analog and rf
+  circuit simulation,'' in {\em 2020 33rd International Conference on VLSI
+  Design and 2020 19th International Conference on Embedded Systems (VLSID)},
+  pp.~131--136, 2020.
 
 \bibitem{Xilinx_BRAM}
 Xilinx, {\em Block Memory Generator v8.3 LogiCORE IP Product Guide Vivado

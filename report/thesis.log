@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2021.8.31)  12 OCT 2021 10:32
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2021.8.31)  18 OCT 2021 13:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1935,11 +1935,6 @@ Overfull \hbox (135.89174pt too wide) in paragraph at lines 138--146
 File: ./Scheduler/PpT-Symbolic_A33.png Graphic file (type bmp)
 <./Scheduler/PpT-Symbolic_A33.png>
 )
-
-LaTeX Warning: Reference `fig: Symbolic_complete' on page 13 undefined on input
- line 50.
-
-
 Overfull \hbox (135.89174pt too wide) in paragraph at lines 147--51
 []$[]$ $[]$
  []
@@ -2162,10 +2157,10 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 44041 strings out of 494956
- 928349 string characters out of 6177213
+ 44040 strings out of 494956
+ 928325 string characters out of 6177213
  1114313 words of memory out of 5000000
- 47233 multiletter control sequences out of 15000+600000
+ 47232 multiletter control sequences out of 15000+600000
  535535 words of font info for 59 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  69i,12n,75p,10411b,496s stack positions out of 5000i,500n,10000p,200000b,80000s

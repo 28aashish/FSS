@@ -8,11 +8,11 @@ use work.all;
 entity myip_AXI_LUD is
     generic (
         -- Users to add parameters here
-        ADDR_WIDTH : integer := 14; --Instruction BRAM
-        ADDR_WIDTH_DATA_BRAM : integer := 12;
-        CTRL_WIDTH : integer := 80;
-        AU_SEL_WIDTH : integer := 3;
-        BRAM_SEL_WIDTH : integer := 3;
+        ADDR_WIDTH : integer := 12; --Instruction BRAM
+        ADDR_WIDTH_DATA_BRAM : integer := 10;
+        CTRL_WIDTH : integer := 421;
+        AU_SEL_WIDTH : integer := 5;
+        BRAM_SEL_WIDTH : integer := 5;
         -- User parameters ends
         -- Do not modify the parameters beyond this line
 
@@ -254,14 +254,31 @@ architecture arch_imp of myip_AXI_LUD is
 	--output signals    
     
     signal slv_reg3_out	:   std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
-    signal slv_reg12_out	:   std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
-    signal slv_reg13_out	:   std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
-    signal slv_reg14_out	:   std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
-    signal slv_reg15_out	:   std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
+    signal slv_reg24_out	:   std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
+    signal slv_reg25_out	:   std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
+    signal slv_reg26_out	:   std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
+    signal slv_reg27_out	:   std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
+    signal slv_reg28_out	:   std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
+    signal slv_reg29_out	:   std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
     signal slv_reg30_out	:   std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
     signal slv_reg31_out	:   std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
     signal slv_reg32_out	:   std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
     signal slv_reg33_out	:   std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
+    signal slv_reg71_out	:   std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
+    signal slv_reg72_out	:   std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
+    signal slv_reg73_out	:   std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
+    signal slv_reg74_out	:   std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
+    signal slv_reg75_out	:   std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
+    signal slv_reg76_out	:   std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
+    signal slv_reg77_out	:   std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
+    signal slv_reg78_out	:   std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
+    signal slv_reg79_out	:   std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
+    signal slv_reg80_out	:   std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
+    signal slv_reg81_out	:   std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
+    signal slv_reg82_out	:   std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
+    signal slv_reg83_out	:   std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
+    signal slv_reg84_out	:   std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
+    signal slv_reg85_out	:   std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
 
 begin
 	-- I/O Connections assignments
@@ -1733,7 +1750,7 @@ begin
 	slv_reg_rden <= axi_arready and S_AXI_ARVALID and (not axi_rvalid) ;
     
     process (
-    slv_reg0,slv_reg1,slv_reg2,slv_reg3,slv_reg4,slv_reg5,slv_reg6,slv_reg7,slv_reg8,slv_reg9,slv_reg10,slv_reg11,slv_reg12,slv_reg13,slv_reg14,slv_reg15,slv_reg16,slv_reg17,slv_reg18,slv_reg19,slv_reg20,slv_reg21,slv_reg22,slv_reg23,slv_reg24,slv_reg25,slv_reg26,slv_reg27,slv_reg28,slv_reg29,slv_reg30,slv_reg31,slv_reg32,slv_reg33,slv_reg34,slv_reg35,slv_reg36,slv_reg37,slv_reg38,slv_reg39,slv_reg40,slv_reg41,slv_reg42,slv_reg43,slv_reg44,slv_reg45,slv_reg46,slv_reg47,slv_reg48,slv_reg49,slv_reg50,slv_reg51,slv_reg52,slv_reg53,slv_reg54,slv_reg55,slv_reg56,slv_reg57,slv_reg58,slv_reg59,slv_reg60,slv_reg61,slv_reg62,slv_reg63,slv_reg64,slv_reg65,slv_reg66,slv_reg67,slv_reg68,slv_reg69,slv_reg70,slv_reg71,slv_reg72,slv_reg73,slv_reg74,slv_reg75,slv_reg76,slv_reg77,slv_reg78,slv_reg79,slv_reg80,slv_reg81,slv_reg82,slv_reg83,slv_reg84,slv_reg85,slv_reg86,slv_reg87,slv_reg88,slv_reg89,slv_reg90,slv_reg91,slv_reg92,slv_reg93,slv_reg94,slv_reg95,slv_reg96,slv_reg97,slv_reg98,slv_reg99,slv_reg100,slv_reg101,slv_reg102,slv_reg103,slv_reg104,slv_reg105,slv_reg106,slv_reg107,slv_reg108,slv_reg109,slv_reg110,slv_reg111,slv_reg112,slv_reg113,slv_reg114,slv_reg115,slv_reg116,slv_reg117,slv_reg118,slv_reg119,slv_reg120,slv_reg121,slv_reg122,slv_reg123,slv_reg124,slv_reg125,slv_reg126,slv_reg127,slv_reg3_out,slv_reg12_out,slv_reg13_out,slv_reg14_out,slv_reg15_out,slv_reg30_out,slv_reg31_out,slv_reg32_out,slv_reg33_out, axi_araddr, S_AXI_ARESETN, slv_reg_rden)
+    slv_reg0,slv_reg1,slv_reg2,slv_reg3,slv_reg4,slv_reg5,slv_reg6,slv_reg7,slv_reg8,slv_reg9,slv_reg10,slv_reg11,slv_reg12,slv_reg13,slv_reg14,slv_reg15,slv_reg16,slv_reg17,slv_reg18,slv_reg19,slv_reg20,slv_reg21,slv_reg22,slv_reg23,slv_reg24,slv_reg25,slv_reg26,slv_reg27,slv_reg28,slv_reg29,slv_reg30,slv_reg31,slv_reg32,slv_reg33,slv_reg34,slv_reg35,slv_reg36,slv_reg37,slv_reg38,slv_reg39,slv_reg40,slv_reg41,slv_reg42,slv_reg43,slv_reg44,slv_reg45,slv_reg46,slv_reg47,slv_reg48,slv_reg49,slv_reg50,slv_reg51,slv_reg52,slv_reg53,slv_reg54,slv_reg55,slv_reg56,slv_reg57,slv_reg58,slv_reg59,slv_reg60,slv_reg61,slv_reg62,slv_reg63,slv_reg64,slv_reg65,slv_reg66,slv_reg67,slv_reg68,slv_reg69,slv_reg70,slv_reg71,slv_reg72,slv_reg73,slv_reg74,slv_reg75,slv_reg76,slv_reg77,slv_reg78,slv_reg79,slv_reg80,slv_reg81,slv_reg82,slv_reg83,slv_reg84,slv_reg85,slv_reg86,slv_reg87,slv_reg88,slv_reg89,slv_reg90,slv_reg91,slv_reg92,slv_reg93,slv_reg94,slv_reg95,slv_reg96,slv_reg97,slv_reg98,slv_reg99,slv_reg100,slv_reg101,slv_reg102,slv_reg103,slv_reg104,slv_reg105,slv_reg106,slv_reg107,slv_reg108,slv_reg109,slv_reg110,slv_reg111,slv_reg112,slv_reg113,slv_reg114,slv_reg115,slv_reg116,slv_reg117,slv_reg118,slv_reg119,slv_reg120,slv_reg121,slv_reg122,slv_reg123,slv_reg124,slv_reg125,slv_reg126,slv_reg127,slv_reg3_out,slv_reg24_out,slv_reg25_out,slv_reg26_out,slv_reg27_out,slv_reg28_out,slv_reg29_out,slv_reg30_out,slv_reg31_out,slv_reg32_out,slv_reg33_out,slv_reg71_out,slv_reg72_out,slv_reg73_out,slv_reg74_out,slv_reg75_out,slv_reg76_out,slv_reg77_out,slv_reg78_out,slv_reg79_out,slv_reg80_out,slv_reg81_out,slv_reg82_out,slv_reg83_out,slv_reg84_out,slv_reg85_out, axi_araddr, S_AXI_ARESETN, slv_reg_rden)
 	variable loc_addr :std_logic_vector(OPT_MEM_ADDR_BITS downto 0);	
     begin
 	    -- Address decoding for reading registers
@@ -1765,13 +1782,13 @@ begin
     when b"0001011" =>
 	    reg_data_out <= slv_reg11;
     when b"0001100" =>
-	    reg_data_out <= slv_reg12_out;
+	    reg_data_out <= slv_reg12;
     when b"0001101" =>
-	    reg_data_out <= slv_reg13_out;
+	    reg_data_out <= slv_reg13;
     when b"0001110" =>
-	    reg_data_out <= slv_reg14_out;
+	    reg_data_out <= slv_reg14;
     when b"0001111" =>
-	    reg_data_out <= slv_reg15_out;
+	    reg_data_out <= slv_reg15;
     when b"0010000" =>
 	    reg_data_out <= slv_reg16;
     when b"0010001" =>
@@ -1789,17 +1806,17 @@ begin
     when b"0010111" =>
 	    reg_data_out <= slv_reg23;
     when b"0011000" =>
-	    reg_data_out <= slv_reg24;
+	    reg_data_out <= slv_reg24_out;
     when b"0011001" =>
-	    reg_data_out <= slv_reg25;
+	    reg_data_out <= slv_reg25_out;
     when b"0011010" =>
-	    reg_data_out <= slv_reg26;
+	    reg_data_out <= slv_reg26_out;
     when b"0011011" =>
-	    reg_data_out <= slv_reg27;
+	    reg_data_out <= slv_reg27_out;
     when b"0011100" =>
-	    reg_data_out <= slv_reg28;
+	    reg_data_out <= slv_reg28_out;
     when b"0011101" =>
-	    reg_data_out <= slv_reg29;
+	    reg_data_out <= slv_reg29_out;
     when b"0011110" =>
 	    reg_data_out <= slv_reg30_out;
     when b"0011111" =>
@@ -1883,35 +1900,35 @@ begin
     when b"1000110" =>
 	    reg_data_out <= slv_reg70;
     when b"1000111" =>
-	    reg_data_out <= slv_reg71;
+	    reg_data_out <= slv_reg71_out;
     when b"1001000" =>
-	    reg_data_out <= slv_reg72;
+	    reg_data_out <= slv_reg72_out;
     when b"1001001" =>
-	    reg_data_out <= slv_reg73;
+	    reg_data_out <= slv_reg73_out;
     when b"1001010" =>
-	    reg_data_out <= slv_reg74;
+	    reg_data_out <= slv_reg74_out;
     when b"1001011" =>
-	    reg_data_out <= slv_reg75;
+	    reg_data_out <= slv_reg75_out;
     when b"1001100" =>
-	    reg_data_out <= slv_reg76;
+	    reg_data_out <= slv_reg76_out;
     when b"1001101" =>
-	    reg_data_out <= slv_reg77;
+	    reg_data_out <= slv_reg77_out;
     when b"1001110" =>
-	    reg_data_out <= slv_reg78;
+	    reg_data_out <= slv_reg78_out;
     when b"1001111" =>
-	    reg_data_out <= slv_reg79;
+	    reg_data_out <= slv_reg79_out;
     when b"1010000" =>
-	    reg_data_out <= slv_reg80;
+	    reg_data_out <= slv_reg80_out;
     when b"1010001" =>
-	    reg_data_out <= slv_reg81;
+	    reg_data_out <= slv_reg81_out;
     when b"1010010" =>
-	    reg_data_out <= slv_reg82;
+	    reg_data_out <= slv_reg82_out;
     when b"1010011" =>
-	    reg_data_out <= slv_reg83;
+	    reg_data_out <= slv_reg83_out;
     when b"1010100" =>
-	    reg_data_out <= slv_reg84;
+	    reg_data_out <= slv_reg84_out;
     when b"1010101" =>
-	    reg_data_out <= slv_reg85;
+	    reg_data_out <= slv_reg85_out;
     when b"1010110" =>
 	    reg_data_out <= slv_reg86;
     when b"1010111" =>
@@ -2036,28 +2053,64 @@ begin
             COMPLETED => slv_reg3_out(0 downto 0),  --output
     
             bram_ZYNQ_block_A_addr => slv_reg4(ADDR_WIDTH_DATA_BRAM - 1 downto 0),
-            bram_ZYNQ_block_A_din => slv_reg8(31 downto 0),
-            bram_ZYNQ_block_A_dout => slv_reg12_out(31 downto 0), --output
-            bram_ZYNQ_block_A_en => slv_reg16(0),
-            bram_ZYNQ_block_A_we => slv_reg20(3 downto 0),
+            bram_ZYNQ_block_A_din => slv_reg14(31 downto 0),
+            bram_ZYNQ_block_A_dout => slv_reg24_out(31 downto 0), --output
+            bram_ZYNQ_block_A_en => slv_reg34(0),
+            bram_ZYNQ_block_A_we => slv_reg44(3 downto 0),
             
             bram_ZYNQ_block_B_addr => slv_reg5(ADDR_WIDTH_DATA_BRAM - 1 downto 0),
-            bram_ZYNQ_block_B_din => slv_reg9(31 downto 0),
-            bram_ZYNQ_block_B_dout => slv_reg13_out(31 downto 0), --output
-            bram_ZYNQ_block_B_en => slv_reg17(0),
-            bram_ZYNQ_block_B_we => slv_reg21(3 downto 0),
+            bram_ZYNQ_block_B_din => slv_reg15(31 downto 0),
+            bram_ZYNQ_block_B_dout => slv_reg25_out(31 downto 0), --output
+            bram_ZYNQ_block_B_en => slv_reg35(0),
+            bram_ZYNQ_block_B_we => slv_reg45(3 downto 0),
             
             bram_ZYNQ_block_C_addr => slv_reg6(ADDR_WIDTH_DATA_BRAM - 1 downto 0),
-            bram_ZYNQ_block_C_din => slv_reg10(31 downto 0),
-            bram_ZYNQ_block_C_dout => slv_reg14_out(31 downto 0), --output
-            bram_ZYNQ_block_C_en => slv_reg18(0),
-            bram_ZYNQ_block_C_we => slv_reg22(3 downto 0),
+            bram_ZYNQ_block_C_din => slv_reg16(31 downto 0),
+            bram_ZYNQ_block_C_dout => slv_reg26_out(31 downto 0), --output
+            bram_ZYNQ_block_C_en => slv_reg36(0),
+            bram_ZYNQ_block_C_we => slv_reg46(3 downto 0),
             
             bram_ZYNQ_block_D_addr => slv_reg7(ADDR_WIDTH_DATA_BRAM - 1 downto 0),
-            bram_ZYNQ_block_D_din => slv_reg11(31 downto 0),
-            bram_ZYNQ_block_D_dout => slv_reg15_out(31 downto 0), --output
-            bram_ZYNQ_block_D_en => slv_reg19(0),
-            bram_ZYNQ_block_D_we => slv_reg23(3 downto 0),
+            bram_ZYNQ_block_D_din => slv_reg17(31 downto 0),
+            bram_ZYNQ_block_D_dout => slv_reg27_out(31 downto 0), --output
+            bram_ZYNQ_block_D_en => slv_reg37(0),
+            bram_ZYNQ_block_D_we => slv_reg47(3 downto 0),
+            
+            bram_ZYNQ_block_E_addr => slv_reg8(ADDR_WIDTH_DATA_BRAM - 1 downto 0),
+            bram_ZYNQ_block_E_din => slv_reg18(31 downto 0),
+            bram_ZYNQ_block_E_dout => slv_reg28_out(31 downto 0), --output
+            bram_ZYNQ_block_E_en => slv_reg38(0),
+            bram_ZYNQ_block_E_we => slv_reg48(3 downto 0),
+            
+            bram_ZYNQ_block_F_addr => slv_reg9(ADDR_WIDTH_DATA_BRAM - 1 downto 0),
+            bram_ZYNQ_block_F_din => slv_reg19(31 downto 0),
+            bram_ZYNQ_block_F_dout => slv_reg29_out(31 downto 0), --output
+            bram_ZYNQ_block_F_en => slv_reg39(0),
+            bram_ZYNQ_block_F_we => slv_reg49(3 downto 0),
+            
+            bram_ZYNQ_block_G_addr => slv_reg10(ADDR_WIDTH_DATA_BRAM - 1 downto 0),
+            bram_ZYNQ_block_G_din => slv_reg20(31 downto 0),
+            bram_ZYNQ_block_G_dout => slv_reg30_out(31 downto 0), --output
+            bram_ZYNQ_block_G_en => slv_reg40(0),
+            bram_ZYNQ_block_G_we => slv_reg50(3 downto 0),
+            
+            bram_ZYNQ_block_H_addr => slv_reg11(ADDR_WIDTH_DATA_BRAM - 1 downto 0),
+            bram_ZYNQ_block_H_din => slv_reg21(31 downto 0),
+            bram_ZYNQ_block_H_dout => slv_reg31_out(31 downto 0), --output
+            bram_ZYNQ_block_H_en => slv_reg41(0),
+            bram_ZYNQ_block_H_we => slv_reg51(3 downto 0),
+            
+            bram_ZYNQ_block_I_addr => slv_reg12(ADDR_WIDTH_DATA_BRAM - 1 downto 0),
+            bram_ZYNQ_block_I_din => slv_reg22(31 downto 0),
+            bram_ZYNQ_block_I_dout => slv_reg32_out(31 downto 0), --output
+            bram_ZYNQ_block_I_en => slv_reg42(0),
+            bram_ZYNQ_block_I_we => slv_reg52(3 downto 0),
+            
+            bram_ZYNQ_block_J_addr => slv_reg13(ADDR_WIDTH_DATA_BRAM - 1 downto 0),
+            bram_ZYNQ_block_J_din => slv_reg23(31 downto 0),
+            bram_ZYNQ_block_J_dout => slv_reg33_out(31 downto 0), --output
+            bram_ZYNQ_block_J_en => slv_reg43(0),
+            bram_ZYNQ_block_J_we => slv_reg53(3 downto 0),
             
             
             
@@ -2066,16 +2119,38 @@ begin
             bram_ZYNQ_INST_we => slv_reg46(0 downto 0),
             
     
-            bram_ZYNQ_INST_din_part_0 => slv_reg27(31 downto 0),
-            bram_ZYNQ_INST_din_part_1 => slv_reg28(31 downto 0),
-            bram_ZYNQ_INST_din_part_2 => slv_reg29(31 downto 0),
+            bram_ZYNQ_INST_din_part_0 => slv_reg57(31 downto 0),
+            bram_ZYNQ_INST_din_part_1 => slv_reg58(31 downto 0),
+            bram_ZYNQ_INST_din_part_2 => slv_reg59(31 downto 0),
+            bram_ZYNQ_INST_din_part_3 => slv_reg60(31 downto 0),
+            bram_ZYNQ_INST_din_part_4 => slv_reg61(31 downto 0),
+            bram_ZYNQ_INST_din_part_5 => slv_reg62(31 downto 0),
+            bram_ZYNQ_INST_din_part_6 => slv_reg63(31 downto 0),
+            bram_ZYNQ_INST_din_part_7 => slv_reg64(31 downto 0),
+            bram_ZYNQ_INST_din_part_8 => slv_reg65(31 downto 0),
+            bram_ZYNQ_INST_din_part_9 => slv_reg66(31 downto 0),
+            bram_ZYNQ_INST_din_part_10 => slv_reg67(31 downto 0),
+            bram_ZYNQ_INST_din_part_11 => slv_reg68(31 downto 0),
+            bram_ZYNQ_INST_din_part_12 => slv_reg69(31 downto 0),
+            bram_ZYNQ_INST_din_part_13 => slv_reg70(31 downto 0),
     
-            bram_ZYNQ_INST_dout_part_0 => slv_reg30_out(31 downto 0),
-            bram_ZYNQ_INST_dout_part_1 => slv_reg31_out(31 downto 0),
-            bram_ZYNQ_INST_dout_part_2 => slv_reg32_out(31 downto 0),
+            bram_ZYNQ_INST_dout_part_0 => slv_reg71_out(31 downto 0),
+            bram_ZYNQ_INST_dout_part_1 => slv_reg72_out(31 downto 0),
+            bram_ZYNQ_INST_dout_part_2 => slv_reg73_out(31 downto 0),
+            bram_ZYNQ_INST_dout_part_3 => slv_reg74_out(31 downto 0),
+            bram_ZYNQ_INST_dout_part_4 => slv_reg75_out(31 downto 0),
+            bram_ZYNQ_INST_dout_part_5 => slv_reg76_out(31 downto 0),
+            bram_ZYNQ_INST_dout_part_6 => slv_reg77_out(31 downto 0),
+            bram_ZYNQ_INST_dout_part_7 => slv_reg78_out(31 downto 0),
+            bram_ZYNQ_INST_dout_part_8 => slv_reg79_out(31 downto 0),
+            bram_ZYNQ_INST_dout_part_9 => slv_reg80_out(31 downto 0),
+            bram_ZYNQ_INST_dout_part_10 => slv_reg81_out(31 downto 0),
+            bram_ZYNQ_INST_dout_part_11 => slv_reg82_out(31 downto 0),
+            bram_ZYNQ_INST_dout_part_12 => slv_reg83_out(31 downto 0),
+            bram_ZYNQ_INST_dout_part_13 => slv_reg84_out(31 downto 0),
             
             --debug signals
-    debug_state => slv_reg33_out(1 downto 0) --output
+    debug_state => slv_reg85_out(1 downto 0) --output
         );
 
 	-- User logic ends

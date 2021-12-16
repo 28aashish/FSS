@@ -7,11 +7,11 @@ float A[665] = {0.133348003, -0.06666699797, -1.400000019e-05, -0.06666699797, 0
 
 
 int A_BRAMInd_size = 665;
-int A_BRAMInd[665] = {0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 1, 2, 1, 2, 3, 0, 1, 2, 0, 2, 3, 0, 1, 2, 3, 1, 2, 3, 0, 1, 2, 3, 0, 1, 3, 0, 1, 0, 1, 2, 3, 0, 1, 2, 3, 1, 2, 0, 1, 2, 3, 0, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 2, 3, 0, 1, 2, 3, 0, 1, 2, 0, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 0, 1, 3, 3, 0, 1, 2, 0, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 1, 2, 3, 0, 1, 2, 3, 0, 1, 3, 0, 1, 0, 1, 2, 3, 0, 1, 2, 0, 1, 2, 0, 1, 2, 3, 0, 1, 3, 0, 1, 2, 3, 0, 1, 2, 0, 1, 2, 1, 3, 0, 1, 2, 3, 1, 2, 3, 0, 2, 0, 2, 3, 0, 1, 2, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 1, 0, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 1, 2, 1, 2, 0, 3, 0, 1, 0, 1, 3, 0, 1, 2, 2, 3, 0, 1, 2, 3, 1, 3, 1, 0, 2, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 0, 2, 0, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 3, 0, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 0, 1, 2, 3, 0, 1, 3, 0, 1, 2, 3, 0, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 3, 0, 1, 2, 3, 0, 1, 3, 1, 2, 3, 0, 1, 2, 1, 1, 2, 0, 1, 3, 3, 0, 3, 2, 1, 3, 1, 2, 3, 0, 1, 3, 0, 3, 0, 1, 2, 3, 1, 3, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 2, 3, 0, 1, 2, 3, 0, 1, 0, 1, 2, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0};
+int A_BRAMInd[665] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 5, 6, 7, 8, 9, 0, 2, 4, 5, 6, 7, 8, 9, 1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 3, 6, 7, 8, 9, 0, 1, 2, 3, 5, 6, 8, 9, 0, 1, 2, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 4, 5, 6, 7, 8, 9, 0, 1, 2, 4, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 0, 1, 3, 7, 8, 9, 0, 2, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 5, 6, 7, 8, 9, 0, 1, 2, 3, 5, 6, 7, 0, 1, 2, 3, 4, 5, 6, 8, 9, 0, 2, 3, 4, 5, 6, 7, 9, 0, 1, 2, 3, 4, 5, 6, 8, 9, 0, 3, 5, 6, 7, 8, 9, 1, 2, 3, 4, 6, 8, 0, 1, 2, 3, 4, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 7, 0, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 9, 0, 3, 4, 6, 9, 0, 1, 4, 5, 7, 8, 9, 0, 4, 5, 6, 7, 8, 9, 1, 3, 5, 8, 0, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 0, 2, 4, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 3, 4, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 6, 7, 8, 9, 0, 1, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 3, 4, 5, 6, 7, 8, 9, 1, 3, 4, 5, 6, 7, 8, 1, 5, 6, 8, 9, 1, 5, 6, 9, 2, 5, 7, 9, 0, 1, 2, 3, 5, 0, 3, 4, 5, 6, 7, 9, 1, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 5, 6, 7, 8, 2, 3, 4, 5, 4, 5, 6, 7, 8, 9, 0, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8};
 
 
 int A_BRAMAddr_size = 665;
-int A_BRAMAddr[665] = {0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 7, 7, 7, 7, 8, 8, 8, 8, 9, 9, 9, 9, 10, 10, 10, 10, 11, 11, 11, 11, 12, 12, 12, 12, 13, 13, 13, 13, 14, 14, 14, 14, 15, 15, 15, 15, 16, 16, 16, 16, 17, 17, 17, 17, 18, 18, 18, 18, 19, 19, 19, 19, 20, 20, 20, 20, 21, 21, 21, 21, 22, 22, 22, 22, 23, 23, 23, 23, 24, 24, 24, 25, 25, 25, 25, 26, 26, 26, 26, 27, 27, 27, 27, 28, 28, 28, 28, 29, 29, 29, 29, 30, 30, 30, 30, 31, 31, 31, 31, 32, 32, 32, 32, 33, 33, 33, 33, 34, 34, 34, 35, 35, 36, 36, 36, 37, 37, 37, 38, 38, 38, 39, 39, 39, 39, 40, 40, 40, 41, 41, 41, 41, 42, 42, 42, 43, 43, 44, 44, 44, 44, 45, 45, 45, 45, 46, 46, 47, 47, 47, 47, 48, 48, 48, 49, 49, 49, 49, 50, 50, 50, 50, 51, 51, 51, 51, 52, 52, 52, 52, 53, 53, 53, 53, 54, 54, 54, 54, 55, 55, 55, 55, 56, 56, 56, 56, 57, 57, 57, 57, 58, 58, 58, 59, 59, 59, 59, 60, 60, 60, 61, 61, 61, 62, 62, 62, 62, 63, 63, 63, 63, 64, 64, 64, 65, 65, 65, 66, 67, 67, 67, 68, 68, 69, 69, 69, 69, 70, 70, 70, 70, 71, 71, 71, 71, 72, 72, 72, 72, 73, 73, 73, 73, 74, 74, 74, 74, 75, 75, 75, 75, 76, 76, 76, 77, 77, 77, 77, 78, 78, 78, 79, 79, 80, 80, 80, 80, 81, 81, 81, 82, 82, 82, 83, 83, 83, 83, 84, 84, 84, 85, 85, 85, 85, 86, 86, 86, 87, 87, 87, 88, 88, 89, 89, 89, 89, 90, 90, 90, 91, 91, 92, 92, 92, 93, 93, 93, 94, 94, 94, 95, 95, 95, 95, 96, 96, 96, 96, 97, 97, 97, 97, 98, 98, 98, 98, 99, 99, 99, 99, 100, 100, 100, 100, 101, 101, 101, 101, 102, 102, 102, 102, 103, 103, 103, 103, 104, 105, 105, 105, 106, 106, 106, 106, 107, 107, 107, 107, 108, 108, 109, 109, 109, 109, 110, 110, 110, 110, 111, 111, 111, 112, 112, 113, 113, 114, 114, 115, 115, 116, 116, 116, 117, 117, 117, 118, 118, 119, 119, 119, 119, 120, 120, 121, 122, 122, 123, 123, 124, 124, 124, 124, 125, 125, 125, 125, 126, 126, 126, 126, 127, 127, 127, 127, 128, 128, 128, 128, 129, 129, 129, 129, 130, 130, 130, 131, 131, 131, 131, 132, 132, 132, 132, 133, 133, 133, 133, 134, 134, 134, 135, 135, 136, 136, 136, 137, 137, 137, 137, 138, 138, 138, 138, 139, 139, 139, 139, 140, 140, 141, 141, 142, 142, 142, 142, 143, 143, 143, 143, 144, 144, 144, 144, 145, 145, 145, 145, 146, 146, 146, 146, 147, 147, 147, 147, 148, 148, 148, 149, 149, 149, 149, 150, 150, 150, 151, 151, 151, 151, 152, 152, 153, 153, 153, 153, 154, 154, 154, 154, 155, 155, 155, 155, 156, 156, 156, 156, 157, 157, 157, 157, 158, 158, 158, 158, 159, 159, 159, 159, 160, 160, 160, 161, 161, 161, 161, 162, 162, 162, 163, 163, 163, 164, 164, 164, 165, 166, 166, 167, 167, 167, 168, 169, 169, 170, 171, 171, 172, 172, 172, 173, 173, 173, 175, 175, 176, 176, 176, 176, 177, 177, 178, 178, 178, 179, 179, 179, 179, 180, 180, 180, 180, 181, 181, 181, 181, 182, 182, 182, 183, 184, 184, 184, 185, 185, 186, 186, 188, 188, 189, 189, 192, 192, 192, 193, 193, 193, 193, 194, 194, 194, 194, 195, 195, 195, 195, 196, 196, 196, 196, 197, 197, 197, 198, 199, 199, 199, 199, 200, 200, 200, 200, 201, 201, 201, 201, 202};
+int A_BRAMAddr[665] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 13, 13, 13, 13, 13, 13, 13, 13, 13, 14, 14, 14, 14, 14, 14, 14, 15, 15, 15, 15, 15, 15, 15, 15, 16, 16, 16, 16, 16, 16, 16, 16, 16, 17, 17, 17, 17, 17, 17, 17, 18, 18, 18, 18, 18, 18, 18, 18, 19, 19, 19, 19, 19, 19, 19, 19, 19, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 23, 23, 23, 23, 23, 23, 23, 23, 23, 24, 24, 24, 24, 24, 24, 24, 24, 25, 25, 25, 25, 25, 25, 25, 25, 25, 26, 26, 26, 26, 26, 26, 27, 27, 27, 27, 27, 27, 27, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 30, 30, 30, 30, 30, 30, 30, 30, 30, 31, 31, 31, 31, 31, 31, 31, 32, 32, 32, 32, 32, 32, 32, 32, 32, 33, 33, 33, 33, 33, 33, 33, 33, 34, 34, 34, 34, 34, 34, 34, 34, 34, 35, 35, 35, 35, 35, 35, 35, 36, 36, 36, 36, 36, 36, 37, 37, 37, 37, 37, 37, 37, 37, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 41, 41, 41, 41, 41, 41, 41, 42, 42, 42, 42, 42, 42, 42, 42, 42, 43, 43, 43, 43, 43, 43, 43, 43, 44, 44, 44, 44, 44, 44, 44, 44, 45, 45, 45, 45, 45, 46, 46, 46, 46, 46, 46, 46, 47, 47, 47, 47, 47, 47, 47, 48, 48, 48, 48, 49, 49, 49, 49, 49, 49, 49, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 51, 51, 51, 51, 51, 51, 51, 51, 51, 51, 52, 52, 52, 52, 52, 52, 52, 52, 52, 53, 53, 53, 53, 53, 53, 53, 53, 53, 54, 54, 54, 54, 54, 54, 54, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 56, 56, 56, 56, 56, 56, 57, 57, 57, 57, 57, 57, 57, 57, 57, 57, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 59, 59, 59, 59, 59, 59, 59, 59, 59, 60, 60, 60, 60, 60, 60, 60, 60, 61, 61, 61, 61, 61, 61, 61, 61, 61, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 64, 64, 64, 64, 64, 64, 64, 64, 64, 65, 65, 65, 65, 65, 65, 65, 66, 66, 66, 66, 66, 67, 67, 67, 67, 68, 68, 68, 68, 69, 69, 69, 69, 69, 70, 70, 70, 70, 70, 70, 70, 71, 71, 71, 71, 71, 71, 71, 71, 72, 72, 72, 72, 72, 72, 72, 72, 72, 72, 73, 73, 73, 73, 73, 74, 74, 74, 74, 75, 75, 75, 75, 76, 76, 77, 77, 77, 77, 77, 77, 77, 77, 77, 78, 78, 78, 78, 78, 78, 78, 78, 78, 78, 79, 79, 79, 79, 79, 79, 80, 80, 80, 80, 80, 80, 80, 80, 80};
 
 
 void delay_FPGALoad_A(){
@@ -26,25 +26,25 @@ i = i + 1;
 void clearDataBRAM(){
 int i,j;
 //Making enable and write_enable 0 for all the BRAMS
-for(i=0;i<4;i++){
-Xil_Out32(XPAR_MYIP_AXI_LUD_WRAPPER_0_BASEADDR + 4*(16+i), 0); //Making enable 0
+for(i=0;i<10;i++){
+Xil_Out32(XPAR_MYIP_AXI_LUD_WRAPPER_0_BASEADDR + 4*(34+i), 0); //Making enable 0
 delay_FPGALoad_A();
-Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*(20+i), 0); //Making write enable 0
+Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*(44+i), 0); //Making write enable 0
 delay_FPGALoad_A();
 }
-for(i=0;i<4;i++){
-for(j=0;j<4096;j++){
+for(i=0;i<10;i++){
+for(j=0;j<1024;j++){
 Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*(4+i), j); //Writing address,(4+i) is the offset
 delay_FPGALoad_A();
-Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*(8+i), 0); //Writing data in din
+Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*(14+i), 0); //Writing data in din
 delay_FPGALoad_A();
-Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*(16+i), 1); //Making enable 1
+Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*(34+i), 1); //Making enable 1
 delay_FPGALoad_A();
-Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*(20+i), 1); //Making write enable 1
+Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*(44+i), 1); //Making write enable 1
 delay_FPGALoad_A();
-Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*(16+i), 0); //Making enable 0
+Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*(34+i), 0); //Making enable 0
 delay_FPGALoad_A();
-Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*(20+i), 0); //Making write enable 0
+Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*(44+i), 0); //Making write enable 0
 delay_FPGALoad_A();
 }
 }
@@ -57,22 +57,22 @@ int i,j;
 int val,error_count;
 error_count = 0;
 //Making enable and write_enable 0 for all the BRAMS
-for(i=0;i<4;i++){
-Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*(16+i), 0); //Making enable 0
+for(i=0;i<10;i++){
+Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*(34+i), 0); //Making enable 0
 delay_FPGALoad_A();
-Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*(20+i), 0); //Making write enable 0
+Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*(44+i), 0); //Making write enable 0
 delay_FPGALoad_A();
 }
-for(i=0;i<4;i++){
-for(j=0;j<4096;j++){
+for(i=0;i<10;i++){
+for(j=0;j<1024;j++){
 Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*(4+i), j); //Writing address,(4+i) is the offset
 delay_FPGALoad_A();
-Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*(16+i), 1); //Making enable 1
+Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*(34+i), 1); //Making enable 1
 delay_FPGALoad_A();
 val = -1;
-val = Xil_In32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*(12+i)); //Reading from BRAM
+val = Xil_In32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*(24+i)); //Reading from BRAM
 delay_FPGALoad_A();
-Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*(16+i), 0); //Making enable 0
+Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*(34+i), 0); //Making enable 0
 delay_FPGALoad_A();
 if(val != 0){
 error_count = error_count + 1;
@@ -89,10 +89,10 @@ int i;
 int val_int;
 //The base address of the LUD accelerator may needed to be changed. The base address assumed is 'XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR'
 //Making enable and write_enable 0 for all the BRAMS
-for(i=0;i<4;i++){
-Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*(16+i), 0); //Making enable 0
+for(i=0;i<10;i++){
+Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*(34+i), 0); //Making enable 0
 delay_FPGALoad_A();
-Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*(20+i), 0); //Making write enable 0
+Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*(44+i), 0); //Making write enable 0
 delay_FPGALoad_A();
 }
 //Writing A into BRAM
@@ -100,15 +100,15 @@ for(i=0;i<A_size;i++){
 Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*(4+A_BRAMInd[i]), A_BRAMAddr[i]); //Writing address,(4+A_BRAMInd[i]) is the offset
 delay_FPGALoad_A();
 val_int = float_to_int(A[i]);
-Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*(8+A_BRAMInd[i]), val_int); //Writing data in din
+Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*(14+A_BRAMInd[i]), val_int); //Writing data in din
 delay_FPGALoad_A();
-Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*(16+A_BRAMInd[i]), 1); //Making enable 1
+Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*(34+A_BRAMInd[i]), 1); //Making enable 1
 delay_FPGALoad_A();
-Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*(20+A_BRAMInd[i]), 1); //Making write enable 1
+Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*(44+A_BRAMInd[i]), 1); //Making write enable 1
 delay_FPGALoad_A();
-Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*(16+A_BRAMInd[i]), 0); //Making enable 0
+Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*(34+A_BRAMInd[i]), 0); //Making enable 0
 delay_FPGALoad_A();
-Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*(20+A_BRAMInd[i]), 0); //Making write enable 0
+Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*(44+A_BRAMInd[i]), 0); //Making write enable 0
 delay_FPGALoad_A();
 }
 }
@@ -120,21 +120,21 @@ int val_int, i;
 float val;
 float diff;
 //Making enable and write_enable 0 for all the BRAMS
-for(i=0;i<4;i++){
-Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*(16+i), 0); //Making enable 0
+for(i=0;i<10;i++){
+Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*(34+i), 0); //Making enable 0
 delay_FPGALoad_A();
-Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*(20+i), 0); //Making write enable 0
+Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*(44+i), 0); //Making write enable 0
 delay_FPGALoad_A();
 }
 //Reading A from BRAM
 for(i=0;i<A_size;i++){
 Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*(4+A_BRAMInd[i]), A_BRAMAddr[i]); //Writing address,(4+A_BRAMInd[i]) is the offset
 delay_FPGALoad_A();
-Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*(16+A_BRAMInd[i]), 1); //Making enable 1
+Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*(34+A_BRAMInd[i]), 1); //Making enable 1
 delay_FPGALoad_A();
-val_int = Xil_In32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*(12+A_BRAMInd[i])); //Reading from BRAM
+val_int = Xil_In32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*(24+A_BRAMInd[i])); //Reading from BRAM
 delay_FPGALoad_A();
-Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*(16+A_BRAMInd[i]), 0); //Making enable 0
+Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*(34+A_BRAMInd[i]), 0); //Making enable 0
 delay_FPGALoad_A();
 val = int_to_float(val_int);
 diff = val - A[i];
