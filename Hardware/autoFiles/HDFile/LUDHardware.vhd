@@ -9,16 +9,18 @@ use work.types.all;
 
 entity LUDHardware is
     generic(
-        ADDR_WIDTH : integer := 12;
-        CTRL_WIDTH : integer := 80;
-        AU_SEL_WIDTH : integer := 3;
-        BRAM_SEL_WIDTH : integer := 3
+        ADDR_WIDTH : integer := 10;
+        CTRL_WIDTH : integer := 307;
+        AU_SEL_WIDTH : integer := 5;
+        BRAM_SEL_WIDTH : integer := 5
     );
     port(
         CLK_100 : in std_logic;
+        CLK_200 : in std_logic;
         locked : in std_logic;
         CTRL_Signal : in std_logic_vector(CTRL_WIDTH-1 downto 0);
     --These ports will be connected to the ZYNQ processing system
+    
         bram_ZYNQ_block_A_addr : in std_logic_vector(ADDR_WIDTH - 1 downto 0);
         bram_ZYNQ_block_A_din : in std_logic_vector(31 downto 0);
         bram_ZYNQ_block_A_dout : out std_logic_vector(31 downto 0);
@@ -57,13 +59,21 @@ architecture yoStyle of LUDHardware is
     component design_BRAM_A_wrapper is
     port (
         
-        BRAM_PORTA_addr : in STD_LOGIC_VECTOR ( 11 downto 0 );
+        
+        BRAM_PORTA_addr : in STD_LOGIC_VECTOR ( 9 downto 0 );
         BRAM_PORTA_clk : in STD_LOGIC;
         BRAM_PORTA_din : in STD_LOGIC_VECTOR ( 31 downto 0 );
         BRAM_PORTA_dout : out STD_LOGIC_VECTOR ( 31 downto 0 );
         BRAM_PORTA_en : in STD_LOGIC;
-        BRAM_PORTA_we : in STD_LOGIC_VECTOR ( 0 to 0 )
+        BRAM_PORTA_we : in STD_LOGIC_VECTOR ( 0 to 0 );    
     
+        BRAM_PORTB_addr : in STD_LOGIC_VECTOR ( 9 downto 0 );
+        BRAM_PORTB_clk : in STD_LOGIC;
+        BRAM_PORTB_din : in STD_LOGIC_VECTOR ( 31 downto 0 );
+        BRAM_PORTB_dout : out STD_LOGIC_VECTOR ( 31 downto 0 );
+        BRAM_PORTB_en : in STD_LOGIC;
+        BRAM_PORTB_we : in STD_LOGIC_VECTOR ( 0 to 0 )   
+	
         );
     end component design_BRAM_A_wrapper;
     
@@ -108,12 +118,30 @@ architecture yoStyle of LUDHardware is
     signal RST : std_logic;
 
     
-    signal inputLocations : dataArray(6 downto 0);
+    signal inputLocations : dataArray(20 downto 0);
     signal block_A_porta_addr : std_logic_vector(ADDR_WIDTH-1 downto 0);
     signal block_A_porta_din  : std_logic_vector(31 downto 0);
     signal block_A_porta_dout : std_logic_vector(31 downto 0);
     signal block_A_porta_en   : std_logic;
     signal block_A_porta_we   : std_logic;
+    
+    signal block_A_portb_addr : std_logic_vector(ADDR_WIDTH-1 downto 0);
+    signal block_A_portb_din  : std_logic_vector(31 downto 0);
+    signal block_A_portb_dout : std_logic_vector(31 downto 0);
+    signal block_A_portb_en   : std_logic;
+    signal block_A_portb_we   : std_logic;
+    
+    signal block_A_portc_addr : std_logic_vector(ADDR_WIDTH-1 downto 0);
+    signal block_A_portc_din  : std_logic_vector(31 downto 0);
+    signal block_A_portc_dout : std_logic_vector(31 downto 0);
+    signal block_A_portc_en   : std_logic;
+    signal block_A_portc_we   : std_logic;
+    
+    signal block_A_portd_addr : std_logic_vector(ADDR_WIDTH-1 downto 0);
+    signal block_A_portd_din  : std_logic_vector(31 downto 0);
+    signal block_A_portd_dout : std_logic_vector(31 downto 0);
+    signal block_A_portd_en   : std_logic;
+    signal block_A_portd_we   : std_logic;
     
     signal block_B_porta_addr : std_logic_vector(ADDR_WIDTH-1 downto 0);
     signal block_B_porta_din  : std_logic_vector(31 downto 0);
@@ -121,17 +149,183 @@ architecture yoStyle of LUDHardware is
     signal block_B_porta_en   : std_logic;
     signal block_B_porta_we   : std_logic;
     
+    signal block_B_portb_addr : std_logic_vector(ADDR_WIDTH-1 downto 0);
+    signal block_B_portb_din  : std_logic_vector(31 downto 0);
+    signal block_B_portb_dout : std_logic_vector(31 downto 0);
+    signal block_B_portb_en   : std_logic;
+    signal block_B_portb_we   : std_logic;
+    
+    signal block_B_portc_addr : std_logic_vector(ADDR_WIDTH-1 downto 0);
+    signal block_B_portc_din  : std_logic_vector(31 downto 0);
+    signal block_B_portc_dout : std_logic_vector(31 downto 0);
+    signal block_B_portc_en   : std_logic;
+    signal block_B_portc_we   : std_logic;
+    
+    signal block_B_portd_addr : std_logic_vector(ADDR_WIDTH-1 downto 0);
+    signal block_B_portd_din  : std_logic_vector(31 downto 0);
+    signal block_B_portd_dout : std_logic_vector(31 downto 0);
+    signal block_B_portd_en   : std_logic;
+    signal block_B_portd_we   : std_logic;
+    
     signal block_C_porta_addr : std_logic_vector(ADDR_WIDTH-1 downto 0);
     signal block_C_porta_din  : std_logic_vector(31 downto 0);
     signal block_C_porta_dout : std_logic_vector(31 downto 0);
     signal block_C_porta_en   : std_logic;
     signal block_C_porta_we   : std_logic;
     
+    signal block_C_portb_addr : std_logic_vector(ADDR_WIDTH-1 downto 0);
+    signal block_C_portb_din  : std_logic_vector(31 downto 0);
+    signal block_C_portb_dout : std_logic_vector(31 downto 0);
+    signal block_C_portb_en   : std_logic;
+    signal block_C_portb_we   : std_logic;
+    
+    signal block_C_portc_addr : std_logic_vector(ADDR_WIDTH-1 downto 0);
+    signal block_C_portc_din  : std_logic_vector(31 downto 0);
+    signal block_C_portc_dout : std_logic_vector(31 downto 0);
+    signal block_C_portc_en   : std_logic;
+    signal block_C_portc_we   : std_logic;
+    
+    signal block_C_portd_addr : std_logic_vector(ADDR_WIDTH-1 downto 0);
+    signal block_C_portd_din  : std_logic_vector(31 downto 0);
+    signal block_C_portd_dout : std_logic_vector(31 downto 0);
+    signal block_C_portd_en   : std_logic;
+    signal block_C_portd_we   : std_logic;
+    
     signal block_D_porta_addr : std_logic_vector(ADDR_WIDTH-1 downto 0);
     signal block_D_porta_din  : std_logic_vector(31 downto 0);
     signal block_D_porta_dout : std_logic_vector(31 downto 0);
     signal block_D_porta_en   : std_logic;
     signal block_D_porta_we   : std_logic;
+    
+    signal block_D_portb_addr : std_logic_vector(ADDR_WIDTH-1 downto 0);
+    signal block_D_portb_din  : std_logic_vector(31 downto 0);
+    signal block_D_portb_dout : std_logic_vector(31 downto 0);
+    signal block_D_portb_en   : std_logic;
+    signal block_D_portb_we   : std_logic;
+    
+    signal block_D_portc_addr : std_logic_vector(ADDR_WIDTH-1 downto 0);
+    signal block_D_portc_din  : std_logic_vector(31 downto 0);
+    signal block_D_portc_dout : std_logic_vector(31 downto 0);
+    signal block_D_portc_en   : std_logic;
+    signal block_D_portc_we   : std_logic;
+    
+    signal block_D_portd_addr : std_logic_vector(ADDR_WIDTH-1 downto 0);
+    signal block_D_portd_din  : std_logic_vector(31 downto 0);
+    signal block_D_portd_dout : std_logic_vector(31 downto 0);
+    signal block_D_portd_en   : std_logic;
+    signal block_D_portd_we   : std_logic;
+    
+    signal bram_A_porta_addr : std_logic_vector(ADDR_WIDTH-1 downto 0);
+    signal bram_A_porta_din  : std_logic_vector(31 downto 0);
+    signal bram_A_porta_dout : std_logic_vector(31 downto 0);
+    signal bram_A_porta_en   : std_logic;
+    signal bram_A_porta_we   : std_logic;    
+
+    
+    signal bram_A_portb_addr : std_logic_vector(ADDR_WIDTH-1 downto 0);
+    signal bram_A_portb_din  : std_logic_vector(31 downto 0);
+    signal bram_A_portb_dout : std_logic_vector(31 downto 0);
+    signal bram_A_portb_en   : std_logic;
+    signal bram_A_portb_we   : std_logic;    
+
+    
+    signal bram_A_portc_addr : std_logic_vector(ADDR_WIDTH-1 downto 0);
+    signal bram_A_portc_din  : std_logic_vector(31 downto 0);
+    signal bram_A_portc_dout : std_logic_vector(31 downto 0);
+    signal bram_A_portc_en   : std_logic;
+    signal bram_A_portc_we   : std_logic;    
+
+    
+    signal bram_A_portd_addr : std_logic_vector(ADDR_WIDTH-1 downto 0);
+    signal bram_A_portd_din  : std_logic_vector(31 downto 0);
+    signal bram_A_portd_dout : std_logic_vector(31 downto 0);
+    signal bram_A_portd_en   : std_logic;
+    signal bram_A_portd_we   : std_logic;    
+
+    
+    signal bram_B_porta_addr : std_logic_vector(ADDR_WIDTH-1 downto 0);
+    signal bram_B_porta_din  : std_logic_vector(31 downto 0);
+    signal bram_B_porta_dout : std_logic_vector(31 downto 0);
+    signal bram_B_porta_en   : std_logic;
+    signal bram_B_porta_we   : std_logic;    
+
+    
+    signal bram_B_portb_addr : std_logic_vector(ADDR_WIDTH-1 downto 0);
+    signal bram_B_portb_din  : std_logic_vector(31 downto 0);
+    signal bram_B_portb_dout : std_logic_vector(31 downto 0);
+    signal bram_B_portb_en   : std_logic;
+    signal bram_B_portb_we   : std_logic;    
+
+    
+    signal bram_B_portc_addr : std_logic_vector(ADDR_WIDTH-1 downto 0);
+    signal bram_B_portc_din  : std_logic_vector(31 downto 0);
+    signal bram_B_portc_dout : std_logic_vector(31 downto 0);
+    signal bram_B_portc_en   : std_logic;
+    signal bram_B_portc_we   : std_logic;    
+
+    
+    signal bram_B_portd_addr : std_logic_vector(ADDR_WIDTH-1 downto 0);
+    signal bram_B_portd_din  : std_logic_vector(31 downto 0);
+    signal bram_B_portd_dout : std_logic_vector(31 downto 0);
+    signal bram_B_portd_en   : std_logic;
+    signal bram_B_portd_we   : std_logic;    
+
+    
+    signal bram_C_porta_addr : std_logic_vector(ADDR_WIDTH-1 downto 0);
+    signal bram_C_porta_din  : std_logic_vector(31 downto 0);
+    signal bram_C_porta_dout : std_logic_vector(31 downto 0);
+    signal bram_C_porta_en   : std_logic;
+    signal bram_C_porta_we   : std_logic;    
+
+    
+    signal bram_C_portb_addr : std_logic_vector(ADDR_WIDTH-1 downto 0);
+    signal bram_C_portb_din  : std_logic_vector(31 downto 0);
+    signal bram_C_portb_dout : std_logic_vector(31 downto 0);
+    signal bram_C_portb_en   : std_logic;
+    signal bram_C_portb_we   : std_logic;    
+
+    
+    signal bram_C_portc_addr : std_logic_vector(ADDR_WIDTH-1 downto 0);
+    signal bram_C_portc_din  : std_logic_vector(31 downto 0);
+    signal bram_C_portc_dout : std_logic_vector(31 downto 0);
+    signal bram_C_portc_en   : std_logic;
+    signal bram_C_portc_we   : std_logic;    
+
+    
+    signal bram_C_portd_addr : std_logic_vector(ADDR_WIDTH-1 downto 0);
+    signal bram_C_portd_din  : std_logic_vector(31 downto 0);
+    signal bram_C_portd_dout : std_logic_vector(31 downto 0);
+    signal bram_C_portd_en   : std_logic;
+    signal bram_C_portd_we   : std_logic;    
+
+    
+    signal bram_D_porta_addr : std_logic_vector(ADDR_WIDTH-1 downto 0);
+    signal bram_D_porta_din  : std_logic_vector(31 downto 0);
+    signal bram_D_porta_dout : std_logic_vector(31 downto 0);
+    signal bram_D_porta_en   : std_logic;
+    signal bram_D_porta_we   : std_logic;    
+
+    
+    signal bram_D_portb_addr : std_logic_vector(ADDR_WIDTH-1 downto 0);
+    signal bram_D_portb_din  : std_logic_vector(31 downto 0);
+    signal bram_D_portb_dout : std_logic_vector(31 downto 0);
+    signal bram_D_portb_en   : std_logic;
+    signal bram_D_portb_we   : std_logic;    
+
+    
+    signal bram_D_portc_addr : std_logic_vector(ADDR_WIDTH-1 downto 0);
+    signal bram_D_portc_din  : std_logic_vector(31 downto 0);
+    signal bram_D_portc_dout : std_logic_vector(31 downto 0);
+    signal bram_D_portc_en   : std_logic;
+    signal bram_D_portc_we   : std_logic;    
+
+    
+    signal bram_D_portd_addr : std_logic_vector(ADDR_WIDTH-1 downto 0);
+    signal bram_D_portd_din  : std_logic_vector(31 downto 0);
+    signal bram_D_portd_dout : std_logic_vector(31 downto 0);
+    signal bram_D_portd_en   : std_logic;
+    signal bram_D_portd_we   : std_logic;    
+
      
     signal mac_A_result_tdata : std_logic_vector(31 downto 0);
     signal mac_A_result_tready : std_logic;
@@ -155,6 +349,28 @@ architecture yoStyle of LUDHardware is
     signal mac_A_a_signInv : std_logic;
     signal mac_A_a_tdataIN : std_logic_vector(31 downto 0);
      
+    signal mac_B_result_tdata : std_logic_vector(31 downto 0);
+    signal mac_B_result_tready : std_logic;
+    signal mac_B_result_tvalid : std_logic;
+
+    signal mac_B_a_tdata : std_logic_vector(31 downto 0);
+    signal mac_B_a_tready : std_logic;
+    signal mac_B_a_tvalid : std_logic;
+
+    signal mac_B_b_tdata : std_logic_vector(31 downto 0);
+    signal mac_B_b_tready : std_logic;
+    signal mac_B_b_tvalid : std_logic;
+
+    signal mac_B_c_tdata : std_logic_vector(31 downto 0);
+    signal mac_B_c_tready : std_logic;
+    signal mac_B_c_tvalid : std_logic;
+
+    signal mac_B_operation_tdata : std_logic_vector(7 downto 0);
+    signal mac_B_operation_tready : std_logic;
+    signal mac_B_operation_tvalid : std_logic;
+    signal mac_B_a_signInv : std_logic;
+    signal mac_B_a_tdataIN : std_logic_vector(31 downto 0);
+     
     signal div_A_result_tdata : std_logic_vector(31 downto 0);
     signal div_A_result_tready : std_logic;
     signal div_A_result_tvalid : std_logic;
@@ -166,18 +382,49 @@ architecture yoStyle of LUDHardware is
     signal div_A_b_tdata : std_logic_vector(31 downto 0);
     signal div_A_b_tready : std_logic;
     signal div_A_b_tvalid : std_logic;
+     
+    signal div_B_result_tdata : std_logic_vector(31 downto 0);
+    signal div_B_result_tready : std_logic;
+    signal div_B_result_tvalid : std_logic;
+
+    signal div_B_a_tdata : std_logic_vector(31 downto 0);
+    signal div_B_a_tready : std_logic;
+    signal div_B_a_tvalid : std_logic;
+
+    signal div_B_b_tdata : std_logic_vector(31 downto 0);
+    signal div_B_b_tready : std_logic;
+    signal div_B_b_tvalid : std_logic;
     
     signal mac_A_a_sel : std_logic_vector(AU_SEL_WIDTH-1 downto 0);
     signal mac_A_b_sel : std_logic_vector(AU_SEL_WIDTH-1 downto 0);
     signal mac_A_c_sel : std_logic_vector(AU_SEL_WIDTH-1 downto 0);
     
+    signal mac_B_a_sel : std_logic_vector(AU_SEL_WIDTH-1 downto 0);
+    signal mac_B_b_sel : std_logic_vector(AU_SEL_WIDTH-1 downto 0);
+    signal mac_B_c_sel : std_logic_vector(AU_SEL_WIDTH-1 downto 0);
+    
     signal div_A_a_sel : std_logic_vector(AU_SEL_WIDTH-1 downto 0);
     signal div_A_b_sel : std_logic_vector(AU_SEL_WIDTH-1 downto 0);
     
-        signal block_A_a_sel : std_logic_vector(BRAM_SEL_WIDTH-1 downto 0);
-        signal block_B_a_sel : std_logic_vector(BRAM_SEL_WIDTH-1 downto 0);
-        signal block_C_a_sel : std_logic_vector(BRAM_SEL_WIDTH-1 downto 0);
-        signal block_D_a_sel : std_logic_vector(BRAM_SEL_WIDTH-1 downto 0);
+    signal div_B_a_sel : std_logic_vector(AU_SEL_WIDTH-1 downto 0);
+    signal div_B_b_sel : std_logic_vector(AU_SEL_WIDTH-1 downto 0);
+    
+        signal bram_A_a_sel : std_logic_vector(BRAM_SEL_WIDTH-1 downto 0);
+        signal bram_A_b_sel : std_logic_vector(BRAM_SEL_WIDTH-1 downto 0);
+        signal bram_A_c_sel : std_logic_vector(BRAM_SEL_WIDTH-1 downto 0);
+        signal bram_A_d_sel : std_logic_vector(BRAM_SEL_WIDTH-1 downto 0);
+        signal bram_B_a_sel : std_logic_vector(BRAM_SEL_WIDTH-1 downto 0);
+        signal bram_B_b_sel : std_logic_vector(BRAM_SEL_WIDTH-1 downto 0);
+        signal bram_B_c_sel : std_logic_vector(BRAM_SEL_WIDTH-1 downto 0);
+        signal bram_B_d_sel : std_logic_vector(BRAM_SEL_WIDTH-1 downto 0);
+        signal bram_C_a_sel : std_logic_vector(BRAM_SEL_WIDTH-1 downto 0);
+        signal bram_C_b_sel : std_logic_vector(BRAM_SEL_WIDTH-1 downto 0);
+        signal bram_C_c_sel : std_logic_vector(BRAM_SEL_WIDTH-1 downto 0);
+        signal bram_C_d_sel : std_logic_vector(BRAM_SEL_WIDTH-1 downto 0);
+        signal bram_D_a_sel : std_logic_vector(BRAM_SEL_WIDTH-1 downto 0);
+        signal bram_D_b_sel : std_logic_vector(BRAM_SEL_WIDTH-1 downto 0);
+        signal bram_D_c_sel : std_logic_vector(BRAM_SEL_WIDTH-1 downto 0);
+        signal bram_D_d_sel : std_logic_vector(BRAM_SEL_WIDTH-1 downto 0);
 
     --Mux signals for connection to ZYNQ system
     
@@ -188,41 +435,253 @@ architecture yoStyle of LUDHardware is
     signal bram_decoder_in_block_A : std_logic_vector(31 downto 0);  
     signal bram_mux_out_block_A_en : std_logic;
     signal bram_mux_out_block_A_we : std_logic;
-    
+    signal bram_mux_out_block_A_clock : std_logic;
 
     signal bram_mux_out_block_B_addr : std_logic_vector(ADDR_WIDTH - 1 downto 0);
     signal bram_mux_out_block_B_din : std_logic_vector(31 downto 0);
     signal bram_decoder_in_block_B : std_logic_vector(31 downto 0);  
     signal bram_mux_out_block_B_en : std_logic;
     signal bram_mux_out_block_B_we : std_logic;
-    
+    signal bram_mux_out_block_B_clock : std_logic;
 
     signal bram_mux_out_block_C_addr : std_logic_vector(ADDR_WIDTH - 1 downto 0);
     signal bram_mux_out_block_C_din : std_logic_vector(31 downto 0);
     signal bram_decoder_in_block_C : std_logic_vector(31 downto 0);  
     signal bram_mux_out_block_C_en : std_logic;
     signal bram_mux_out_block_C_we : std_logic;
-    
+    signal bram_mux_out_block_C_clock : std_logic;
 
     signal bram_mux_out_block_D_addr : std_logic_vector(ADDR_WIDTH - 1 downto 0);
     signal bram_mux_out_block_D_din : std_logic_vector(31 downto 0);
     signal bram_decoder_in_block_D : std_logic_vector(31 downto 0);  
     signal bram_mux_out_block_D_en : std_logic;
     signal bram_mux_out_block_D_we : std_logic;
-    
+    signal bram_mux_out_block_D_clock : std_logic;
     
 begin
 
     
+    BRAM_A : entity quadPortBRAM
+    generic map(10, 32)
+    port MAP(
+        CLK_1X          => CLK_100,
+        CLK_2X          => CLK_200,
+        RST             => RST,
+        
+        BRAM_PORTA_ADDR    => bram_A_porta_addr,
+        BRAM_PORTA_DIN     => bram_A_porta_din,
+        BRAM_PORTA_DOUT    => bram_A_porta_dout,
+        BRAM_PORTA_EN      => bram_A_porta_en,
+        BRAM_PORTA_WE      => bram_A_porta_we,
+                
+                
+        BRAM_PORTB_ADDR    => bram_A_portb_addr,
+        BRAM_PORTB_DIN     => bram_A_portb_din,
+        BRAM_PORTB_DOUT    => bram_A_portb_dout,
+        BRAM_PORTB_EN      => bram_A_portb_en,
+        BRAM_PORTB_WE      => bram_A_portb_we,
+                
+                
+        BRAM_PORTC_ADDR    => bram_A_portc_addr,
+        BRAM_PORTC_DIN     => bram_A_portc_din,
+        BRAM_PORTC_DOUT    => bram_A_portc_dout,
+        BRAM_PORTC_EN      => bram_A_portc_en,
+        BRAM_PORTC_WE      => bram_A_portc_we,
+                
+                
+        BRAM_PORTD_ADDR    => bram_A_portd_addr,
+        BRAM_PORTD_DIN     => bram_A_portd_din,
+        BRAM_PORTD_DOUT    => bram_A_portd_dout,
+        BRAM_PORTD_EN      => bram_A_portd_en,
+        BRAM_PORTD_WE      => bram_A_portd_we,
+                
+                
+        BLOCK_PORTA_ADDR    => block_A_porta_addr,
+        BLOCK_PORTA_DIN     => block_A_porta_din,
+        BLOCK_PORTA_DOUT    => block_A_porta_dout,
+        BLOCK_PORTA_EN      => block_A_porta_en,
+        BLOCK_PORTA_WE      => block_A_porta_we    
+            
+            ,
+        BLOCK_PORTB_ADDR    => block_A_portb_addr,
+        BLOCK_PORTB_DIN     => block_A_portb_din,
+        BLOCK_PORTB_DOUT    => block_A_portb_dout,
+        BLOCK_PORTB_EN      => block_A_portb_en,
+        BLOCK_PORTB_WE      => block_A_portb_we    
+            
+            
+        );
+            
+    BRAM_B : entity quadPortBRAM
+    generic map(10, 32)
+    port MAP(
+        CLK_1X          => CLK_100,
+        CLK_2X          => CLK_200,
+        RST             => RST,
+        
+        BRAM_PORTA_ADDR    => bram_B_porta_addr,
+        BRAM_PORTA_DIN     => bram_B_porta_din,
+        BRAM_PORTA_DOUT    => bram_B_porta_dout,
+        BRAM_PORTA_EN      => bram_B_porta_en,
+        BRAM_PORTA_WE      => bram_B_porta_we,
+                
+                
+        BRAM_PORTB_ADDR    => bram_B_portb_addr,
+        BRAM_PORTB_DIN     => bram_B_portb_din,
+        BRAM_PORTB_DOUT    => bram_B_portb_dout,
+        BRAM_PORTB_EN      => bram_B_portb_en,
+        BRAM_PORTB_WE      => bram_B_portb_we,
+                
+                
+        BRAM_PORTC_ADDR    => bram_B_portc_addr,
+        BRAM_PORTC_DIN     => bram_B_portc_din,
+        BRAM_PORTC_DOUT    => bram_B_portc_dout,
+        BRAM_PORTC_EN      => bram_B_portc_en,
+        BRAM_PORTC_WE      => bram_B_portc_we,
+                
+                
+        BRAM_PORTD_ADDR    => bram_B_portd_addr,
+        BRAM_PORTD_DIN     => bram_B_portd_din,
+        BRAM_PORTD_DOUT    => bram_B_portd_dout,
+        BRAM_PORTD_EN      => bram_B_portd_en,
+        BRAM_PORTD_WE      => bram_B_portd_we,
+                
+                
+        BLOCK_PORTA_ADDR    => block_B_porta_addr,
+        BLOCK_PORTA_DIN     => block_B_porta_din,
+        BLOCK_PORTA_DOUT    => block_B_porta_dout,
+        BLOCK_PORTA_EN      => block_B_porta_en,
+        BLOCK_PORTA_WE      => block_B_porta_we    
+            
+            ,
+        BLOCK_PORTB_ADDR    => block_B_portb_addr,
+        BLOCK_PORTB_DIN     => block_B_portb_din,
+        BLOCK_PORTB_DOUT    => block_B_portb_dout,
+        BLOCK_PORTB_EN      => block_B_portb_en,
+        BLOCK_PORTB_WE      => block_B_portb_we    
+            
+            
+        );
+            
+    BRAM_C : entity quadPortBRAM
+    generic map(10, 32)
+    port MAP(
+        CLK_1X          => CLK_100,
+        CLK_2X          => CLK_200,
+        RST             => RST,
+        
+        BRAM_PORTA_ADDR    => bram_C_porta_addr,
+        BRAM_PORTA_DIN     => bram_C_porta_din,
+        BRAM_PORTA_DOUT    => bram_C_porta_dout,
+        BRAM_PORTA_EN      => bram_C_porta_en,
+        BRAM_PORTA_WE      => bram_C_porta_we,
+                
+                
+        BRAM_PORTB_ADDR    => bram_C_portb_addr,
+        BRAM_PORTB_DIN     => bram_C_portb_din,
+        BRAM_PORTB_DOUT    => bram_C_portb_dout,
+        BRAM_PORTB_EN      => bram_C_portb_en,
+        BRAM_PORTB_WE      => bram_C_portb_we,
+                
+                
+        BRAM_PORTC_ADDR    => bram_C_portc_addr,
+        BRAM_PORTC_DIN     => bram_C_portc_din,
+        BRAM_PORTC_DOUT    => bram_C_portc_dout,
+        BRAM_PORTC_EN      => bram_C_portc_en,
+        BRAM_PORTC_WE      => bram_C_portc_we,
+                
+                
+        BRAM_PORTD_ADDR    => bram_C_portd_addr,
+        BRAM_PORTD_DIN     => bram_C_portd_din,
+        BRAM_PORTD_DOUT    => bram_C_portd_dout,
+        BRAM_PORTD_EN      => bram_C_portd_en,
+        BRAM_PORTD_WE      => bram_C_portd_we,
+                
+                
+        BLOCK_PORTA_ADDR    => block_C_porta_addr,
+        BLOCK_PORTA_DIN     => block_C_porta_din,
+        BLOCK_PORTA_DOUT    => block_C_porta_dout,
+        BLOCK_PORTA_EN      => block_C_porta_en,
+        BLOCK_PORTA_WE      => block_C_porta_we    
+            
+            ,
+        BLOCK_PORTB_ADDR    => block_C_portb_addr,
+        BLOCK_PORTB_DIN     => block_C_portb_din,
+        BLOCK_PORTB_DOUT    => block_C_portb_dout,
+        BLOCK_PORTB_EN      => block_C_portb_en,
+        BLOCK_PORTB_WE      => block_C_portb_we    
+            
+            
+        );
+            
+    BRAM_D : entity quadPortBRAM
+    generic map(10, 32)
+    port MAP(
+        CLK_1X          => CLK_100,
+        CLK_2X          => CLK_200,
+        RST             => RST,
+        
+        BRAM_PORTA_ADDR    => bram_D_porta_addr,
+        BRAM_PORTA_DIN     => bram_D_porta_din,
+        BRAM_PORTA_DOUT    => bram_D_porta_dout,
+        BRAM_PORTA_EN      => bram_D_porta_en,
+        BRAM_PORTA_WE      => bram_D_porta_we,
+                
+                
+        BRAM_PORTB_ADDR    => bram_D_portb_addr,
+        BRAM_PORTB_DIN     => bram_D_portb_din,
+        BRAM_PORTB_DOUT    => bram_D_portb_dout,
+        BRAM_PORTB_EN      => bram_D_portb_en,
+        BRAM_PORTB_WE      => bram_D_portb_we,
+                
+                
+        BRAM_PORTC_ADDR    => bram_D_portc_addr,
+        BRAM_PORTC_DIN     => bram_D_portc_din,
+        BRAM_PORTC_DOUT    => bram_D_portc_dout,
+        BRAM_PORTC_EN      => bram_D_portc_en,
+        BRAM_PORTC_WE      => bram_D_portc_we,
+                
+                
+        BRAM_PORTD_ADDR    => bram_D_portd_addr,
+        BRAM_PORTD_DIN     => bram_D_portd_din,
+        BRAM_PORTD_DOUT    => bram_D_portd_dout,
+        BRAM_PORTD_EN      => bram_D_portd_en,
+        BRAM_PORTD_WE      => bram_D_portd_we,
+                
+                
+        BLOCK_PORTA_ADDR    => block_D_porta_addr,
+        BLOCK_PORTA_DIN     => block_D_porta_din,
+        BLOCK_PORTA_DOUT    => block_D_porta_dout,
+        BLOCK_PORTA_EN      => block_D_porta_en,
+        BLOCK_PORTA_WE      => block_D_porta_we    
+            
+            ,
+        BLOCK_PORTB_ADDR    => block_D_portb_addr,
+        BLOCK_PORTB_DIN     => block_D_portb_din,
+        BLOCK_PORTB_DOUT    => block_D_portb_dout,
+        BLOCK_PORTB_EN      => block_D_portb_en,
+        BLOCK_PORTB_WE      => block_D_portb_we    
+            
+            
+        );
+            
     block_A : design_BRAM_A_wrapper
     port map (    
         
         BRAM_PORTA_addr     => bram_mux_out_block_A_addr,
-        BRAM_PORTA_clk      => CLK_100,
+        BRAM_PORTA_clk      => CLK_200,
         BRAM_PORTA_din      => bram_mux_out_block_A_din,
         BRAM_PORTA_dout     => bram_decoder_in_block_A,
         BRAM_PORTA_en       => bram_mux_out_block_A_en,
-        BRAM_PORTA_we(0)       => bram_mux_out_block_A_we
+        BRAM_PORTA_we(0)       => bram_mux_out_block_A_we,
+
+        BRAM_PORTB_addr     => block_A_portb_addr,
+        BRAM_PORTB_clk      => CLK_200,
+        BRAM_PORTB_din      => block_A_portb_din,
+        BRAM_PORTB_dout     => block_A_portb_dout,
+        BRAM_PORTB_en       => block_A_portb_en,
+        BRAM_PORTB_we(0)       => block_A_portb_we
+            
     );
     
     bram_ZYNQ_mux_A : entity bram_ZYNQ_mux
@@ -254,11 +713,19 @@ begin
     port map (    
         
         BRAM_PORTA_addr     => bram_mux_out_block_B_addr,
-        BRAM_PORTA_clk      => CLK_100,
+        BRAM_PORTA_clk      => CLK_200,
         BRAM_PORTA_din      => bram_mux_out_block_B_din,
         BRAM_PORTA_dout     => bram_decoder_in_block_B,
         BRAM_PORTA_en       => bram_mux_out_block_B_en,
-        BRAM_PORTA_we(0)       => bram_mux_out_block_B_we
+        BRAM_PORTA_we(0)       => bram_mux_out_block_B_we,
+
+        BRAM_PORTB_addr     => block_B_portb_addr,
+        BRAM_PORTB_clk      => CLK_200,
+        BRAM_PORTB_din      => block_B_portb_din,
+        BRAM_PORTB_dout     => block_B_portb_dout,
+        BRAM_PORTB_en       => block_B_portb_en,
+        BRAM_PORTB_we(0)       => block_B_portb_we
+            
     );
     
     bram_ZYNQ_mux_B : entity bram_ZYNQ_mux
@@ -290,11 +757,19 @@ begin
     port map (    
         
         BRAM_PORTA_addr     => bram_mux_out_block_C_addr,
-        BRAM_PORTA_clk      => CLK_100,
+        BRAM_PORTA_clk      => CLK_200,
         BRAM_PORTA_din      => bram_mux_out_block_C_din,
         BRAM_PORTA_dout     => bram_decoder_in_block_C,
         BRAM_PORTA_en       => bram_mux_out_block_C_en,
-        BRAM_PORTA_we(0)       => bram_mux_out_block_C_we
+        BRAM_PORTA_we(0)       => bram_mux_out_block_C_we,
+
+        BRAM_PORTB_addr     => block_C_portb_addr,
+        BRAM_PORTB_clk      => CLK_200,
+        BRAM_PORTB_din      => block_C_portb_din,
+        BRAM_PORTB_dout     => block_C_portb_dout,
+        BRAM_PORTB_en       => block_C_portb_en,
+        BRAM_PORTB_we(0)       => block_C_portb_we
+            
     );
     
     bram_ZYNQ_mux_C : entity bram_ZYNQ_mux
@@ -326,11 +801,19 @@ begin
     port map (    
         
         BRAM_PORTA_addr     => bram_mux_out_block_D_addr,
-        BRAM_PORTA_clk      => CLK_100,
+        BRAM_PORTA_clk      => CLK_200,
         BRAM_PORTA_din      => bram_mux_out_block_D_din,
         BRAM_PORTA_dout     => bram_decoder_in_block_D,
         BRAM_PORTA_en       => bram_mux_out_block_D_en,
-        BRAM_PORTA_we(0)       => bram_mux_out_block_D_we
+        BRAM_PORTA_we(0)       => bram_mux_out_block_D_we,
+
+        BRAM_PORTB_addr     => block_D_portb_addr,
+        BRAM_PORTB_clk      => CLK_200,
+        BRAM_PORTB_din      => block_D_portb_din,
+        BRAM_PORTB_dout     => block_D_portb_dout,
+        BRAM_PORTB_en       => block_D_portb_en,
+        BRAM_PORTB_we(0)       => block_D_portb_we
+            
     );
     
     bram_ZYNQ_mux_D : entity bram_ZYNQ_mux
@@ -378,6 +861,26 @@ begin
         aclk   => CLK_100
     );        
         
+    MAC_B : design_MAC_wrapper
+    port map(
+        M_AXIS_RESULT_tdata => mac_B_result_tdata,
+        M_AXIS_RESULT_tready => mac_B_result_tready,
+        M_AXIS_RESULT_tvalid => mac_B_result_tvalid,
+        S_AXIS_A_tdata => mac_B_a_tdata,
+        S_AXIS_A_tready => mac_B_a_tready,
+        S_AXIS_A_tvalid => mac_B_a_tvalid,
+        S_AXIS_B_tdata => mac_B_b_tdata,
+        S_AXIS_B_tready => mac_B_b_tready,
+        S_AXIS_B_tvalid => mac_B_b_tvalid,
+        S_AXIS_C_tdata => mac_B_c_tdata,
+        S_AXIS_C_tready => mac_B_c_tready,
+        S_AXIS_C_tvalid => mac_B_c_tvalid,
+        S_AXIS_OPERATION_tdata => mac_B_operation_tdata,
+        S_AXIS_OPERATION_tready => mac_B_operation_tready,
+        S_AXIS_OPERATION_tvalid => mac_B_operation_tvalid,
+        aclk   => CLK_100
+    );        
+        
     DIV_A : design_DIV_wrapper
     port map(
         M_AXIS_RESULT_tdata => div_A_result_tdata,
@@ -392,16 +895,44 @@ begin
         aclk   => CLK_100
     );  
         
+    DIV_B : design_DIV_wrapper
+    port map(
+        M_AXIS_RESULT_tdata => div_B_result_tdata,
+        M_AXIS_RESULT_tready => div_B_result_tready,
+        M_AXIS_RESULT_tvalid => div_B_result_tvalid,
+        S_AXIS_A_tdata => div_B_a_tdata,
+        S_AXIS_A_tready => div_B_a_tready,
+        S_AXIS_A_tvalid => div_B_a_tvalid,
+        S_AXIS_B_tdata => div_B_b_tdata,
+        S_AXIS_B_tready => div_B_b_tready,
+        S_AXIS_B_tvalid => div_B_b_tvalid,
+        aclk   => CLK_100
+    );  
+        
 -- input locations
     
     
     inputLocations(0) <= mac_A_result_tdata;
-    inputLocations(1) <= div_A_result_tdata;
-    inputLocations(2) <= block_A_porta_dout;
-    inputLocations(3) <= block_B_porta_dout;
-    inputLocations(4) <= block_C_porta_dout;
-    inputLocations(5) <= block_D_porta_dout;
-    inputLocations(6) <= (others => '0');     
+    inputLocations(1) <= mac_B_result_tdata;
+    inputLocations(2) <= div_A_result_tdata;
+    inputLocations(3) <= div_B_result_tdata;
+    inputLocations(4) <= bram_A_porta_dout;
+    inputLocations(5) <= bram_A_portb_dout;
+    inputLocations(6) <= bram_A_portc_dout;
+    inputLocations(7) <= bram_A_portd_dout;
+    inputLocations(8) <= bram_B_porta_dout;
+    inputLocations(9) <= bram_B_portb_dout;
+    inputLocations(10) <= bram_B_portc_dout;
+    inputLocations(11) <= bram_B_portd_dout;
+    inputLocations(12) <= bram_C_porta_dout;
+    inputLocations(13) <= bram_C_portb_dout;
+    inputLocations(14) <= bram_C_portc_dout;
+    inputLocations(15) <= bram_C_portd_dout;
+    inputLocations(16) <= bram_D_porta_dout;
+    inputLocations(17) <= bram_D_portb_dout;
+    inputLocations(18) <= bram_D_portc_dout;
+    inputLocations(19) <= bram_D_portd_dout;
+    inputLocations(20) <= (others => '0');     
     
        
     MUX_MAC_IN_A_b : entity MUX_AU_IN
@@ -429,6 +960,32 @@ begin
     mac_A_a_tdata <= mac_A_a_signInv & mac_A_a_tdataIN(30 downto 0);
 
     
+       
+    MUX_MAC_IN_B_b : entity MUX_AU_IN
+    port map(
+        SEL => mac_B_b_sel,
+        DIN => inputLocations,
+        DOUT => mac_B_b_tdata
+    );
+
+    MUX_MAC_IN_B_c : entity MUX_AU_IN
+    port map(
+        SEL => mac_B_c_sel,
+        DIN => inputLocations,
+        DOUT => mac_B_c_tdata
+    );
+
+    MUX_MAC_IN_B_a : entity MUX_AU_IN
+    port map(
+        SEL => mac_B_a_sel,
+        DIN => inputLocations,
+        DOUT => mac_B_a_tdataIN
+    );
+
+    mac_B_a_signInv <= not mac_B_a_tdataIN(31);
+    mac_B_a_tdata <= mac_B_a_signInv & mac_B_a_tdataIN(30 downto 0);
+
+    
 
     MUX_DIV_IN_A_a : entity MUX_AU_IN
     port map(
@@ -444,59 +1001,207 @@ begin
         DOUT => div_A_b_tdata
     );
 
+
+    MUX_DIV_IN_B_a : entity MUX_AU_IN
+    port map(
+        SEL => div_B_a_sel,
+        DIN => inputLocations,
+        DOUT => div_B_a_tdata
+    );
+
+    MUX_DIV_IN_B_b : entity MUX_AU_IN
+    port map(
+        SEL => div_B_b_sel,
+        DIN => inputLocations,
+        DOUT => div_B_b_tdata
+    );
+
     MUX_BRAM_A_a_in : entity MUX_BRAM_IN
     port map(
-        SEL => block_A_a_sel,
-        DIN => inputLocations(5 downto 0),
-        DOUT => block_A_porta_din
+        SEL => bram_A_a_sel,
+        DIN => inputLocations(19 downto 0),
+        DOUT => bram_A_porta_din
     );
+    MUX_BRAM_A_b_in : entity MUX_BRAM_IN
+    port map(
+        SEL => bram_A_b_sel,
+        DIN => inputLocations(19 downto 0),
+        DOUT => bram_A_portb_din
+    );
+    MUX_BRAM_A_c_in : entity MUX_BRAM_IN
+    port map(
+        SEL => bram_A_c_sel,
+        DIN => inputLocations(19 downto 0),
+        DOUT => bram_A_portc_din
+    );
+    MUX_BRAM_A_d_in : entity MUX_BRAM_IN
+    port map(
+        SEL => bram_A_d_sel,
+        DIN => inputLocations(19 downto 0),
+        DOUT => bram_A_portd_din
+    );
+
+
     
     MUX_BRAM_B_a_in : entity MUX_BRAM_IN
     port map(
-        SEL => block_B_a_sel,
-        DIN => inputLocations(5 downto 0),
-        DOUT => block_B_porta_din
+        SEL => bram_B_a_sel,
+        DIN => inputLocations(19 downto 0),
+        DOUT => bram_B_porta_din
     );
+    MUX_BRAM_B_b_in : entity MUX_BRAM_IN
+    port map(
+        SEL => bram_B_b_sel,
+        DIN => inputLocations(19 downto 0),
+        DOUT => bram_B_portb_din
+    );
+    MUX_BRAM_B_c_in : entity MUX_BRAM_IN
+    port map(
+        SEL => bram_B_c_sel,
+        DIN => inputLocations(19 downto 0),
+        DOUT => bram_B_portc_din
+    );
+    MUX_BRAM_B_d_in : entity MUX_BRAM_IN
+    port map(
+        SEL => bram_B_d_sel,
+        DIN => inputLocations(19 downto 0),
+        DOUT => bram_B_portd_din
+    );
+
+
     
     MUX_BRAM_C_a_in : entity MUX_BRAM_IN
     port map(
-        SEL => block_C_a_sel,
-        DIN => inputLocations(5 downto 0),
-        DOUT => block_C_porta_din
+        SEL => bram_C_a_sel,
+        DIN => inputLocations(19 downto 0),
+        DOUT => bram_C_porta_din
     );
+    MUX_BRAM_C_b_in : entity MUX_BRAM_IN
+    port map(
+        SEL => bram_C_b_sel,
+        DIN => inputLocations(19 downto 0),
+        DOUT => bram_C_portb_din
+    );
+    MUX_BRAM_C_c_in : entity MUX_BRAM_IN
+    port map(
+        SEL => bram_C_c_sel,
+        DIN => inputLocations(19 downto 0),
+        DOUT => bram_C_portc_din
+    );
+    MUX_BRAM_C_d_in : entity MUX_BRAM_IN
+    port map(
+        SEL => bram_C_d_sel,
+        DIN => inputLocations(19 downto 0),
+        DOUT => bram_C_portd_din
+    );
+
+
     
     MUX_BRAM_D_a_in : entity MUX_BRAM_IN
     port map(
-        SEL => block_D_a_sel,
-        DIN => inputLocations(5 downto 0),
-        DOUT => block_D_porta_din
+        SEL => bram_D_a_sel,
+        DIN => inputLocations(19 downto 0),
+        DOUT => bram_D_porta_din
     );
+    MUX_BRAM_D_b_in : entity MUX_BRAM_IN
+    port map(
+        SEL => bram_D_b_sel,
+        DIN => inputLocations(19 downto 0),
+        DOUT => bram_D_portb_din
+    );
+    MUX_BRAM_D_c_in : entity MUX_BRAM_IN
+    port map(
+        SEL => bram_D_c_sel,
+        DIN => inputLocations(19 downto 0),
+        DOUT => bram_D_portc_din
+    );
+    MUX_BRAM_D_d_in : entity MUX_BRAM_IN
+    port map(
+        SEL => bram_D_d_sel,
+        DIN => inputLocations(19 downto 0),
+        DOUT => bram_D_portd_din
+    );
+
+
     
-    block_A_porta_addr <= CTRL_Signal(CTRL_WIDTH-0*ADDR_WIDTH-1 downto CTRL_WIDTH-1*ADDR_WIDTH-0);
-    block_A_porta_we <= CTRL_Signal(CTRL_WIDTH-1*ADDR_WIDTH-1);
-    block_B_porta_addr <= CTRL_Signal(CTRL_WIDTH-1*ADDR_WIDTH-2 downto CTRL_WIDTH-2*ADDR_WIDTH-1);
-    block_B_porta_we <= CTRL_Signal(CTRL_WIDTH-2*ADDR_WIDTH-2);
-    block_C_porta_addr <= CTRL_Signal(CTRL_WIDTH-2*ADDR_WIDTH-3 downto CTRL_WIDTH-3*ADDR_WIDTH-2);
-    block_C_porta_we <= CTRL_Signal(CTRL_WIDTH-3*ADDR_WIDTH-3);
-    block_D_porta_addr <= CTRL_Signal(CTRL_WIDTH-3*ADDR_WIDTH-4 downto CTRL_WIDTH-4*ADDR_WIDTH-3);
-    block_D_porta_we <= CTRL_Signal(CTRL_WIDTH-4*ADDR_WIDTH-4);
-    mac_A_a_sel <= CTRL_Signal(CTRL_WIDTH-4*ADDR_WIDTH-0*AU_SEL_WIDTH-5 downto CTRL_WIDTH-4*ADDR_WIDTH-1*AU_SEL_WIDTH-4);
-    mac_A_b_sel <= CTRL_Signal(CTRL_WIDTH-4*ADDR_WIDTH-1*AU_SEL_WIDTH-5 downto CTRL_WIDTH-4*ADDR_WIDTH-2*AU_SEL_WIDTH-4);
-    mac_A_c_sel <= CTRL_Signal(CTRL_WIDTH-4*ADDR_WIDTH-2*AU_SEL_WIDTH-5 downto CTRL_WIDTH-4*ADDR_WIDTH-3*AU_SEL_WIDTH-4);
-    div_A_a_sel <= CTRL_Signal(CTRL_WIDTH-4*ADDR_WIDTH-3*AU_SEL_WIDTH-5 downto CTRL_WIDTH-4*ADDR_WIDTH-4*AU_SEL_WIDTH-4);
-    div_A_b_sel <= CTRL_Signal(CTRL_WIDTH-4*ADDR_WIDTH-4*AU_SEL_WIDTH-5 downto CTRL_WIDTH-4*ADDR_WIDTH-5*AU_SEL_WIDTH-4);
-    block_A_a_sel <= CTRL_Signal(CTRL_WIDTH-4*ADDR_WIDTH-5*AU_SEL_WIDTH-0*BRAM_SEL_WIDTH-5 downto CTRL_WIDTH-4*ADDR_WIDTH-5*AU_SEL_WIDTH-1*BRAM_SEL_WIDTH-4);
-    block_B_a_sel <= CTRL_Signal(CTRL_WIDTH-4*ADDR_WIDTH-5*AU_SEL_WIDTH-1*BRAM_SEL_WIDTH-5 downto CTRL_WIDTH-4*ADDR_WIDTH-5*AU_SEL_WIDTH-2*BRAM_SEL_WIDTH-4);
-    block_C_a_sel <= CTRL_Signal(CTRL_WIDTH-4*ADDR_WIDTH-5*AU_SEL_WIDTH-2*BRAM_SEL_WIDTH-5 downto CTRL_WIDTH-4*ADDR_WIDTH-5*AU_SEL_WIDTH-3*BRAM_SEL_WIDTH-4);
-    block_D_a_sel <= CTRL_Signal(CTRL_WIDTH-4*ADDR_WIDTH-5*AU_SEL_WIDTH-3*BRAM_SEL_WIDTH-5 downto CTRL_WIDTH-4*ADDR_WIDTH-5*AU_SEL_WIDTH-4*BRAM_SEL_WIDTH-4);
+    bram_A_porta_addr <= CTRL_Signal(CTRL_WIDTH-0*ADDR_WIDTH-1 downto CTRL_WIDTH-1*ADDR_WIDTH-0);
+    bram_A_porta_we <= CTRL_Signal(CTRL_WIDTH-1*ADDR_WIDTH-1);
+    bram_A_portb_addr <= CTRL_Signal(CTRL_WIDTH-1*ADDR_WIDTH-2 downto CTRL_WIDTH-2*ADDR_WIDTH-1);
+    bram_A_portb_we <= CTRL_Signal(CTRL_WIDTH-2*ADDR_WIDTH-2);
+    bram_A_portc_addr <= CTRL_Signal(CTRL_WIDTH-2*ADDR_WIDTH-3 downto CTRL_WIDTH-3*ADDR_WIDTH-2);
+    bram_A_portc_we <= CTRL_Signal(CTRL_WIDTH-3*ADDR_WIDTH-3);
+    bram_A_portd_addr <= CTRL_Signal(CTRL_WIDTH-3*ADDR_WIDTH-4 downto CTRL_WIDTH-4*ADDR_WIDTH-3);
+    bram_A_portd_we <= CTRL_Signal(CTRL_WIDTH-4*ADDR_WIDTH-4);
+    bram_B_porta_addr <= CTRL_Signal(CTRL_WIDTH-4*ADDR_WIDTH-5 downto CTRL_WIDTH-5*ADDR_WIDTH-4);
+    bram_B_porta_we <= CTRL_Signal(CTRL_WIDTH-5*ADDR_WIDTH-5);
+    bram_B_portb_addr <= CTRL_Signal(CTRL_WIDTH-5*ADDR_WIDTH-6 downto CTRL_WIDTH-6*ADDR_WIDTH-5);
+    bram_B_portb_we <= CTRL_Signal(CTRL_WIDTH-6*ADDR_WIDTH-6);
+    bram_B_portc_addr <= CTRL_Signal(CTRL_WIDTH-6*ADDR_WIDTH-7 downto CTRL_WIDTH-7*ADDR_WIDTH-6);
+    bram_B_portc_we <= CTRL_Signal(CTRL_WIDTH-7*ADDR_WIDTH-7);
+    bram_B_portd_addr <= CTRL_Signal(CTRL_WIDTH-7*ADDR_WIDTH-8 downto CTRL_WIDTH-8*ADDR_WIDTH-7);
+    bram_B_portd_we <= CTRL_Signal(CTRL_WIDTH-8*ADDR_WIDTH-8);
+    bram_C_porta_addr <= CTRL_Signal(CTRL_WIDTH-8*ADDR_WIDTH-9 downto CTRL_WIDTH-9*ADDR_WIDTH-8);
+    bram_C_porta_we <= CTRL_Signal(CTRL_WIDTH-9*ADDR_WIDTH-9);
+    bram_C_portb_addr <= CTRL_Signal(CTRL_WIDTH-9*ADDR_WIDTH-10 downto CTRL_WIDTH-10*ADDR_WIDTH-9);
+    bram_C_portb_we <= CTRL_Signal(CTRL_WIDTH-10*ADDR_WIDTH-10);
+    bram_C_portc_addr <= CTRL_Signal(CTRL_WIDTH-10*ADDR_WIDTH-11 downto CTRL_WIDTH-11*ADDR_WIDTH-10);
+    bram_C_portc_we <= CTRL_Signal(CTRL_WIDTH-11*ADDR_WIDTH-11);
+    bram_C_portd_addr <= CTRL_Signal(CTRL_WIDTH-11*ADDR_WIDTH-12 downto CTRL_WIDTH-12*ADDR_WIDTH-11);
+    bram_C_portd_we <= CTRL_Signal(CTRL_WIDTH-12*ADDR_WIDTH-12);
+    bram_D_porta_addr <= CTRL_Signal(CTRL_WIDTH-12*ADDR_WIDTH-13 downto CTRL_WIDTH-13*ADDR_WIDTH-12);
+    bram_D_porta_we <= CTRL_Signal(CTRL_WIDTH-13*ADDR_WIDTH-13);
+    bram_D_portb_addr <= CTRL_Signal(CTRL_WIDTH-13*ADDR_WIDTH-14 downto CTRL_WIDTH-14*ADDR_WIDTH-13);
+    bram_D_portb_we <= CTRL_Signal(CTRL_WIDTH-14*ADDR_WIDTH-14);
+    bram_D_portc_addr <= CTRL_Signal(CTRL_WIDTH-14*ADDR_WIDTH-15 downto CTRL_WIDTH-15*ADDR_WIDTH-14);
+    bram_D_portc_we <= CTRL_Signal(CTRL_WIDTH-15*ADDR_WIDTH-15);
+    bram_D_portd_addr <= CTRL_Signal(CTRL_WIDTH-15*ADDR_WIDTH-16 downto CTRL_WIDTH-16*ADDR_WIDTH-15);
+    bram_D_portd_we <= CTRL_Signal(CTRL_WIDTH-16*ADDR_WIDTH-16);
+    mac_A_a_sel <= CTRL_Signal(CTRL_WIDTH-16*ADDR_WIDTH-0*AU_SEL_WIDTH-17 downto CTRL_WIDTH-16*ADDR_WIDTH-1*AU_SEL_WIDTH-16);
+    mac_A_b_sel <= CTRL_Signal(CTRL_WIDTH-16*ADDR_WIDTH-1*AU_SEL_WIDTH-17 downto CTRL_WIDTH-16*ADDR_WIDTH-2*AU_SEL_WIDTH-16);
+    mac_A_c_sel <= CTRL_Signal(CTRL_WIDTH-16*ADDR_WIDTH-2*AU_SEL_WIDTH-17 downto CTRL_WIDTH-16*ADDR_WIDTH-3*AU_SEL_WIDTH-16);
+    mac_B_a_sel <= CTRL_Signal(CTRL_WIDTH-16*ADDR_WIDTH-3*AU_SEL_WIDTH-17 downto CTRL_WIDTH-16*ADDR_WIDTH-4*AU_SEL_WIDTH-16);
+    mac_B_b_sel <= CTRL_Signal(CTRL_WIDTH-16*ADDR_WIDTH-4*AU_SEL_WIDTH-17 downto CTRL_WIDTH-16*ADDR_WIDTH-5*AU_SEL_WIDTH-16);
+    mac_B_c_sel <= CTRL_Signal(CTRL_WIDTH-16*ADDR_WIDTH-5*AU_SEL_WIDTH-17 downto CTRL_WIDTH-16*ADDR_WIDTH-6*AU_SEL_WIDTH-16);
+    div_A_a_sel <= CTRL_Signal(CTRL_WIDTH-16*ADDR_WIDTH-6*AU_SEL_WIDTH-17 downto CTRL_WIDTH-16*ADDR_WIDTH-7*AU_SEL_WIDTH-16);
+    div_A_b_sel <= CTRL_Signal(CTRL_WIDTH-16*ADDR_WIDTH-7*AU_SEL_WIDTH-17 downto CTRL_WIDTH-16*ADDR_WIDTH-8*AU_SEL_WIDTH-16);
+    div_B_a_sel <= CTRL_Signal(CTRL_WIDTH-16*ADDR_WIDTH-8*AU_SEL_WIDTH-17 downto CTRL_WIDTH-16*ADDR_WIDTH-9*AU_SEL_WIDTH-16);
+    div_B_b_sel <= CTRL_Signal(CTRL_WIDTH-16*ADDR_WIDTH-9*AU_SEL_WIDTH-17 downto CTRL_WIDTH-16*ADDR_WIDTH-10*AU_SEL_WIDTH-16);
+    bram_A_a_sel <= CTRL_Signal(CTRL_WIDTH-16*ADDR_WIDTH-10*AU_SEL_WIDTH-0*BRAM_SEL_WIDTH-17 downto CTRL_WIDTH-16*ADDR_WIDTH-10*AU_SEL_WIDTH-1*BRAM_SEL_WIDTH-16);
+    bram_A_b_sel <= CTRL_Signal(CTRL_WIDTH-16*ADDR_WIDTH-10*AU_SEL_WIDTH-1*BRAM_SEL_WIDTH-17 downto CTRL_WIDTH-16*ADDR_WIDTH-10*AU_SEL_WIDTH-2*BRAM_SEL_WIDTH-16);
+    bram_A_c_sel <= CTRL_Signal(CTRL_WIDTH-16*ADDR_WIDTH-10*AU_SEL_WIDTH-2*BRAM_SEL_WIDTH-17 downto CTRL_WIDTH-16*ADDR_WIDTH-10*AU_SEL_WIDTH-3*BRAM_SEL_WIDTH-16);
+    bram_A_d_sel <= CTRL_Signal(CTRL_WIDTH-16*ADDR_WIDTH-10*AU_SEL_WIDTH-3*BRAM_SEL_WIDTH-17 downto CTRL_WIDTH-16*ADDR_WIDTH-10*AU_SEL_WIDTH-4*BRAM_SEL_WIDTH-16);
+    bram_B_a_sel <= CTRL_Signal(CTRL_WIDTH-16*ADDR_WIDTH-10*AU_SEL_WIDTH-4*BRAM_SEL_WIDTH-17 downto CTRL_WIDTH-16*ADDR_WIDTH-10*AU_SEL_WIDTH-5*BRAM_SEL_WIDTH-16);
+    bram_B_b_sel <= CTRL_Signal(CTRL_WIDTH-16*ADDR_WIDTH-10*AU_SEL_WIDTH-5*BRAM_SEL_WIDTH-17 downto CTRL_WIDTH-16*ADDR_WIDTH-10*AU_SEL_WIDTH-6*BRAM_SEL_WIDTH-16);
+    bram_B_c_sel <= CTRL_Signal(CTRL_WIDTH-16*ADDR_WIDTH-10*AU_SEL_WIDTH-6*BRAM_SEL_WIDTH-17 downto CTRL_WIDTH-16*ADDR_WIDTH-10*AU_SEL_WIDTH-7*BRAM_SEL_WIDTH-16);
+    bram_B_d_sel <= CTRL_Signal(CTRL_WIDTH-16*ADDR_WIDTH-10*AU_SEL_WIDTH-7*BRAM_SEL_WIDTH-17 downto CTRL_WIDTH-16*ADDR_WIDTH-10*AU_SEL_WIDTH-8*BRAM_SEL_WIDTH-16);
+    bram_C_a_sel <= CTRL_Signal(CTRL_WIDTH-16*ADDR_WIDTH-10*AU_SEL_WIDTH-8*BRAM_SEL_WIDTH-17 downto CTRL_WIDTH-16*ADDR_WIDTH-10*AU_SEL_WIDTH-9*BRAM_SEL_WIDTH-16);
+    bram_C_b_sel <= CTRL_Signal(CTRL_WIDTH-16*ADDR_WIDTH-10*AU_SEL_WIDTH-9*BRAM_SEL_WIDTH-17 downto CTRL_WIDTH-16*ADDR_WIDTH-10*AU_SEL_WIDTH-10*BRAM_SEL_WIDTH-16);
+    bram_C_c_sel <= CTRL_Signal(CTRL_WIDTH-16*ADDR_WIDTH-10*AU_SEL_WIDTH-10*BRAM_SEL_WIDTH-17 downto CTRL_WIDTH-16*ADDR_WIDTH-10*AU_SEL_WIDTH-11*BRAM_SEL_WIDTH-16);
+    bram_C_d_sel <= CTRL_Signal(CTRL_WIDTH-16*ADDR_WIDTH-10*AU_SEL_WIDTH-11*BRAM_SEL_WIDTH-17 downto CTRL_WIDTH-16*ADDR_WIDTH-10*AU_SEL_WIDTH-12*BRAM_SEL_WIDTH-16);
+    bram_D_a_sel <= CTRL_Signal(CTRL_WIDTH-16*ADDR_WIDTH-10*AU_SEL_WIDTH-12*BRAM_SEL_WIDTH-17 downto CTRL_WIDTH-16*ADDR_WIDTH-10*AU_SEL_WIDTH-13*BRAM_SEL_WIDTH-16);
+    bram_D_b_sel <= CTRL_Signal(CTRL_WIDTH-16*ADDR_WIDTH-10*AU_SEL_WIDTH-13*BRAM_SEL_WIDTH-17 downto CTRL_WIDTH-16*ADDR_WIDTH-10*AU_SEL_WIDTH-14*BRAM_SEL_WIDTH-16);
+    bram_D_c_sel <= CTRL_Signal(CTRL_WIDTH-16*ADDR_WIDTH-10*AU_SEL_WIDTH-14*BRAM_SEL_WIDTH-17 downto CTRL_WIDTH-16*ADDR_WIDTH-10*AU_SEL_WIDTH-15*BRAM_SEL_WIDTH-16);
+    bram_D_d_sel <= CTRL_Signal(CTRL_WIDTH-16*ADDR_WIDTH-10*AU_SEL_WIDTH-15*BRAM_SEL_WIDTH-17 downto CTRL_WIDTH-16*ADDR_WIDTH-10*AU_SEL_WIDTH-16*BRAM_SEL_WIDTH-16);
 
     --  CTRL_Signal(0) is actually a complete signal which is required by this module during debugging
 
     
-    block_A_porta_en <= locked;
-    block_B_porta_en <= locked;
-    block_C_porta_en <= locked;
-    block_D_porta_en <= locked;
+    bram_A_porta_en <= locked;
+    bram_A_portb_en <= locked;
+    bram_A_portc_en <= locked;
+    bram_A_portd_en <= locked;
+    bram_B_porta_en <= locked;
+    bram_B_portb_en <= locked;
+    bram_B_portc_en <= locked;
+    bram_B_portd_en <= locked;
+    bram_C_porta_en <= locked;
+    bram_C_portb_en <= locked;
+    bram_C_portc_en <= locked;
+    bram_C_portd_en <= locked;
+    bram_D_porta_en <= locked;
+    bram_D_portb_en <= locked;
+    bram_D_portc_en <= locked;
+    bram_D_portd_en <= locked;
     
     RST <= not locked;
 
@@ -511,9 +1216,24 @@ begin
 
     
 
+    mac_B_a_tvalid <= locked;
+    mac_B_b_tvalid <= locked;
+    mac_B_c_tvalid <= locked;
+    mac_B_operation_tvalid <= locked;
+    mac_B_operation_tdata <= "00000000"; --Indicates substraction(AB-C). 1 indicates addition(AB+C)
+    mac_B_result_tready <= locked;
+
+    
+
     div_A_a_tvalid <= locked;
     div_A_b_tvalid <= locked;
     div_A_result_tready <= locked;
+
+    
+
+    div_B_a_tvalid <= locked;
+    div_B_b_tvalid <= locked;
+    div_B_result_tready <= locked;
 
     
     

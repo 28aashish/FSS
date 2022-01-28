@@ -1,0 +1,439 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+Makefile:77: *** missing separator.  Stop.
+ 
+# GNU Make 4.2.1
+# Built for x86_64-pc-linux-gnu
+# Copyright (C) 1988-2016 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+
+# Make data base, printed on Fri Jan 28 13:52:56 2022
+
+# Variables
+
+# environment
+GNUMAKEFLAGS := 
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# automatic
+?F = $(notdir $?)
+# environment
+DESKTOP_SESSION = ubuntu
+# default
+.SHELLFLAGS := -c
+# environment
+XDG_SESSION_CLASS = user
+# environment
+XDG_SESSION_TYPE = x11
+# environment
+VSCODE_LOG_NATIVE = false
+# makefile (from 'Makefile', line 2)
+PYTHON3 = python3
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# environment
+XAUTHORITY = /run/user/1000/gdm/Xauthority
+# environment
+GDMSESSION = ubuntu
+# environment
+XMODIFIERS = @im=ibus
+# makefile
+CURDIR := /home/aashish/FSS
+# makefile
+SHELL = /bin/sh
+# environment
+VTE_VERSION = 6003
+# environment
+VSCODE_NLS_CONFIG = {"locale":"en-gb","availableLanguages":{},"_languagePackSupport":true}
+# environment
+JOURNAL_STREAM = 9:54666
+# environment
+XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
+# makefile (from 'Makefile', line 1)
+MAKEFILE_LIST :=  Makefile
+# automatic
+@F = $(notdir $@)
+# environment
+IM_CONFIG_PHASE = 1
+# environment
+USERNAME = aashish
+# environment
+MANDATORY_PATH = /usr/share/gconf/ubuntu.mandatory.path
+# environment
+XDG_DATA_DIRS = /usr/share/ubuntu:/home/aashish/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
+# environment
+DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
+# environment
+VSCODE_VERBOSE_LOGGING = true
+# environment
+_ = /usr/bin/code
+# environment
+MANAGERPID = 2333
+# environment
+LESSOPEN = | /usr/bin/lesspipe %s
+# environment
+VSCODE_CWD = /home/aashish/FSS
+# default
+MAKE_HOST := x86_64-pc-linux-gnu
+# environment
+PATH = /home/aashish/scripts:/home/aashish/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/opt/aashish/bsv/bin:/home/aashish/lnx/xilinx/Vivado/2018.3/bin:/home/aashish/lnx/xilinx/SDK/2018.3/bin:/opt/aashish/OpenOCD/bin:/mnt/HDD1/LINUX/GIT/shakti-tools/bin:/mnt/HDD1/LINUX/GIT/shakti-tools/riscv64/bin:/mnt/HDD1/LINUX/GIT/shakti-tools/riscv64/riscv64-unknown-elf/bin:/mnt/HDD1/LINUX/GIT/shakti-tools/riscv32/bin:/mnt/HDD1/LINUX/GIT/shakti-tools/riscv32/riscv32-unknown-elf/bin
+# environment
+OPENRAM_HOME = /home/aashish/work/OpenRAM/compiler
+# environment
+GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
+# environment
+SESSION_MANAGER = local/battleship:@/tmp/.ICE-unix/2589,unix/battleship:/tmp/.ICE-unix/2589
+# environment
+XDG_RUNTIME_DIR = /run/user/1000
+# makefile (from 'Makefile', line 1)
+TEST_MATRIX = 
+# environment
+CMUBDDHOME = /home/aashish/study/EE709/cmu_bdd
+# environment
+XDG_MENU_PREFIX = gnome-
+# environment
+VSCODE_LOG_STACK = false
+# environment
+VSCODE_CRASH_REPORTER_START_OPTIONS = {"companyName":"Microsoft","productName":"VSCode","submitURL":"appcenter://code?aid=fba07a4d-84bd-4fc8-a125-9640fc8ce171&uid=614fffc0-2b8d-4bea-a2bd-84a9b3f87ebf&iid=614fffc0-2b8d-4bea-a2bd-84a9b3f87ebf&sid=614fffc0-2b8d-4bea-a2bd-84a9b3f87ebf","uploadToServer":true}
+# environment
+INVOCATION_ID = 1857561a5e4447c39c9a9606009fa30a
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
+# environment
+LS_COLORS = rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:
+# environment
+XDG_SESSION_DESKTOP = ubuntu
+# environment
+SSH_AUTH_SOCK = /tmp/ssh-9ksU5OSNZvUL/agent.2469
+# automatic
+%F = $(notdir $%)
+# environment
+DISPLAY = :0
+# environment
+VSCODE_PIPE_LOGGING = true
+# environment
+PWD = /home/aashish/FSS
+# default
+.LOADED := 
+# environment
+SSH_AGENT_PID = 2546
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
+# environment
+GTK_MODULES = gail:atk-bridge
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/services/extensions/node/extensionHostProcess
+# environment
+HOME = /home/aashish
+# environment
+LD_LIBRARY_PATH = :/mnt/HDD1/LINUX/GIT/shakti-tools/riscv64/lib:/mnt/HDD1/LINUX/GIT/shakti-tools/riscv32/lib
+# environment
+LESSCLOSE = /usr/bin/lesspipe %s %s
+# environment
+RISCV = /opt/aashish/OpenOCD
+# environment
+VSCODE_CLI = 1
+# environment
+VSCODE_CODE_CACHE_PATH = /home/aashish/.config/Code/CachedData/899d46d82c4c95423fb7e10e68eba52050e30ba3
+# environment
+LOGNAME = aashish
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+# environment
+OPENRAM_TECH = /home/aashish/work/OpenRAM/technology
+# environment
+ELECTRON_NO_ATTACH_CONSOLE = 1
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# environment
+GNOME_DESKTOP_SESSION_ID = this-is-deprecated
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# environment
+MAKELEVEL := 0
+# environment
+COLORTERM = truecolor
+# default
+MAKE = $(MAKE_COMMAND)
+# default
+MAKECMDGOALS := all
+# environment
+QT_IM_MODULE = ibus
+# environment
+SHLVL = 1
+# environment
+GNOME_SHELL_SESSION_MODE = ubuntu
+# environment
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-bab65e7b-ecfc-4987-a730-ed8ba61b5cd6.sock
+# default
+MAKE_VERSION := 4.2.1
+# environment
+USER = aashish
+# makefile
+.DEFAULT_GOAL := all
+# environment
+XDG_CURRENT_DESKTOP = Unity
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# default
+MAKE_COMMAND := make
+# environment
+OLDPWD = /home/aashish
+# default
+.VARIABLES := 
+# automatic
+*F = $(notdir $*)
+# environment
+LANGUAGE = en_IN:en
+# environment
+VSCODE_IPC_HOOK = /run/user/1000/vscode-c3a36d02-1.63.2-main.sock
+# makefile
+MAKEFLAGS = pqrR
+# environment
+MFLAGS = -pqrR
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# environment
+BREAKPAD_DUMP_LOCATION = /home/aashish/.config/Code/exthost Crash Reports
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# environment
+GDK_BACKEND = x11
+# automatic
++F = $(notdir $+)
+# environment
+QT_ACCESSIBILITY = 1
+# environment
+DEFAULTS_PATH = /usr/share/gconf/ubuntu.default.path
+# default
+MAKEFILES := 
+# automatic
+<F = $(notdir $<)
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# environment
+OPENLANE_ROOT = /mnt/HDD1/LINUX/GIT/OpenLane
+# environment
+LC_ALL = C
+# environment
+GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/cb5336ca_a261_4c47_b01a_e894a16b4a42
+# automatic
+^F = $(notdir $^)
+# environment
+GNOME_TERMINAL_SERVICE = :1.80
+# default
+SUFFIXES := 
+# environment
+CHROME_DESKTOP = code-url-handler.desktop
+# environment
+WINDOWPATH = 2
+# default
+.INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
+# environment
+PDK_ROOT = /mnt/HDD1/LINUX/GIT/OpenLane/pdks
+# default
+.RECIPEPREFIX := 
+# environment
+LANG = C
+# environment
+TERM = xterm-256color
+# environment
+VSCODE_PID = 3240
+ 
+# variable set hash-table stats:
+# Load=115/1024=11%, Rehash=0, Collisions=13/129=10%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# . (device 2053, inode 417905): 12 files, no impossibilities.
+
+# 12 files, no impossibilities in 1 directories.
+
+# Implicit Rules
+
+# No implicit rules.
+
+# Files
+
+buildASIC:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 44):
+	(yes | cp -if ./Scheduler/cppFiles/IO.json ./ASIC/IO.json)
+	(cd ./ASIC/verilog/autoFiles;rm -f ./*.v)
+	(cp ./Hardware/autoFiles/VFile/*.v ./ASIC/verilog/autoFiles)
+	(cp ./Hardware/autoFiles/VFile/const_file/*.v ./ASIC/verilog/autoFiles)
+	(cd ./ASIC;$(PYTHON3) ../Scheduler/pyFiles/ASIC_IP.py)
+	
+
+all: cleanall preprocess process buildHardware buildShakti_IP buildASIC
+#  Command line target.
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+.PHONY: clean preprocess process all all_wo_matlab build_wo_matlab run_wo_matlab cleanall cleanup all_graph
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+process:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 63):
+	(cd Scheduler/cppFiles; make all TEST_MATRIX=$(TEST_MATRIX))
+	(cd Scheduler/cppFiles; ./main $(TEST_MATRIX))
+
+cleanup:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 71):
+	(cd Scheduler/cppFiles; make clean)
+	(cd Scheduler/cppFiles; make cleanPreprocess)
+
+# Not a target:
+Makefile:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+all_wo_matlab: cleanall
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 9):
+	(cd Scheduler/cppFiles; make c_run)
+	
+
+preprocess:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 59):
+	(cd Scheduler/cppFiles; make buildPreprocessTests)
+	(cd Scheduler/cppFiles; make preprocessTests)
+
+buildShakti_IP:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 31):
+	(yes | cp -if ./Scheduler/cppFiles/IO.json ./Shakti_IP/IO.json)
+	(cd ./Shakti_IP/verilog;rm -f ./*.v)
+	(cp ./Hardware/autoFiles/VFile/*.v ./Shakti_IP/verilog)
+	(cp ./Hardware/autoFiles/VFile/const_file/*.v ./Shakti_IP/verilog)
+	(cd ./Shakti_IP/C_files;rm -f ./*.h)
+	(cd ./Shakti_IP/C_files;rm -f ./*.c)
+	(yes | cp -if ./Scheduler/cppFiles/FPGA*.h ./Shakti_IP/C_files)
+	(yes | cp -if ./Scheduler/cppFiles/float_to_int.h ./Shakti_IP/C_files)
+	(yes | cp -if ./Scheduler/cppFiles/int_to_float.h ./Shakti_IP/C_files)
+	(yes | cp -if ./Hardware/C_files/SW.c ./Shakti_IP/C_files)
+	(cd ./Shakti_IP;$(PYTHON3) ../Scheduler/pyFiles/Shakti_IP.py)
+
+buildHardware:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 21):
+	(yes | cp -if ./Scheduler/cppFiles/IO.json ./Hardware/IO.json)
+	(yes | cp -if ./Scheduler/cppFiles/*.svh ./Hardware/autoFiles/SVFile)
+	(yes | cp -if ./Scheduler/cppFiles/FPGA*.h ./Hardware/C_files)
+	(yes | cp -if ./Scheduler/cppFiles/float_to_int.h ./Hardware/C_files)
+	(yes | cp -if ./Scheduler/cppFiles/int_to_float.h ./Hardware/C_files)
+	(cd ./Hardware;$(PYTHON3) ../Scheduler/pyFiles/HDL_inteconnect.py)
+	(cd ./Hardware;$(PYTHON3) ../Scheduler/pyFiles/Verilog_inteconnect.py)
+	${PYTHON3} ./Scheduler/pyFiles/SW_Code.py
+
+grapher:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 67):
+	(pwd)
+	(dot -Tsvg ./Scheduler/cppFiles/exeTree.dot -o ../../test/exported/$(TEST_MATRIX)/FPGA_output.svg)
+
+build_wo_matlab: cleanall
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 12):
+	(cd Scheduler/cppFiles;make cbuild_only)
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+clean:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+all_graph: cleanall preprocess process grapher
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+buildHDtest:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 51):
+	$(PYTHON3) ./Scheduler/pyFiles/S_Tester.py
+	(cd ./Scheduler/S_tester;$(CXX) automate_Tester.cpp)
+	(cd ./Scheduler/S_tester;./a.out)
+	
+
+all_mat: cleanall preprocess buildHardware
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+run_wo_matlab:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 15):
+	(cd Scheduler/cppFiles; ./main $(TEST_MATRIX))
+
+Vers2018:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+cleanall:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 56):
+	(cd Scheduler/cppFiles; make cleanall)
+
+# files hash-table stats:
+# Load=21/1024=2%, Rehash=0, Collisions=0/60=0%
+# VPATH Search Paths
+
+# No 'vpath' search paths.
+
+# No general ('VPATH' variable) search path.
+
+# strcache buffers: 1 (0) / strings = 34 / storage = 325 B / avg = 9 B
+# current buf: size = 8162 B / used = 325 B / count = 34 / avg = 9 B
+
+# strcache performance: lookups = 80 / hit rate = 57%
+# hash-table stats:
+# Load=34/8192=0%, Rehash=0, Collisions=1/80=1%
+# Finished Make data base on Fri Jan 28 13:52:56 2022
+
+ 

@@ -1,0 +1,1 @@
+{"buildTargets":["Vers2018","all","all_graph","all_mat","all_wo_matlab","buildASIC","buildHDtest","buildHardware","buildShakti_IP","build_wo_matlab","clean","cleanall","cleanup","grapher","preprocess","process","run_wo_matlab"],"launchTargets":[],"customConfigurationProvider":{"workspaceBrowse":{"browsePath":[]},"fileIndex":[]}}

@@ -28,11 +28,11 @@ apply_bd_automation -rule xilinx.com:bd_rule:board -config {Board_Interface "res
 endgroup
 validate_bd_design
 regenerate_bd_layout
-startgroup
-create_bd_cell -type ip -vlnv user.org:user:myip_LUdecomposition_v2_v1_0:1.0 myip_AXI_LUD_wrapper_0
-endgroup
-apply_bd_automation -rule xilinx.com:bd_rule:axi4 -config {Master "/microblaze_0 (Periph)" intc_ip "/microblaze_0_axi_periph" Clk_xbar "Auto" Clk_master "Auto" Clk_slave "Auto" }  [get_bd_intf_pins myip_AXI_LUD_wrapper_0/s00_axi]
-connect_bd_net [get_bd_pins myip_AXI_LUD_wrapper_0/clk_1x] [get_bd_pins mig_7series_0/ui_addn_clk_0]
-regenerate_bd_layout
-save_bd_design
-validate_bd_design
+#startgroup
+#create_bd_cell -type ip -vlnv user.org:user:myip_LUdecomposition_v2_v1_0:1.0 myip_AXI_LUD_wrapper_0
+#endgroup
+#apply_bd_automation -rule xilinx.com:bd_rule:axi4 -config {Master "/microblaze_0 (Periph)" intc_ip "/microblaze_0_axi_periph" Clk_xbar "Auto" Clk_master "Auto" Clk_slave "Auto" }  [get_bd_intf_pins myip_AXI_LUD_wrapper_0/s00_axi]
+#connect_bd_net [get_bd_pins myip_AXI_LUD_wrapper_0/clk_1x] [get_bd_pins mig_7series_0/ui_addn_clk_0]
+#regenerate_bd_layout
+#save_bd_design
+#validate_bd_design

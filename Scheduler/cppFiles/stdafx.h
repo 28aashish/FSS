@@ -36,31 +36,40 @@ using namespace std;
 EXTERN f_type g_nzThreshold;
 EXTERN f_type g_errThreshold;
 
+#define Xpara_Name "XPAR_MYIP_AXI_LUD_WRAPPER_0_BASEADDR"
 // print debug messages
 #define PRINT_DEBUG_MSG
 // make graphical picture of graph
 // #define MAKE_GRAPH
 #define GRAPH_DPI "100"
 
-#define CTRL_DELAY 2
+#define CTRL_DELAY 1
 
 // Hardware Requirements
-#define instBRAMSize 16384
-#define BRAMSize 4096
+#define instBRAMSize 4096
+#define BRAMSize 1024
 
 //IP Requirements
         
 //Instruction BRAM Ports
-#define PORT_of_BRAM 1
+#define PORT_of_BRAM 4
 //Total Instruction BRAM 
 //⚠ ⚠ ⚠ ⚠ ⚠ ⚠ ⚠ ⚠ at max 16
 #define Total_BRAMs_for_Data 4
 //iff numMAC_DIVUnits = 4 i.e. 4 MAC Unit and 4 Div Unit
-#define numMAC_DIVUnits 1
+#define numMAC_DIVUnits 2   
 
 //#define delay_DIV 31
 //#define delay_MAC 22
 
+
+/*
+MAC =1 DIV = 1 => AU = 1
+CTRL_width = Total_BRAMs_for_Data*(BRAMSize+1) 
+                + ceil(log2( Total_BRAMs_for_Data * PORT_of_BRAM+ AUs + 1 )) 
+                + ceil(log2( Total_BRAMs_for_Data * PORT_of_BRAM+ AUs ))
+
+*/
 #define delay_DIV 10
 #define delay_MAC 11
 

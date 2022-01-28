@@ -8,7 +8,7 @@
 #include "FPGALoad_INST.h"
 #include "FPGALoad_A.h"
 #define BRAMs 4
-#define BRAMs_Size 4096
+#define BRAMs_Size 1024
     
 int main()
 {
@@ -59,9 +59,9 @@ void printall()
 	int i,j;
 	unsigned int val;
     float val_float;
-    printf("float bram_dump[%d][%d]={0};\r\n",BRAMs,BRAMs_Size);
+    printf("float bram_dump[%d][%d]=XPAR_MYIP_AXI_LUD_WRAPPER_0_BASEADDR;\r\n",BRAMs,BRAMs_Size);
 	for(j = 0; j < BRAMs_Size;j++){
-		for(i=0;i<BRAMs;i++){
+		for(i=0;i<BRAMs;i++)\{
     
 	        Xil_Out32(XPAR_MYIP_AXI_LUD_WRAPPER_0_BASEADDR + 4*(4+i), j); //Writing address
 	        //delay();

@@ -183,7 +183,8 @@ void development(struct HardwareConfig &simpleHardware)
         ofstream myfile;
         myfile.open ("IO.json");
         myfile<<"{"<<endl;
-        myfile<<"\"NUM_PORT\":"<<PORT_of_BRAM<<","<<endl;;
+        myfile<<"\"Xpara_Name\":\""<<Xpara_Name<<"\","<<endl;
+        myfile<<"\"NUM_PORT\":"<<PORT_of_BRAM<<","<<endl;
         myfile<<"\"NUM_BRAM\":"<<Total_BRAMs_for_Data<<","<<endl;
         myfile<<"\"NUM_MAC_DIV_S\":"<<numMAC_DIVUnits<<","<<endl;
         myfile<<"\"ADDR_WIDTH\":"<<(int)ceil(log2(instBRAMSize))<<","<<endl;
@@ -323,6 +324,7 @@ void test(struct HardwareConfig &simpleHardware, string testName,  string postfi
         ofstream myfile;
         myfile.open ("IO.json");
         myfile<<"{"<<endl;
+        myfile<<"\"Xpara_Name\":\""<<Xpara_Name<<"\","<<endl;        
         myfile<<"\"NUM_PORT\":"<<PORT_of_BRAM<<","<<endl;;
         myfile<<"\"NUM_BRAM\":"<<Total_BRAMs_for_Data<<","<<endl;
         myfile<<"\"NUM_MAC_DIV_S\":"<<numMAC_DIVUnits<<","<<endl;
@@ -659,24 +661,24 @@ void print_A_ToFileForFPGADynamicLoading(CCS A,HardwareConfig hw){
         myfile << "int i,j;\n";
         myfile << "//Making enable and write_enable 0 for all the BRAMS\n";
         myfile << "for(i=0;i<"<<hw.BRAMs.size()<<";i++){\n";
-        myfile << "Xil_Out32(XPAR_MYIP_AXI_LUD_WRAPPER_0_BASEADDR + 4*("<<s_en<<"+i), 0); //Making enable 0\n";
+        myfile << "Xil_Out32("<<Xpara_Name<<" + 4*("<<s_en<<"+i), 0); //Making enable 0\n";
         myfile << "delay_FPGALoad_A();\n";
-        myfile << "Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*("<<s_we<<"+i), 0); //Making write enable 0\n";
+        myfile << "Xil_Out32("<<Xpara_Name<<" + 4*("<<s_we<<"+i), 0); //Making write enable 0\n";
         myfile << "delay_FPGALoad_A();\n";
         myfile << "}\n";
         myfile << "for(i=0;i<"<<hw.BRAMs.size()<<";i++){\n";
         myfile << "for(j=0;j<"<<hw.BRAMs[0]->size<<";j++){\n";
-        myfile << "Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*("<<s_addr<<"+i), j); //Writing address,(4+i) is the offset\n";
+        myfile << "Xil_Out32("<<Xpara_Name<<" + 4*("<<s_addr<<"+i), j); //Writing address,(4+i) is the offset\n";
         myfile << "delay_FPGALoad_A();\n";
-        myfile << "Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*("<<s_din<<"+i), 0); //Writing data in din\n";
+        myfile << "Xil_Out32("<<Xpara_Name<<" + 4*("<<s_din<<"+i), 0); //Writing data in din\n";
         myfile << "delay_FPGALoad_A();\n";
-        myfile << "Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*("<<s_en<<"+i), 1); //Making enable 1\n";
+        myfile << "Xil_Out32("<<Xpara_Name<<" + 4*("<<s_en<<"+i), 1); //Making enable 1\n";
         myfile << "delay_FPGALoad_A();\n";
-        myfile << "Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*("<<s_we<<"+i), 1); //Making write enable 1\n";
+        myfile << "Xil_Out32("<<Xpara_Name<<" + 4*("<<s_we<<"+i), 1); //Making write enable 1\n";
         myfile << "delay_FPGALoad_A();\n";
-        myfile << "Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*("<<s_en<<"+i), 0); //Making enable 0\n";
+        myfile << "Xil_Out32("<<Xpara_Name<<" + 4*("<<s_en<<"+i), 0); //Making enable 0\n";
         myfile << "delay_FPGALoad_A();\n";
-        myfile << "Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*("<<s_we<<"+i), 0); //Making write enable 0\n";
+        myfile << "Xil_Out32("<<Xpara_Name<<" + 4*("<<s_we<<"+i), 0); //Making write enable 0\n";
         myfile << "delay_FPGALoad_A();\n";
         myfile << "}\n";
         myfile << "}\n";
@@ -691,21 +693,21 @@ void print_A_ToFileForFPGADynamicLoading(CCS A,HardwareConfig hw){
         myfile << "error_count = 0;\n";
         myfile << "//Making enable and write_enable 0 for all the BRAMS\n";
         myfile << "for(i=0;i<"<<hw.BRAMs.size()<<";i++){\n";
-        myfile << "Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*("<<s_en<<"+i), 0); //Making enable 0\n";
+        myfile << "Xil_Out32("<<Xpara_Name<<" + 4*("<<s_en<<"+i), 0); //Making enable 0\n";
         myfile << "delay_FPGALoad_A();\n";
-        myfile << "Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*("<<s_we<<"+i), 0); //Making write enable 0\n";
+        myfile << "Xil_Out32("<<Xpara_Name<<" + 4*("<<s_we<<"+i), 0); //Making write enable 0\n";
         myfile << "delay_FPGALoad_A();\n";
         myfile << "}\n";
         myfile << "for(i=0;i<"<<hw.BRAMs.size()<<";i++){\n";
         myfile << "for(j=0;j<"<<hw.BRAMs[0]->size<<";j++){\n";
-        myfile << "Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*("<<s_addr<<"+i), j); //Writing address,(4+i) is the offset\n";
+        myfile << "Xil_Out32("<<Xpara_Name<<" + 4*("<<s_addr<<"+i), j); //Writing address,(4+i) is the offset\n";
         myfile << "delay_FPGALoad_A();\n";
-        myfile << "Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*("<<s_en<<"+i), 1); //Making enable 1\n";
+        myfile << "Xil_Out32("<<Xpara_Name<<" + 4*("<<s_en<<"+i), 1); //Making enable 1\n";
         myfile << "delay_FPGALoad_A();\n";
         myfile << "val = -1;\n";
-        myfile << "val = Xil_In32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*("<<s_dout<<"+i)); //Reading from BRAM\n";
+        myfile << "val = Xil_In32("<<Xpara_Name<<" + 4*("<<s_dout<<"+i)); //Reading from BRAM\n";
         myfile << "delay_FPGALoad_A();\n";
-        myfile << "Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*("<<s_en<<"+i), 0); //Making enable 0\n";
+        myfile << "Xil_Out32("<<Xpara_Name<<" + 4*("<<s_en<<"+i), 0); //Making enable 0\n";
         myfile << "delay_FPGALoad_A();\n";
         myfile << "if(val != 0){\n";
         myfile << "error_count = error_count + 1;\n";
@@ -723,30 +725,30 @@ void print_A_ToFileForFPGADynamicLoading(CCS A,HardwareConfig hw){
         myfile << "int i;\n";
         myfile << "int val_int;\n";
 
-        myfile << "//The base address of the LUD accelerator may needed to be changed. The base address assumed is 'XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR'\n";
+        myfile << "//The base address of the LUD accelerator may needed to be changed. The base address assumed is '"<<Xpara_Name<<"'\n";
 
         myfile << "//Making enable and write_enable 0 for all the BRAMS\n";
         myfile << "for(i=0;i<"<<hw.BRAMs.size()<<";i++){\n";
-        myfile << "Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*("<<s_en<<"+i), 0); //Making enable 0\n";
+        myfile << "Xil_Out32("<<Xpara_Name<<" + 4*("<<s_en<<"+i), 0); //Making enable 0\n";
         myfile << "delay_FPGALoad_A();\n";
-        myfile << "Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*("<<s_we<<"+i), 0); //Making write enable 0\n";
+        myfile << "Xil_Out32("<<Xpara_Name<<" + 4*("<<s_we<<"+i), 0); //Making write enable 0\n";
         myfile << "delay_FPGALoad_A();\n";
         myfile << "}\n";
 
         myfile << "//Writing A into BRAM\n";
         myfile << "for(i=0;i<A_size;i++){\n";
-        myfile << "Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*("<<s_addr<<"+A_BRAMInd[i]), A_BRAMAddr[i]); //Writing address,(4+A_BRAMInd[i]) is the offset\n";
+        myfile << "Xil_Out32("<<Xpara_Name<<" + 4*("<<s_addr<<"+A_BRAMInd[i]), A_BRAMAddr[i]); //Writing address,(4+A_BRAMInd[i]) is the offset\n";
         myfile << "delay_FPGALoad_A();\n";
         myfile << "val_int = float_to_int(A[i]);\n";
-        myfile << "Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*("<<s_din<<"+A_BRAMInd[i]), val_int); //Writing data in din\n";
+        myfile << "Xil_Out32("<<Xpara_Name<<" + 4*("<<s_din<<"+A_BRAMInd[i]), val_int); //Writing data in din\n";
         myfile << "delay_FPGALoad_A();\n";
-        myfile << "Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*("<<s_en<<"+A_BRAMInd[i]), 1); //Making enable 1\n";
+        myfile << "Xil_Out32("<<Xpara_Name<<" + 4*("<<s_en<<"+A_BRAMInd[i]), 1); //Making enable 1\n";
         myfile << "delay_FPGALoad_A();\n";
-        myfile << "Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*("<<s_we<<"+A_BRAMInd[i]), 1); //Making write enable 1\n";
+        myfile << "Xil_Out32("<<Xpara_Name<<" + 4*("<<s_we<<"+A_BRAMInd[i]), 1); //Making write enable 1\n";
         myfile << "delay_FPGALoad_A();\n";
-        myfile << "Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*("<<s_en<<"+A_BRAMInd[i]), 0); //Making enable 0\n";
+        myfile << "Xil_Out32("<<Xpara_Name<<" + 4*("<<s_en<<"+A_BRAMInd[i]), 0); //Making enable 0\n";
         myfile << "delay_FPGALoad_A();\n";
-        myfile << "Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*("<<s_we<<"+A_BRAMInd[i]), 0); //Making write enable 0\n";
+        myfile << "Xil_Out32("<<Xpara_Name<<" + 4*("<<s_we<<"+A_BRAMInd[i]), 0); //Making write enable 0\n";
         myfile << "delay_FPGALoad_A();\n";
         myfile << "}\n";
         myfile << "}\n\n\n";
@@ -769,21 +771,21 @@ void print_A_ToFileForFPGADynamicLoading(CCS A,HardwareConfig hw){
 
         myfile << "//Making enable and write_enable 0 for all the BRAMS\n";
         myfile << "for(i=0;i<"<<hw.BRAMs.size()<<";i++){\n";
-        myfile << "Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*("<<s_en<<"+i), 0); //Making enable 0\n";
+        myfile << "Xil_Out32("<<Xpara_Name<<" + 4*("<<s_en<<"+i), 0); //Making enable 0\n";
         myfile << "delay_FPGALoad_A();\n";
-        myfile << "Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*("<<s_we<<"+i), 0); //Making write enable 0\n";
+        myfile << "Xil_Out32("<<Xpara_Name<<" + 4*("<<s_we<<"+i), 0); //Making write enable 0\n";
         myfile << "delay_FPGALoad_A();\n";
         myfile << "}\n";
 
         myfile << "//Reading A from BRAM\n";
         myfile << "for(i=0;i<A_size;i++){\n";
-        myfile << "Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*("<<s_addr<<"+A_BRAMInd[i]), A_BRAMAddr[i]); //Writing address,(4+A_BRAMInd[i]) is the offset\n";
+        myfile << "Xil_Out32("<<Xpara_Name<<" + 4*("<<s_addr<<"+A_BRAMInd[i]), A_BRAMAddr[i]); //Writing address,(4+A_BRAMInd[i]) is the offset\n";
         myfile << "delay_FPGALoad_A();\n";
-        myfile << "Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*("<<s_en<<"+A_BRAMInd[i]), 1); //Making enable 1\n";
+        myfile << "Xil_Out32("<<Xpara_Name<<" + 4*("<<s_en<<"+A_BRAMInd[i]), 1); //Making enable 1\n";
         myfile << "delay_FPGALoad_A();\n";
-        myfile << "val_int = Xil_In32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*("<<s_dout<<"+A_BRAMInd[i])); //Reading from BRAM\n";
+        myfile << "val_int = Xil_In32("<<Xpara_Name<<" + 4*("<<s_dout<<"+A_BRAMInd[i])); //Reading from BRAM\n";
         myfile << "delay_FPGALoad_A();\n";
-        myfile << "Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*("<<s_en<<"+A_BRAMInd[i]), 0); //Making enable 0\n";
+        myfile << "Xil_Out32("<<Xpara_Name<<" + 4*("<<s_en<<"+A_BRAMInd[i]), 0); //Making enable 0\n";
         myfile << "delay_FPGALoad_A();\n";
 
         myfile << "val = int_to_float(val_int);\n";
@@ -886,28 +888,28 @@ myfile << "void clearINSTBram(){\n";
 myfile << "int i,j;\n";
 
 myfile << "//Making enable and write_enable 0 for Instruction BRAMS\n";
-myfile << "Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*"<<s_en<<", 0); //Making enable 0\n";
+myfile << "Xil_Out32("<<Xpara_Name<<" + 4*"<<s_en<<", 0); //Making enable 0\n";
 myfile << "delay_FPGALoad_INST();\n";
-myfile << "Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*"<<s_we<<", 0); //Making write enable 0\n";
+myfile << "Xil_Out32("<<Xpara_Name<<" + 4*"<<s_we<<", 0); //Making write enable 0\n";
 myfile << "delay_FPGALoad_INST();\n";
 
 myfile << "//Writing 0 into BRAM\n";
 myfile << "for(i=0;i<" <<instBRAMSize<<";i++){\n";
-myfile << "Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*"<<s_addr<<", i); //Writing address\n";
+myfile << "Xil_Out32("<<Xpara_Name<<" + 4*"<<s_addr<<", i); //Writing address\n";
 myfile << "delay_FPGALoad_INST();\n";
         
 myfile << "for(j=0;j<sub_instructions;j++){\n";       
-myfile << "Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*("<<s_din<<"+j), 0); //Writing data in din\n";
+myfile << "Xil_Out32("<<Xpara_Name<<" + 4*("<<s_din<<"+j), 0); //Writing data in din\n";
 myfile << "delay_FPGALoad_INST();\n";
 myfile << "}\n";
         
-myfile << "Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*"<<s_en<<", 1); //Making enable 1\n";
+myfile << "Xil_Out32("<<Xpara_Name<<" + 4*"<<s_en<<", 1); //Making enable 1\n";
 myfile << "delay_FPGALoad_INST();\n";
-myfile << "Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*"<<s_we<<", 1); //Making write enable 1\n";
+myfile << "Xil_Out32("<<Xpara_Name<<" + 4*"<<s_we<<", 1); //Making write enable 1\n";
 myfile << "delay_FPGALoad_INST();\n";
-myfile << "Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*"<<s_en<<", 0); //Making enable 0\n";
+myfile << "Xil_Out32("<<Xpara_Name<<" + 4*"<<s_en<<", 0); //Making enable 0\n";
 myfile << "delay_FPGALoad_INST();\n";
-myfile << "Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*"<<s_we<<", 0); //Making write enable 0\n";
+myfile << "Xil_Out32("<<Xpara_Name<<" + 4*"<<s_we<<", 0); //Making write enable 0\n";
 myfile << "delay_FPGALoad_INST();\n";
 myfile << "}\n";
 
@@ -921,27 +923,27 @@ myfile << "int val,error_count;\n";
 myfile << "error_count = 0;\n";
 
 myfile << "//Making enable and write enable zero for Instruction BRAM\n";
-myfile << "Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*"<<s_en<<", 0); //Making enable 0\n";
+myfile << "Xil_Out32("<<Xpara_Name<<" + 4*"<<s_en<<", 0); //Making enable 0\n";
 myfile << "delay_FPGALoad_INST();\n";
-myfile << "Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*"<<s_we<<", 0); //Making write enable 0\n";
+myfile << "Xil_Out32("<<Xpara_Name<<" + 4*"<<s_we<<", 0); //Making write enable 0\n";
 myfile << "delay_FPGALoad_INST();\n";
 
 myfile << "//Reading Instructions from BRAM\n";
 myfile << "for(i=0;i<"<<instBRAMSize<<";i++){\n";
-myfile << "Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*"<<s_addr<<", i); //Writing address,i is the offset\n";
+myfile << "Xil_Out32("<<Xpara_Name<<" + 4*"<<s_addr<<", i); //Writing address,i is the offset\n";
 myfile << "delay_FPGALoad_INST();\n";
-myfile << "Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*"<<s_en<<", 1); //Making enable 1\n";
+myfile << "Xil_Out32("<<Xpara_Name<<" + 4*"<<s_en<<", 1); //Making enable 1\n";
 myfile << "delay_FPGALoad_INST();\n";
         
 myfile << "for(j=0;j<sub_instructions;j++){\n";
-myfile << "val = Xil_In32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*("<<s_dout<<"+j)); //Reading from BRAM\n";
+myfile << "val = Xil_In32("<<Xpara_Name<<" + 4*("<<s_dout<<"+j)); //Reading from BRAM\n";
 myfile << "delay_FPGALoad_INST();\n";
 myfile << "if(val != 0){\n";
 myfile << "error_count = error_count + 1;\n";
 myfile << "}\n";
 myfile << "}\n";
         
-myfile << "Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*"<<s_en<<", 0); //Making enable 0\n";
+myfile << "Xil_Out32("<<Xpara_Name<<" + 4*"<<s_en<<", 0); //Making enable 0\n";
 myfile << "delay_FPGALoad_INST();\n";
 myfile << "}\n";
         
@@ -955,32 +957,32 @@ myfile << "}\n\n\n";
 
         myfile << "int i,j;\n";
 
-        myfile << "//The base address of the LUD accelerator may needed to be changed. The base address assumed is 'XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR'\n";
+        myfile << "//The base address of the LUD accelerator may needed to be changed. The base address assumed is '"<<Xpara_Name<<"'\n";
 
         myfile << "//Making enable and write_enable 0 for Instruction BRAMS\n";
-        myfile << "Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*"<<s_en<<", 0); //Making enable 0\n";
+        myfile << "Xil_Out32("<<Xpara_Name<<" + 4*"<<s_en<<", 0); //Making enable 0\n";
         myfile << "delay_FPGALoad_INST();\n";
-        myfile << "Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*"<<s_we<<", 0); //Making write enable 0\n";
+        myfile << "Xil_Out32("<<Xpara_Name<<" + 4*"<<s_we<<", 0); //Making write enable 0\n";
         myfile << "delay_FPGALoad_INST();\n";
 
         myfile << "//Writing Instructions into BRAM\n";
         myfile << "for(i=0;i<total_instructions;i++){\n";
-        myfile << "Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*"<<s_addr<<", i); //Writing address,i is the offset\n";
+        myfile << "Xil_Out32("<<Xpara_Name<<" + 4*"<<s_addr<<", i); //Writing address,i is the offset\n";
         myfile << "delay_FPGALoad_INST();\n";
         
         myfile << "for(j=0;j<sub_instructions;j++){\n";       
-        myfile << "Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*("<<s_din<<"+j), Inst[i][j]); //Writing data in din\n";
+        myfile << "Xil_Out32("<<Xpara_Name<<" + 4*("<<s_din<<"+j), Inst[i][j]); //Writing data in din\n";
         myfile << "delay_FPGALoad_INST();\n";
         
         myfile << "}\n";
         
-        myfile << "Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*"<<s_en<<", 1); //Making enable 1\n";
+        myfile << "Xil_Out32("<<Xpara_Name<<" + 4*"<<s_en<<", 1); //Making enable 1\n";
         myfile << "delay_FPGALoad_INST();\n";
-        myfile << "Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*"<<s_we<<", 1); //Making write enable 1\n";
+        myfile << "Xil_Out32("<<Xpara_Name<<" + 4*"<<s_we<<", 1); //Making write enable 1\n";
         myfile << "delay_FPGALoad_INST();\n";
-        myfile << "Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*"<<s_en<<", 0); //Making enable 0\n";
+        myfile << "Xil_Out32("<<Xpara_Name<<" + 4*"<<s_en<<", 0); //Making enable 0\n";
         myfile << "delay_FPGALoad_INST();\n";
-        myfile << "Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*"<<s_we<<", 0); //Making write enable 0\n";
+        myfile << "Xil_Out32("<<Xpara_Name<<" + 4*"<<s_we<<", 0); //Making write enable 0\n";
         myfile << "delay_FPGALoad_INST();\n";
         
         myfile << "}\n";
@@ -992,27 +994,27 @@ myfile << "}\n\n\n";
         myfile << "void verify_INST_FPGALoad(){\n";
         myfile << "int i,j,val_int;\n";
         myfile << "//Making enable and write enable zero for Instruction BRAM\n";
-        myfile << "Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*"<<s_en<<", 0); //Making enable 0\n";
+        myfile << "Xil_Out32("<<Xpara_Name<<" + 4*"<<s_en<<", 0); //Making enable 0\n";
         myfile << "delay_FPGALoad_INST();\n";
-        myfile << "Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*"<<s_we<<", 0); //Making write enable 0\n";
+        myfile << "Xil_Out32("<<Xpara_Name<<" + 4*"<<s_we<<", 0); //Making write enable 0\n";
         myfile << "delay_FPGALoad_INST();\n";
         
         myfile << "//Reading Instructions from BRAM\n";
         myfile << "for(i=0;i<total_instructions;i++){\n";
-        myfile << "Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*"<<s_addr<<", i); //Writing address,i is the offset\n";
+        myfile << "Xil_Out32("<<Xpara_Name<<" + 4*"<<s_addr<<", i); //Writing address,i is the offset\n";
         myfile << "delay_FPGALoad_INST();\n";
-        myfile << "Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*"<<s_en<<", 1); //Making enable 1\n";
+        myfile << "Xil_Out32("<<Xpara_Name<<" + 4*"<<s_en<<", 1); //Making enable 1\n";
         myfile << "delay_FPGALoad_INST();\n";
         
         myfile << "for(j=0;j<sub_instructions;j++){\n";
-        myfile << "val_int = Xil_In32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*("<<s_dout<<"+j)); //Reading from BRAM\n";
+        myfile << "val_int = Xil_In32("<<Xpara_Name<<" + 4*("<<s_dout<<"+j)); //Reading from BRAM\n";
         myfile << "delay_FPGALoad_INST();\n";
         myfile << "if(val_int != Inst[i][j]){\n";
         myfile << "printf(\"Error in verification, i = %d, j = %d, Correct value = %d, BRAM value = %d\\n\",i,j,Inst[i][j],val_int);\n";
         myfile << "}\n";
         myfile << "}\n";
         
-        myfile << "Xil_Out32(XPAR_MYIP_LUDECOMPOSITION_0_BASEADDR + 4*"<<s_en<<", 0); //Making enable 0\n";
+        myfile << "Xil_Out32("<<Xpara_Name<<" + 4*"<<s_en<<", 0); //Making enable 0\n";
         myfile << "delay_FPGALoad_INST();\n";
         
         myfile << "}\n";

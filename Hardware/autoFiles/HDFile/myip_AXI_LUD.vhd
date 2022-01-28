@@ -8,11 +8,11 @@ use work.all;
 entity myip_AXI_LUD is
     generic (
         -- Users to add parameters here
-        ADDR_WIDTH : integer := 14; --Instruction BRAM
-        ADDR_WIDTH_DATA_BRAM : integer := 12;
-        CTRL_WIDTH : integer := 80;
-        AU_SEL_WIDTH : integer := 3;
-        BRAM_SEL_WIDTH : integer := 3;
+        ADDR_WIDTH : integer := 12; --Instruction BRAM
+        ADDR_WIDTH_DATA_BRAM : integer := 10;
+        CTRL_WIDTH : integer := 307;
+        AU_SEL_WIDTH : integer := 5;
+        BRAM_SEL_WIDTH : integer := 5;
         -- User parameters ends
         -- Do not modify the parameters beyond this line
 
@@ -24,7 +24,8 @@ entity myip_AXI_LUD is
     port (
         -- Users to add ports here
         clk_1x : in std_logic;
-        
+        clk_2x : in std_logic;
+
         -- User ports ends
         -- Do not modify the ports beyond this line
 
@@ -258,10 +259,17 @@ architecture arch_imp of myip_AXI_LUD is
     signal slv_reg13_out	:   std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
     signal slv_reg14_out	:   std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
     signal slv_reg15_out	:   std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
-    signal slv_reg30_out	:   std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
-    signal slv_reg31_out	:   std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
-    signal slv_reg32_out	:   std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
-    signal slv_reg33_out	:   std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
+    signal slv_reg37_out	:   std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
+    signal slv_reg38_out	:   std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
+    signal slv_reg39_out	:   std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
+    signal slv_reg40_out	:   std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
+    signal slv_reg41_out	:   std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
+    signal slv_reg42_out	:   std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
+    signal slv_reg43_out	:   std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
+    signal slv_reg44_out	:   std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
+    signal slv_reg45_out	:   std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
+    signal slv_reg46_out	:   std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
+    signal slv_reg47_out	:   std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
 
 begin
 	-- I/O Connections assignments
@@ -1733,7 +1741,7 @@ begin
 	slv_reg_rden <= axi_arready and S_AXI_ARVALID and (not axi_rvalid) ;
     
     process (
-    slv_reg0,slv_reg1,slv_reg2,slv_reg3,slv_reg4,slv_reg5,slv_reg6,slv_reg7,slv_reg8,slv_reg9,slv_reg10,slv_reg11,slv_reg12,slv_reg13,slv_reg14,slv_reg15,slv_reg16,slv_reg17,slv_reg18,slv_reg19,slv_reg20,slv_reg21,slv_reg22,slv_reg23,slv_reg24,slv_reg25,slv_reg26,slv_reg27,slv_reg28,slv_reg29,slv_reg30,slv_reg31,slv_reg32,slv_reg33,slv_reg34,slv_reg35,slv_reg36,slv_reg37,slv_reg38,slv_reg39,slv_reg40,slv_reg41,slv_reg42,slv_reg43,slv_reg44,slv_reg45,slv_reg46,slv_reg47,slv_reg48,slv_reg49,slv_reg50,slv_reg51,slv_reg52,slv_reg53,slv_reg54,slv_reg55,slv_reg56,slv_reg57,slv_reg58,slv_reg59,slv_reg60,slv_reg61,slv_reg62,slv_reg63,slv_reg64,slv_reg65,slv_reg66,slv_reg67,slv_reg68,slv_reg69,slv_reg70,slv_reg71,slv_reg72,slv_reg73,slv_reg74,slv_reg75,slv_reg76,slv_reg77,slv_reg78,slv_reg79,slv_reg80,slv_reg81,slv_reg82,slv_reg83,slv_reg84,slv_reg85,slv_reg86,slv_reg87,slv_reg88,slv_reg89,slv_reg90,slv_reg91,slv_reg92,slv_reg93,slv_reg94,slv_reg95,slv_reg96,slv_reg97,slv_reg98,slv_reg99,slv_reg100,slv_reg101,slv_reg102,slv_reg103,slv_reg104,slv_reg105,slv_reg106,slv_reg107,slv_reg108,slv_reg109,slv_reg110,slv_reg111,slv_reg112,slv_reg113,slv_reg114,slv_reg115,slv_reg116,slv_reg117,slv_reg118,slv_reg119,slv_reg120,slv_reg121,slv_reg122,slv_reg123,slv_reg124,slv_reg125,slv_reg126,slv_reg127,slv_reg3_out,slv_reg12_out,slv_reg13_out,slv_reg14_out,slv_reg15_out,slv_reg30_out,slv_reg31_out,slv_reg32_out,slv_reg33_out, axi_araddr, S_AXI_ARESETN, slv_reg_rden)
+    slv_reg0,slv_reg1,slv_reg2,slv_reg3,slv_reg4,slv_reg5,slv_reg6,slv_reg7,slv_reg8,slv_reg9,slv_reg10,slv_reg11,slv_reg12,slv_reg13,slv_reg14,slv_reg15,slv_reg16,slv_reg17,slv_reg18,slv_reg19,slv_reg20,slv_reg21,slv_reg22,slv_reg23,slv_reg24,slv_reg25,slv_reg26,slv_reg27,slv_reg28,slv_reg29,slv_reg30,slv_reg31,slv_reg32,slv_reg33,slv_reg34,slv_reg35,slv_reg36,slv_reg37,slv_reg38,slv_reg39,slv_reg40,slv_reg41,slv_reg42,slv_reg43,slv_reg44,slv_reg45,slv_reg46,slv_reg47,slv_reg48,slv_reg49,slv_reg50,slv_reg51,slv_reg52,slv_reg53,slv_reg54,slv_reg55,slv_reg56,slv_reg57,slv_reg58,slv_reg59,slv_reg60,slv_reg61,slv_reg62,slv_reg63,slv_reg64,slv_reg65,slv_reg66,slv_reg67,slv_reg68,slv_reg69,slv_reg70,slv_reg71,slv_reg72,slv_reg73,slv_reg74,slv_reg75,slv_reg76,slv_reg77,slv_reg78,slv_reg79,slv_reg80,slv_reg81,slv_reg82,slv_reg83,slv_reg84,slv_reg85,slv_reg86,slv_reg87,slv_reg88,slv_reg89,slv_reg90,slv_reg91,slv_reg92,slv_reg93,slv_reg94,slv_reg95,slv_reg96,slv_reg97,slv_reg98,slv_reg99,slv_reg100,slv_reg101,slv_reg102,slv_reg103,slv_reg104,slv_reg105,slv_reg106,slv_reg107,slv_reg108,slv_reg109,slv_reg110,slv_reg111,slv_reg112,slv_reg113,slv_reg114,slv_reg115,slv_reg116,slv_reg117,slv_reg118,slv_reg119,slv_reg120,slv_reg121,slv_reg122,slv_reg123,slv_reg124,slv_reg125,slv_reg126,slv_reg127,slv_reg3_out,slv_reg12_out,slv_reg13_out,slv_reg14_out,slv_reg15_out,slv_reg37_out,slv_reg38_out,slv_reg39_out,slv_reg40_out,slv_reg41_out,slv_reg42_out,slv_reg43_out,slv_reg44_out,slv_reg45_out,slv_reg46_out,slv_reg47_out, axi_araddr, S_AXI_ARESETN, slv_reg_rden)
 	variable loc_addr :std_logic_vector(OPT_MEM_ADDR_BITS downto 0);	
     begin
 	    -- Address decoding for reading registers
@@ -1801,13 +1809,13 @@ begin
     when b"0011101" =>
 	    reg_data_out <= slv_reg29;
     when b"0011110" =>
-	    reg_data_out <= slv_reg30_out;
+	    reg_data_out <= slv_reg30;
     when b"0011111" =>
-	    reg_data_out <= slv_reg31_out;
+	    reg_data_out <= slv_reg31;
     when b"0100000" =>
-	    reg_data_out <= slv_reg32_out;
+	    reg_data_out <= slv_reg32;
     when b"0100001" =>
-	    reg_data_out <= slv_reg33_out;
+	    reg_data_out <= slv_reg33;
     when b"0100010" =>
 	    reg_data_out <= slv_reg34;
     when b"0100011" =>
@@ -1815,27 +1823,27 @@ begin
     when b"0100100" =>
 	    reg_data_out <= slv_reg36;
     when b"0100101" =>
-	    reg_data_out <= slv_reg37;
+	    reg_data_out <= slv_reg37_out;
     when b"0100110" =>
-	    reg_data_out <= slv_reg38;
+	    reg_data_out <= slv_reg38_out;
     when b"0100111" =>
-	    reg_data_out <= slv_reg39;
+	    reg_data_out <= slv_reg39_out;
     when b"0101000" =>
-	    reg_data_out <= slv_reg40;
+	    reg_data_out <= slv_reg40_out;
     when b"0101001" =>
-	    reg_data_out <= slv_reg41;
+	    reg_data_out <= slv_reg41_out;
     when b"0101010" =>
-	    reg_data_out <= slv_reg42;
+	    reg_data_out <= slv_reg42_out;
     when b"0101011" =>
-	    reg_data_out <= slv_reg43;
+	    reg_data_out <= slv_reg43_out;
     when b"0101100" =>
-	    reg_data_out <= slv_reg44;
+	    reg_data_out <= slv_reg44_out;
     when b"0101101" =>
-	    reg_data_out <= slv_reg45;
+	    reg_data_out <= slv_reg45_out;
     when b"0101110" =>
-	    reg_data_out <= slv_reg46;
+	    reg_data_out <= slv_reg46_out;
     when b"0101111" =>
-	    reg_data_out <= slv_reg47;
+	    reg_data_out <= slv_reg47_out;
     when b"0110000" =>
 	    reg_data_out <= slv_reg48;
     when b"0110001" =>
@@ -2030,6 +2038,8 @@ begin
         CTRL_WIDTH => CTRL_WIDTH)
     port map(
             CLK_100 => clk_1x,
+        CLK_200 => clk_2x,
+        
             locked => slv_reg0(0 downto 0),
             RST_IN => slv_reg1(0 downto 0),
             START => slv_reg2(0 downto 0),
@@ -2069,13 +2079,27 @@ begin
             bram_ZYNQ_INST_din_part_0 => slv_reg27(31 downto 0),
             bram_ZYNQ_INST_din_part_1 => slv_reg28(31 downto 0),
             bram_ZYNQ_INST_din_part_2 => slv_reg29(31 downto 0),
+            bram_ZYNQ_INST_din_part_3 => slv_reg30(31 downto 0),
+            bram_ZYNQ_INST_din_part_4 => slv_reg31(31 downto 0),
+            bram_ZYNQ_INST_din_part_5 => slv_reg32(31 downto 0),
+            bram_ZYNQ_INST_din_part_6 => slv_reg33(31 downto 0),
+            bram_ZYNQ_INST_din_part_7 => slv_reg34(31 downto 0),
+            bram_ZYNQ_INST_din_part_8 => slv_reg35(31 downto 0),
+            bram_ZYNQ_INST_din_part_9 => slv_reg36(31 downto 0),
     
-            bram_ZYNQ_INST_dout_part_0 => slv_reg30_out(31 downto 0),
-            bram_ZYNQ_INST_dout_part_1 => slv_reg31_out(31 downto 0),
-            bram_ZYNQ_INST_dout_part_2 => slv_reg32_out(31 downto 0),
+            bram_ZYNQ_INST_dout_part_0 => slv_reg37_out(31 downto 0),
+            bram_ZYNQ_INST_dout_part_1 => slv_reg38_out(31 downto 0),
+            bram_ZYNQ_INST_dout_part_2 => slv_reg39_out(31 downto 0),
+            bram_ZYNQ_INST_dout_part_3 => slv_reg40_out(31 downto 0),
+            bram_ZYNQ_INST_dout_part_4 => slv_reg41_out(31 downto 0),
+            bram_ZYNQ_INST_dout_part_5 => slv_reg42_out(31 downto 0),
+            bram_ZYNQ_INST_dout_part_6 => slv_reg43_out(31 downto 0),
+            bram_ZYNQ_INST_dout_part_7 => slv_reg44_out(31 downto 0),
+            bram_ZYNQ_INST_dout_part_8 => slv_reg45_out(31 downto 0),
+            bram_ZYNQ_INST_dout_part_9 => slv_reg46_out(31 downto 0),
             
             --debug signals
-    debug_state => slv_reg33_out(1 downto 0) --output
+    debug_state => slv_reg47_out(1 downto 0) --output
         );
 
 	-- User logic ends
