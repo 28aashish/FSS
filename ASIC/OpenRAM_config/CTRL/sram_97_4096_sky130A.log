@@ -1,0 +1,38 @@
+|==============================================================================|
+|=========                      OpenRAM v1.1.18                       =========|
+|=========                                                            =========|
+|=========               VLSI Design and Automation Lab               =========|
+|=========        Computer Science and Engineering Department         =========|
+|=========            University of California Santa Cruz             =========|
+|=========                                                            =========|
+|=========          Usage help: openram-user-group@ucsc.edu           =========|
+|=========        Development help: openram-dev-group@ucsc.edu        =========|
+|=========         Temp dir: /tmp/openram_aashish_4199_temp/          =========|
+|=========                See LICENSE for license info                =========|
+|==============================================================================|
+** Start: 01/28/2022 17:46:13
+Technology: sky130A
+Total size: 397312 bits
+Word size: 97
+Words: 4096
+Banks: 1
+Write size: None
+RW ports: 1
+R-only ports: 0
+W-only ports: 0
+DRC/LVS/PEX is only run on the top-level design to save run-time (inline_lvsdrc=True to do inline checking).
+DRC/LVS/PEX is disabled (check_lvsdrc=True to enable).
+Characterization is disabled (using analytical delay models) (analytical_delay=False to simulate).
+Words per row: 8
+Output files are: 
+/home/aashish/FSS/ASIC/OpenRAM_config/CTRL/sram_97_4096_sky130A.lvs
+/home/aashish/FSS/ASIC/OpenRAM_config/CTRL/sram_97_4096_sky130A.sp
+/home/aashish/FSS/ASIC/OpenRAM_config/CTRL/sram_97_4096_sky130A.v
+/home/aashish/FSS/ASIC/OpenRAM_config/CTRL/sram_97_4096_sky130A.lib
+/home/aashish/FSS/ASIC/OpenRAM_config/CTRL/sram_97_4096_sky130A.py
+/home/aashish/FSS/ASIC/OpenRAM_config/CTRL/sram_97_4096_sky130A.html
+/home/aashish/FSS/ASIC/OpenRAM_config/CTRL/sram_97_4096_sky130A.log
+/home/aashish/FSS/ASIC/OpenRAM_config/CTRL/sram_97_4096_sky130A.lef
+/home/aashish/FSS/ASIC/OpenRAM_config/CTRL/sram_97_4096_sky130A.gds
+** Submodules: 600.0 seconds
+** Placement: 0.3 seconds

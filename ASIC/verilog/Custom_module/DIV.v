@@ -1,7 +1,7 @@
 module design_DIV_wrapper(
-        output_z,
-        output_z_ack,
-        output_z_stb,
+        output_ans,
+        output_ans_ack,
+        output_ans_stb,
 
         input_a,
         input_a_ack,
@@ -14,8 +14,8 @@ module design_DIV_wrapper(
         rstn
         );
 
-  input     clk;
-  input     rst;
+  input    aclk;
+  input     rstn;
 
   input     [31:0] input_a;
   input     input_a_stb;
@@ -25,12 +25,12 @@ module design_DIV_wrapper(
   input     input_b_stb;
   output    input_b_ack;
 
-  output    [31:0] output_z;
-  output    output_z_stb;
-  input     output_z_ack;
+  output    [31:0] output_ans;
+  output    output_ans_stb;
+  input     output_ans_ack;
 
-  reg       s_output_z_stb;
-  reg       [31:0] s_output_z;
+  reg       s_output_ans_stb;
+  reg       [31:0] s_output_ans;
   reg       s_input_a_ack;
   reg       s_input_b_ack;
 
@@ -58,13 +58,13 @@ module design_DIV_wrapper(
   reg       [50:0] quotient, divisor, dividend, remainder;
   reg       [5:0] count;
 
-  always @(posedge clk)
+  always @(posedge aclk)
   begin
-    if (!rst) begin
+    if (!rstn) begin
       state <= get_value;
       s_input_a_ack <= 1'b0;
       s_input_b_ack <= 1'b0;
-      s_output_z_stb <= 1'b0;
+      s_output_ans_stb <= 1'b0;
 
       a <= {32{1'b0}};
       b <= {32{1'b0}};
@@ -329,10 +329,10 @@ module design_DIV_wrapper(
 //Stage 13
       put_z:
       begin
-        s_output_z_stb <= 1;
-        s_output_z <= z;
-        if (s_output_z_stb && output_z_ack) begin
-          s_output_z_stb <= 0;
+        s_output_ans_stb <= 1;
+        s_output_ans <= z;
+        if (s_output_ans_stb && output_ans_ack) begin
+          s_output_ans_stb <= 0;
           state <= get_value;
         end
       end
@@ -342,7 +342,7 @@ module design_DIV_wrapper(
   end
   assign input_a_ack = s_input_a_ack;
   assign input_b_ack = s_input_b_ack;
-  assign output_z_stb = s_output_z_stb;
-  assign output_z = s_output_z;
+  assign output_ans_stb = s_output_ans_stb;
+  assign output_ans = s_output_ans;
 
 endmodule

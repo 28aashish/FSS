@@ -9,7 +9,7 @@ use work.types.all;
 entity LUDH_Tester is
     generic(
         ADDR_WIDTH : integer := 12;
-        CTRL_WIDTH : integer := 307
+        CTRL_WIDTH : integer := 72
     );
     port(
         CLK_100 : in std_logic;

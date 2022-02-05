@@ -215,12 +215,12 @@ def hardwareTester_verilog():
     end
     
     design_CTRL_wrapper ctrlStorage(
-    muxout_addr ,
-    CLK_100,
-    muxout_din ,
-    decoder_input ,
-    muxout_en ,
-    muxout_we
+    .BRAM_PORTA_addr(muxout_addr) ,
+    .BRAM_PORTA_clk(CLK_100),
+    .BRAM_PORTA_din(muxout_din) ,
+    .BRAM_PORTA_dout(decoder_input) ,
+    .BRAM_PORTA_en(muxout_en) ,
+    .BRAM_PORTA_we(muxout_we)
     );
 
     assign muxout_addr =!sync_start ? bram_ZYNQ_INST_addr :ctrl_addr;

@@ -4,9 +4,9 @@
         // Users to add parameters here
         ADDR_WIDTH = 12, //Instruction BRAM
         ADDR_WIDTH_DATA_BRAM = 10,
-        CTRL_WIDTH = 307,
-        AU_SEL_WIDTH = 5,
-        BRAM_SEL_WIDTH = 5,
+        CTRL_WIDTH = 72,
+        AU_SEL_WIDTH = 3,
+        BRAM_SEL_WIDTH = 3,
         // User parameters ends
         // Do not modify the parameters beyond this line
 
@@ -18,8 +18,7 @@
     (
         // Users to add ports here
         input wire clk_1x,
-        input wire clk_2x,
-
+        
         input wire  s00_axi_aclk,
         input wire  s00_axi_aresetn,
         input wire [C_S_AXI_ADDR_WIDTH-1 : 0] s00_axi_awaddr,
@@ -48,7 +47,6 @@
         .C_S_AXI_ADDR_WIDTH(C_S_AXI_ADDR_WIDTH)
     ) my_AXI_LUD_Verilog_v1_0_S00_AXI_inst (
 	    .clk_1x(clk_1x),
-.clk_2x(clk_2x),
 
         .S_AXI_ACLK(s00_axi_aclk),
         .S_AXI_ARESETN(s00_axi_aresetn),

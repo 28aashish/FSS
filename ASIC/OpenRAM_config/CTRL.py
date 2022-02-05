@@ -1,5 +1,5 @@
 # Data word size
-word_size = 307
+word_size = 72
 
 # Number of words in the memory
 num_words = 4096
@@ -23,7 +23,7 @@ num_rw_ports=1
 # Output directory for the results
 output_path = "CTRL"
 # Output file base name
-output_name = "sram_{0}_{1}_{2}".format(word_size,num_words,tech_name)
+output_name = "CTRL_{0}_{1}_{2}".format(word_size,num_words,tech_name)
 
 # Disable analytical models for full characterization (WARNING: slow!)
 # analytical_delay = False

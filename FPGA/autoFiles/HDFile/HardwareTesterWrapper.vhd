@@ -10,13 +10,13 @@ entity LUDH_TEST_WRAPPER is
     generic(
         ADDR_WIDTH : integer := 12; --Instruction BRAM
         ADDR_WIDTH_DATA_BRAM : integer := 10;
-        CTRL_WIDTH : integer := 307;
-        AU_SEL_WIDTH : integer := 5;
-        BRAM_SEL_WIDTH : integer := 5
+        CTRL_WIDTH : integer := 72;
+        AU_SEL_WIDTH : integer := 3;
+        BRAM_SEL_WIDTH : integer := 3
     );
     port(
         CLK_100 : in std_logic;
-    CLK_200 : in std_logic;
+    
         locked : in std_logic_vector(0 downto 0);
         RST_IN : in std_logic_vector(0 downto 0);
         START : in std_logic_vector(0 downto 0);
@@ -56,24 +56,10 @@ entity LUDH_TEST_WRAPPER is
     	bram_ZYNQ_INST_din_part_0 : in std_logic_vector(31 downto 0);
     	bram_ZYNQ_INST_din_part_1 : in std_logic_vector(31 downto 0);
     	bram_ZYNQ_INST_din_part_2 : in std_logic_vector(31 downto 0);
-    	bram_ZYNQ_INST_din_part_3 : in std_logic_vector(31 downto 0);
-    	bram_ZYNQ_INST_din_part_4 : in std_logic_vector(31 downto 0);
-    	bram_ZYNQ_INST_din_part_5 : in std_logic_vector(31 downto 0);
-    	bram_ZYNQ_INST_din_part_6 : in std_logic_vector(31 downto 0);
-    	bram_ZYNQ_INST_din_part_7 : in std_logic_vector(31 downto 0);
-    	bram_ZYNQ_INST_din_part_8 : in std_logic_vector(31 downto 0);
-    	bram_ZYNQ_INST_din_part_9 : in std_logic_vector(31 downto 0);
     	
     	bram_ZYNQ_INST_dout_part_0 : out std_logic_vector(31 downto 0);
     	bram_ZYNQ_INST_dout_part_1 : out std_logic_vector(31 downto 0);
     	bram_ZYNQ_INST_dout_part_2 : out std_logic_vector(31 downto 0);
-    	bram_ZYNQ_INST_dout_part_3 : out std_logic_vector(31 downto 0);
-    	bram_ZYNQ_INST_dout_part_4 : out std_logic_vector(31 downto 0);
-    	bram_ZYNQ_INST_dout_part_5 : out std_logic_vector(31 downto 0);
-    	bram_ZYNQ_INST_dout_part_6 : out std_logic_vector(31 downto 0);
-    	bram_ZYNQ_INST_dout_part_7 : out std_logic_vector(31 downto 0);
-    	bram_ZYNQ_INST_dout_part_8 : out std_logic_vector(31 downto 0);
-    	bram_ZYNQ_INST_dout_part_9 : out std_logic_vector(31 downto 0);
 
 		--debug signals
         debug_state : out std_logic_vector(1 downto 0)
@@ -86,23 +72,16 @@ architecture justConnect of LUDH_TEST_WRAPPER is
     
     --Instruction memory
     
-    signal bram_ZYNQ_INST_din : std_logic_vector(319 downto 0); 
-    signal bram_ZYNQ_INST_dout : std_logic_vector(319 downto 0);
+    signal bram_ZYNQ_INST_din : std_logic_vector(95 downto 0); 
+    signal bram_ZYNQ_INST_dout : std_logic_vector(95 downto 0);
 
 begin
         bram_ZYNQ_INST_din <= 
-bram_ZYNQ_INST_din_part_9 & bram_ZYNQ_INST_din_part_8 & bram_ZYNQ_INST_din_part_7 & bram_ZYNQ_INST_din_part_6 & bram_ZYNQ_INST_din_part_5 & bram_ZYNQ_INST_din_part_4 & bram_ZYNQ_INST_din_part_3 & bram_ZYNQ_INST_din_part_2 & bram_ZYNQ_INST_din_part_1 & bram_ZYNQ_INST_din_part_0;
+bram_ZYNQ_INST_din_part_2 & bram_ZYNQ_INST_din_part_1 & bram_ZYNQ_INST_din_part_0;
 	
     bram_ZYNQ_INST_dout_part_0 <= bram_ZYNQ_INST_dout(31 downto 0);
     bram_ZYNQ_INST_dout_part_1 <= bram_ZYNQ_INST_dout(63 downto 32);
-    bram_ZYNQ_INST_dout_part_2 <= bram_ZYNQ_INST_dout(95 downto 64);
-    bram_ZYNQ_INST_dout_part_3 <= bram_ZYNQ_INST_dout(127 downto 96);
-    bram_ZYNQ_INST_dout_part_4 <= bram_ZYNQ_INST_dout(159 downto 128);
-    bram_ZYNQ_INST_dout_part_5 <= bram_ZYNQ_INST_dout(191 downto 160);
-    bram_ZYNQ_INST_dout_part_6 <= bram_ZYNQ_INST_dout(223 downto 192);
-    bram_ZYNQ_INST_dout_part_7 <= bram_ZYNQ_INST_dout(255 downto 224);
-    bram_ZYNQ_INST_dout_part_8 <= bram_ZYNQ_INST_dout(287 downto 256);
-	bram_ZYNQ_INST_dout_part_9 <= "0000000000000" & bram_ZYNQ_INST_dout(CTRL_WIDTH-1 downto 288);
+	bram_ZYNQ_INST_dout_part_2 <= "000000000000000000000000" & bram_ZYNQ_INST_dout(CTRL_WIDTH-1 downto 64);
 	    
     tester : entity LUDH_Tester
     generic map(ADDR_WIDTH, CTRL_WIDTH)
@@ -127,8 +106,7 @@ bram_ZYNQ_INST_din_part_9 & bram_ZYNQ_INST_din_part_8 & bram_ZYNQ_INST_din_part_
     LUDH : entity LUDHardware
     generic map(ADDR_WIDTH_DATA_BRAM, CTRL_WIDTH,AU_SEL_WIDTH,BRAM_SEL_WIDTH)
     port map(
-        CLK_100 => CLK_100,CLK_200 => CLK_200,
-	    
+        CLK_100 => CLK_100,
 		locked => locked(0),
         CTRL_Signal => ctrl_signal,
         

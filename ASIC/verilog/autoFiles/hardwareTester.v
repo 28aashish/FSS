@@ -1,5 +1,5 @@
 module LUDH_TESTER #(ADDR_WIDTH = 12,
-        CTRL_WIDTH = 307)
+        CTRL_WIDTH = 72)
         (CLK_100,locked,RST,CTRL_SIGNAL,COMPLETED,START,
         bram_ZYNQ_INST_addr,
         bram_ZYNQ_INST_din,
@@ -128,13 +128,13 @@ module LUDH_TESTER #(ADDR_WIDTH = 12,
     endcase
     end
     
-    design_CTRL_wrapper ctrlStorage(
-    muxout_addr ,
-    CLK_100,
-    muxout_din ,
-    decoder_input ,
-    muxout_en ,
-    muxout_we
+    CTRL_72_4096_sky130A ctrlStorage(
+    .addr0(muxout_addr) ,
+    .clk0(CLK_100),
+    .din0(muxout_din) ,
+    .dout0(decoder_input) ,
+    .csb0(muxout_en) ,
+    .web0(muxout_we)
     );
 
     assign muxout_addr =!sync_start ? bram_ZYNQ_INST_addr :ctrl_addr;

@@ -52,12 +52,12 @@ EXTERN f_type g_errThreshold;
 //IP Requirements
         
 //Instruction BRAM Ports
-#define PORT_of_BRAM 4
+#define PORT_of_BRAM 1
 //Total Instruction BRAM 
 //⚠ ⚠ ⚠ ⚠ ⚠ ⚠ ⚠ ⚠ at max 16
 #define Total_BRAMs_for_Data 4
 //iff numMAC_DIVUnits = 4 i.e. 4 MAC Unit and 4 Div Unit
-#define numMAC_DIVUnits 2   
+#define numMAC_DIVUnits 1   
 
 //#define delay_DIV 31
 //#define delay_MAC 22

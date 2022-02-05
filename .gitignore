@@ -2,4 +2,6 @@
 !/hpsc24_src
 !/SDSoC_trial_files
 !/SDSoC_trial_files
-
+!/ASIC/OpenRAM_config/DATA
+!/ASIC/OpenRAM_config/CTRL
+!/test_mat/exported

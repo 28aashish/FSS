@@ -1,18 +1,17 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
-Makefile:77: *** missing separator.  Stop.
- 
 # GNU Make 4.2.1
 # Built for x86_64-pc-linux-gnu
 # Copyright (C) 1988-2016 Free Software Foundation, Inc.
 # License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
+ 
 
-# Make data base, printed on Fri Jan 28 13:52:56 2022
+# Make data base, printed on Sat Feb  5 10:47:52 2022
 
 # Variables
 
-# environment
+# 'override' directive
 GNUMAKEFLAGS := 
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
@@ -42,14 +41,14 @@ GDMSESSION = ubuntu
 XMODIFIERS = @im=ibus
 # makefile
 CURDIR := /home/aashish/FSS
-# makefile
-SHELL = /bin/sh
+# makefile (from 'Makefile', line 3)
+SHELL := /bin/bash
 # environment
 VTE_VERSION = 6003
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en-gb","availableLanguages":{},"_languagePackSupport":true}
 # environment
-JOURNAL_STREAM = 9:54666
+JOURNAL_STREAM = 9:50817
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # makefile (from 'Makefile', line 1)
@@ -71,7 +70,7 @@ VSCODE_VERBOSE_LOGGING = true
 # environment
 _ = /usr/bin/code
 # environment
-MANAGERPID = 2333
+MANAGERPID = 2089
 # environment
 LESSOPEN = | /usr/bin/lesspipe %s
 # environment
@@ -85,7 +84,7 @@ OPENRAM_HOME = /home/aashish/work/OpenRAM/compiler
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
-SESSION_MANAGER = local/battleship:@/tmp/.ICE-unix/2589,unix/battleship:/tmp/.ICE-unix/2589
+SESSION_MANAGER = local/battleship:@/tmp/.ICE-unix/2329,unix/battleship:/tmp/.ICE-unix/2329
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # makefile (from 'Makefile', line 1)
@@ -99,7 +98,7 @@ VSCODE_LOG_STACK = false
 # environment
 VSCODE_CRASH_REPORTER_START_OPTIONS = {"companyName":"Microsoft","productName":"VSCode","submitURL":"appcenter://code?aid=fba07a4d-84bd-4fc8-a125-9640fc8ce171&uid=614fffc0-2b8d-4bea-a2bd-84a9b3f87ebf&iid=614fffc0-2b8d-4bea-a2bd-84a9b3f87ebf&sid=614fffc0-2b8d-4bea-a2bd-84a9b3f87ebf","uploadToServer":true}
 # environment
-INVOCATION_ID = 1857561a5e4447c39c9a9606009fa30a
+INVOCATION_ID = 8535e6d908dc48b19f5151e2add4b257
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
@@ -107,7 +106,7 @@ LS_COLORS = rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:
 # environment
 XDG_SESSION_DESKTOP = ubuntu
 # environment
-SSH_AUTH_SOCK = /tmp/ssh-9ksU5OSNZvUL/agent.2469
+SSH_AUTH_SOCK = /tmp/ssh-cF58eRQpN60v/agent.2209
 # automatic
 %F = $(notdir $%)
 # environment
@@ -119,7 +118,7 @@ PWD = /home/aashish/FSS
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 2546
+SSH_AGENT_PID = 2286
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -167,7 +166,7 @@ SHLVL = 1
 # environment
 GNOME_SHELL_SESSION_MODE = ubuntu
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-bab65e7b-ecfc-4987-a730-ed8ba61b5cd6.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-59b75786-909a-4bfb-b297-ba6665330d1a.sock
 # default
 MAKE_VERSION := 4.2.1
 # environment
@@ -219,11 +218,11 @@ OPENLANE_ROOT = /mnt/HDD1/LINUX/GIT/OpenLane
 # environment
 LC_ALL = C
 # environment
-GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/cb5336ca_a261_4c47_b01a_e894a16b4a42
+GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/52626ee7_0af8_40a2_b41e_d9645695d7b2
 # automatic
 ^F = $(notdir $^)
 # environment
-GNOME_TERMINAL_SERVICE = :1.80
+GNOME_TERMINAL_SERVICE = :1.87
 # default
 SUFFIXES := 
 # environment
@@ -241,10 +240,9 @@ LANG = C
 # environment
 TERM = xterm-256color
 # environment
-VSCODE_PID = 3240
- 
+VSCODE_PID = 3708
 # variable set hash-table stats:
-# Load=115/1024=11%, Rehash=0, Collisions=13/129=10%
+# Load=115/1024=11%, Rehash=0, Collisions=15/144=10%
 
 # Pattern-specific Variable Values
 
@@ -262,23 +260,27 @@ VSCODE_PID = 3240
 
 # Files
 
-buildASIC:
+buildASIC: buildFPGA
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 44):
+#  recipe to execute (from 'Makefile', line 45):
 	(yes | cp -if ./Scheduler/cppFiles/IO.json ./ASIC/IO.json)
 	(cd ./ASIC/verilog/autoFiles;rm -f ./*.v)
-	(cp ./Hardware/autoFiles/VFile/*.v ./ASIC/verilog/autoFiles)
-	(cp ./Hardware/autoFiles/VFile/const_file/*.v ./ASIC/verilog/autoFiles)
+	(cp ./FPGA/autoFiles/VFile/*.v ./ASIC/verilog/autoFiles)
+	(cp ./FPGA/autoFiles/VFile/const_file/*.v ./ASIC/verilog/autoFiles)
 	(cd ./ASIC;$(PYTHON3) ../Scheduler/pyFiles/ASIC_IP.py)
 	
 
-all: cleanall preprocess process buildHardware buildShakti_IP buildASIC
+all: cleanall preprocess process buildFPGA buildShakti_IP buildASIC
+#  Phony target (prerequisite of .PHONY).
 #  Command line target.
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/3=0%
 
 .PHONY: clean preprocess process all all_wo_matlab build_wo_matlab run_wo_matlab cleanall cleanup all_graph
 #  Implicit rule search has not been done.
@@ -286,87 +288,102 @@ all: cleanall preprocess process buildHardware buildShakti_IP buildASIC
 #  File has not been updated.
 
 process:
+#  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
-#  Modification time never checked.
+#  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 63):
+#  recipe to execute (from 'Makefile', line 64):
 	(cd Scheduler/cppFiles; make all TEST_MATRIX=$(TEST_MATRIX))
 	(cd Scheduler/cppFiles; ./main $(TEST_MATRIX))
 
 cleanup:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+ 
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 72):
+	(cd Scheduler/cppFiles; make clean)
+	(cd Scheduler/cppFiles; make cleanPreprocess)
+	(cd Scheduler/test; rm -f *.csv)
+	(rm -rf Scheduler/test/exported)
+
+# Not a target:
+.SUFFIXES:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 71):
-	(cd Scheduler/cppFiles; make clean)
-	(cd Scheduler/cppFiles; make cleanPreprocess)
+
+openRAM:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 82):
+	(cd ./ASIC/OpenRAM_config;../../Scheduler/bash/openRAM.sh)
 
 # Not a target:
 Makefile:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2022-02-04 14:11:41.71994204
+#  File has been updated.
+#  Successfully updated.
 
 all_wo_matlab: cleanall
+#  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
-#  Modification time never checked.
+#  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 9):
+#  recipe to execute (from 'Makefile', line 10):
 	(cd Scheduler/cppFiles; make c_run)
 	
 
 preprocess:
+#  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
-#  Modification time never checked.
+#  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 59):
+#  recipe to execute (from 'Makefile', line 60):
 	(cd Scheduler/cppFiles; make buildPreprocessTests)
 	(cd Scheduler/cppFiles; make preprocessTests)
 
-buildShakti_IP:
+buildShakti_IP: buildFPGA
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 31):
+#  recipe to execute (from 'Makefile', line 32):
 	(yes | cp -if ./Scheduler/cppFiles/IO.json ./Shakti_IP/IO.json)
 	(cd ./Shakti_IP/verilog;rm -f ./*.v)
-	(cp ./Hardware/autoFiles/VFile/*.v ./Shakti_IP/verilog)
-	(cp ./Hardware/autoFiles/VFile/const_file/*.v ./Shakti_IP/verilog)
+	(cp ./FPGA/autoFiles/VFile/*.v ./Shakti_IP/verilog)
+	(cp ./FPGA/autoFiles/VFile/const_file/*.v ./Shakti_IP/verilog)
 	(cd ./Shakti_IP/C_files;rm -f ./*.h)
 	(cd ./Shakti_IP/C_files;rm -f ./*.c)
 	(yes | cp -if ./Scheduler/cppFiles/FPGA*.h ./Shakti_IP/C_files)
 	(yes | cp -if ./Scheduler/cppFiles/float_to_int.h ./Shakti_IP/C_files)
 	(yes | cp -if ./Scheduler/cppFiles/int_to_float.h ./Shakti_IP/C_files)
-	(yes | cp -if ./Hardware/C_files/SW.c ./Shakti_IP/C_files)
+	(yes | cp -if ./FPGA/C_files/SW.c ./Shakti_IP/C_files)
 	(cd ./Shakti_IP;$(PYTHON3) ../Scheduler/pyFiles/Shakti_IP.py)
 
-buildHardware:
+V18:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 21):
-	(yes | cp -if ./Scheduler/cppFiles/IO.json ./Hardware/IO.json)
-	(yes | cp -if ./Scheduler/cppFiles/*.svh ./Hardware/autoFiles/SVFile)
-	(yes | cp -if ./Scheduler/cppFiles/FPGA*.h ./Hardware/C_files)
-	(yes | cp -if ./Scheduler/cppFiles/float_to_int.h ./Hardware/C_files)
-	(yes | cp -if ./Scheduler/cppFiles/int_to_float.h ./Hardware/C_files)
-	(cd ./Hardware;$(PYTHON3) ../Scheduler/pyFiles/HDL_inteconnect.py)
-	(cd ./Hardware;$(PYTHON3) ../Scheduler/pyFiles/Verilog_inteconnect.py)
-	${PYTHON3} ./Scheduler/pyFiles/SW_Code.py
+#  recipe to execute (from 'Makefile', line 78):
+	$(SHELL) ./Scheduler/bash/Ver2018.sh ./FPGA/autoFiles/VFile
 
 grapher:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 67):
+#  recipe to execute (from 'Makefile', line 68):
 	(pwd)
 	(dot -Tsvg ./Scheduler/cppFiles/exeTree.dot -o ../../test/exported/$(TEST_MATRIX)/FPGA_output.svg)
 
 build_wo_matlab: cleanall
+#  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
-#  Modification time never checked.
+#  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 12):
+#  recipe to execute (from 'Makefile', line 13):
 	(cd Scheduler/cppFiles;make cbuild_only)
 
 # Not a target:
@@ -375,65 +392,97 @@ build_wo_matlab: cleanall
 #  Modification time never checked.
 #  File has not been updated.
 
-# Not a target:
 clean:
+#  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
-#  Modification time never checked.
+#  File does not exist.
 #  File has not been updated.
 
 all_graph: cleanall preprocess process grapher
+#  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
-#  Modification time never checked.
+#  File does not exist.
 #  File has not been updated.
 
 buildHDtest:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 51):
+#  recipe to execute (from 'Makefile', line 52):
 	$(PYTHON3) ./Scheduler/pyFiles/S_Tester.py
 	(cd ./Scheduler/S_tester;$(CXX) automate_Tester.cpp)
 	(cd ./Scheduler/S_tester;./a.out)
 	
 
-all_mat: cleanall preprocess buildHardware
+buildFPGA:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 22):
+	(yes | cp -if ./Scheduler/cppFiles/IO.json ./FPGA/IO.json)
+	(yes | cp -if ./Scheduler/cppFiles/*.svh ./FPGA/autoFiles/SVFile)
+	(yes | cp -if ./Scheduler/cppFiles/FPGA*.h ./FPGA/C_files)
+	(yes | cp -if ./Scheduler/cppFiles/float_to_int.h ./FPGA/C_files)
+	(yes | cp -if ./Scheduler/cppFiles/int_to_float.h ./FPGA/C_files)
+	(cd ./FPGA;$(PYTHON3) ../Scheduler/pyFiles/HDL_inteconnect.py)
+	(cd ./FPGA;$(PYTHON3) ../Scheduler/pyFiles/Verilog_inteconnect.py)
+	${PYTHON3} ./Scheduler/pyFiles/SW_Code.py
+
+all_mat: cleanall preprocess buildFPGA
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 
 run_wo_matlab:
+#  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
-#  Modification time never checked.
+#  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 15):
+#  recipe to execute (from 'Makefile', line 16):
 	(cd Scheduler/cppFiles; ./main $(TEST_MATRIX))
 
-Vers2018:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
 cleanall:
+#  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  recipe to execute (from 'Makefile', line 56):
+#  Implicit/static pattern stem: ''
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := cleanall
+# automatic
+# % := 
+# automatic
+# * := 
+# automatic
+# + := 
+# automatic
+# | := 
+# automatic
+# < := 
+# automatic
+# ^ := 
+# automatic
+# ? := 
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=1/11=9%
+#  recipe to execute (from 'Makefile', line 57):
 	(cd Scheduler/cppFiles; make cleanall)
 
 # files hash-table stats:
-# Load=21/1024=2%, Rehash=0, Collisions=0/60=0%
+# Load=22/1024=2%, Rehash=0, Collisions=0/73=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 34 / storage = 325 B / avg = 9 B
-# current buf: size = 8162 B / used = 325 B / count = 34 / avg = 9 B
+# strcache buffers: 1 (0) / strings = 35 / storage = 320 B / avg = 9 B
+# current buf: size = 8162 B / used = 320 B / count = 35 / avg = 9 B
 
-# strcache performance: lookups = 80 / hit rate = 57%
+# strcache performance: lookups = 85 / hit rate = 58%
 # hash-table stats:
-# Load=34/8192=0%, Rehash=0, Collisions=1/80=1%
-# Finished Make data base on Fri Jan 28 13:52:56 2022
+# Load=35/8192=0%, Rehash=0, Collisions=1/85=1%
+# Finished Make data base on Sat Feb  5 10:47:52 2022
 
  

@@ -5,9 +5,9 @@
         // Users to add parameters here
         ADDR_WIDTH = 12, //Instruction BRAM
         ADDR_WIDTH_DATA_BRAM = 10,
-        CTRL_WIDTH = 307,
-        AU_SEL_WIDTH = 5,
-        BRAM_SEL_WIDTH = 5,
+        CTRL_WIDTH = 72,
+        AU_SEL_WIDTH = 3,
+        BRAM_SEL_WIDTH = 3,
         // User parameters ends
         // Do not modify the parameters beyond this line
 
@@ -19,8 +19,7 @@
     (
         // Users to add ports here
     input wire clk_1x,
-        input wire clk_2x,
-
+        
         // User ports ends
         // Do not modify the ports beyond this line
 
@@ -252,17 +251,10 @@
     wire [C_S_AXI_DATA_WIDTH-1 : 0] slv_reg13_out;
     wire [C_S_AXI_DATA_WIDTH-1 : 0] slv_reg14_out;
     wire [C_S_AXI_DATA_WIDTH-1 : 0] slv_reg15_out;
-    wire [C_S_AXI_DATA_WIDTH-1 : 0] slv_reg37_out;
-    wire [C_S_AXI_DATA_WIDTH-1 : 0] slv_reg38_out;
-    wire [C_S_AXI_DATA_WIDTH-1 : 0] slv_reg39_out;
-    wire [C_S_AXI_DATA_WIDTH-1 : 0] slv_reg40_out;
-    wire [C_S_AXI_DATA_WIDTH-1 : 0] slv_reg41_out;
-    wire [C_S_AXI_DATA_WIDTH-1 : 0] slv_reg42_out;
-    wire [C_S_AXI_DATA_WIDTH-1 : 0] slv_reg43_out;
-    wire [C_S_AXI_DATA_WIDTH-1 : 0] slv_reg44_out;
-    wire [C_S_AXI_DATA_WIDTH-1 : 0] slv_reg45_out;
-    wire [C_S_AXI_DATA_WIDTH-1 : 0] slv_reg46_out;
-    wire [C_S_AXI_DATA_WIDTH-1 : 0] slv_reg47_out;
+    wire [C_S_AXI_DATA_WIDTH-1 : 0] slv_reg30_out;
+    wire [C_S_AXI_DATA_WIDTH-1 : 0] slv_reg31_out;
+    wire [C_S_AXI_DATA_WIDTH-1 : 0] slv_reg32_out;
+    wire [C_S_AXI_DATA_WIDTH-1 : 0] slv_reg33_out;
 
     // I/O Connections assignments
 
@@ -1671,24 +1663,24 @@
     7'd27 : reg_data_out <= slv_reg27;
     7'd28 : reg_data_out <= slv_reg28;
     7'd29 : reg_data_out <= slv_reg29;
-    7'd30 : reg_data_out <= slv_reg30;
-    7'd31 : reg_data_out <= slv_reg31;
-    7'd32 : reg_data_out <= slv_reg32;
-    7'd33 : reg_data_out <= slv_reg33;
+    7'd30 : reg_data_out <= slv_reg30_out;
+    7'd31 : reg_data_out <= slv_reg31_out;
+    7'd32 : reg_data_out <= slv_reg32_out;
+    7'd33 : reg_data_out <= slv_reg33_out;
     7'd34 : reg_data_out <= slv_reg34;
     7'd35 : reg_data_out <= slv_reg35;
     7'd36 : reg_data_out <= slv_reg36;
-    7'd37 : reg_data_out <= slv_reg37_out;
-    7'd38 : reg_data_out <= slv_reg38_out;
-    7'd39 : reg_data_out <= slv_reg39_out;
-    7'd40 : reg_data_out <= slv_reg40_out;
-    7'd41 : reg_data_out <= slv_reg41_out;
-    7'd42 : reg_data_out <= slv_reg42_out;
-    7'd43 : reg_data_out <= slv_reg43_out;
-    7'd44 : reg_data_out <= slv_reg44_out;
-    7'd45 : reg_data_out <= slv_reg45_out;
-    7'd46 : reg_data_out <= slv_reg46_out;
-    7'd47 : reg_data_out <= slv_reg47_out;
+    7'd37 : reg_data_out <= slv_reg37;
+    7'd38 : reg_data_out <= slv_reg38;
+    7'd39 : reg_data_out <= slv_reg39;
+    7'd40 : reg_data_out <= slv_reg40;
+    7'd41 : reg_data_out <= slv_reg41;
+    7'd42 : reg_data_out <= slv_reg42;
+    7'd43 : reg_data_out <= slv_reg43;
+    7'd44 : reg_data_out <= slv_reg44;
+    7'd45 : reg_data_out <= slv_reg45;
+    7'd46 : reg_data_out <= slv_reg46;
+    7'd47 : reg_data_out <= slv_reg47;
     7'd48 : reg_data_out <= slv_reg48;
     7'd49 : reg_data_out <= slv_reg49;
     7'd50 : reg_data_out <= slv_reg50;
@@ -1796,8 +1788,6 @@
     LUDH_TEST_WRAPPER #(ADDR_WIDTH,ADDR_WIDTH_DATA_BRAM,CTRL_WIDTH) HARDware 
     (
     clk_1x,
-        clk_2x,
-        
             slv_reg0[0],
             slv_reg1[0],
             slv_reg2[0],
@@ -1837,27 +1827,13 @@
             slv_reg27,
             slv_reg28,
             slv_reg29,
-            slv_reg30,
-            slv_reg31,
-            slv_reg32,
-            slv_reg33,
-            slv_reg34,
-            slv_reg35,
-            slv_reg36,
     
-            slv_reg37_out,
-            slv_reg38_out,
-            slv_reg39_out,
-            slv_reg40_out,
-            slv_reg41_out,
-            slv_reg42_out,
-            slv_reg43_out,
-            slv_reg44_out,
-            slv_reg45_out,
-            slv_reg46_out,
+            slv_reg30_out,
+            slv_reg31_out,
+            slv_reg32_out,
             
             //debug signals
-    slv_reg47_out[1:0]
+    slv_reg33_out[1:0]
         );
 
 	// User logic ends

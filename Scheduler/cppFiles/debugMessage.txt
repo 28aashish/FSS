@@ -259,7 +259,7 @@ U_4_4 U_3_4 U_3_3
 🤯 🤯 🤯 🤯 🤯 🤯 Arithmetic Unit Schedule 🤯 🤯 🤯 🤯 🤯 🤯
 ----------------------------------------------------------
 --------------------------------------------------------------------------------------
-0️⃣ Line 0 Window Size 55
+0️⃣ Line 0 Window Size 53
 
   AU Index | 
  Node Name | 
@@ -269,7 +269,27 @@ U_4_4 U_3_4 U_3_3
 BRAM Index | 
  Retire At | 
 --------------------------------------------------------------------------------------
-0️⃣ Line 1 Window Size 55
+0️⃣ Line 1 Window Size 53
+
+  AU Index |               1 | 
+ Node Name |           L_2_0 | 
+   OP : Id |          / : 21 | 
+     In Id |          15 12  | 
+    In Loc |            3 2  | 
+BRAM Index |               1 | 
+ Retire At |              11 | 
+--------------------------------------------------------------------------------------
+0️⃣ Line 2 Window Size 53
+
+  AU Index |               1 | 
+ Node Name |           L_3_0 | 
+   OP : Id |          / : 22 | 
+     In Id |          14 12  | 
+    In Loc |            4 2  | 
+BRAM Index |               2 | 
+ Retire At |              12 | 
+--------------------------------------------------------------------------------------
+0️⃣ Line 3 Window Size 53
 
   AU Index | 
  Node Name | 
@@ -279,27 +299,17 @@ BRAM Index |
 BRAM Index | 
  Retire At | 
 --------------------------------------------------------------------------------------
-0️⃣ Line 2 Window Size 55
+0️⃣ Line 4 Window Size 53
 
-  AU Index |               2 |               3 | 
- Node Name |           L_3_0 |           L_2_0 | 
-   OP : Id |          / : 22 |          / : 21 | 
-     In Id |          14 12  |          15 12  | 
-    In Loc |           12 4  |            8 4  | 
-BRAM Index |               2 |               1 | 
- Retire At |              12 |              12 | 
---------------------------------------------------------------------------------------
-0️⃣ Line 3 Window Size 55
-
-  AU Index |               2 | 
+  AU Index |               1 | 
  Node Name |           L_3_1 | 
    OP : Id |          / : 23 | 
      In Id |          11 10  | 
-    In Loc |           4 16  | 
+    In Loc |            2 5  | 
 BRAM Index |               0 | 
- Retire At |              13 | 
+ Retire At |              14 | 
 --------------------------------------------------------------------------------------
-0️⃣ Line 4 Window Size 55
+0️⃣ Line 5 Window Size 53
 
   AU Index | 
  Node Name | 
@@ -309,7 +319,7 @@ BRAM Index |               0 |
 BRAM Index | 
  Retire At | 
 --------------------------------------------------------------------------------------
-0️⃣ Line 5 Window Size 55
+0️⃣ Line 6 Window Size 53
 
   AU Index | 
  Node Name | 
@@ -319,7 +329,7 @@ BRAM Index |
 BRAM Index | 
  Retire At | 
 --------------------------------------------------------------------------------------
-0️⃣ Line 6 Window Size 55
+0️⃣ Line 7 Window Size 53
 
   AU Index | 
  Node Name | 
@@ -329,7 +339,7 @@ BRAM Index |
 BRAM Index | 
  Retire At | 
 --------------------------------------------------------------------------------------
-0️⃣ Line 7 Window Size 55
+0️⃣ Line 8 Window Size 53
 
   AU Index | 
  Node Name | 
@@ -339,7 +349,7 @@ BRAM Index |
 BRAM Index | 
  Retire At | 
 --------------------------------------------------------------------------------------
-0️⃣ Line 8 Window Size 55
+0️⃣ Line 9 Window Size 53
 
   AU Index | 
  Node Name | 
@@ -349,7 +359,7 @@ BRAM Index |
 BRAM Index | 
  Retire At | 
 --------------------------------------------------------------------------------------
-0️⃣ Line 9 Window Size 55
+0️⃣ Line 10 Window Size 53
 
   AU Index | 
  Node Name | 
@@ -359,47 +369,57 @@ BRAM Index |
 BRAM Index | 
  Retire At | 
 --------------------------------------------------------------------------------------
-0️⃣ Line 10 Window Size 55
+0️⃣ Line 11 Window Size 53
 
-  AU Index | 
- Node Name | 
-   OP : Id | 
-     In Id | 
-    In Loc | 
-BRAM Index | 
- Retire At | 
+  AU Index |               0 | 
+ Node Name |           U_2_2 | 
+   OP : Id |    mac_sub : 24 | 
+     In Id |        0 33 21  | 
+    In Loc |          6 2 1  | 
+BRAM Index |               2 | 
+ Retire At |              22 | 
 --------------------------------------------------------------------------------------
-0️⃣ Line 11 Window Size 55
+0️⃣ Line 12 Window Size 53
 
-  AU Index | 
- Node Name | 
-   OP : Id | 
-     In Id | 
-    In Loc | 
-BRAM Index | 
- Retire At | 
+  AU Index |               0 | 
+ Node Name |           U_3_4 | 
+   OP : Id |    mac_sub : 30 | 
+     In Id |        0 13 22  | 
+    In Loc |          6 5 1  | 
+BRAM Index |               1 | 
+ Retire At |              23 | 
 --------------------------------------------------------------------------------------
-0️⃣ Line 12 Window Size 55
+0️⃣ Line 13 Window Size 53
 
-  AU Index |               0 |               1 | 
- Node Name |           U_2_2 |           U_2_4 | 
-   OP : Id |    mac_sub : 24 |    mac_sub : 27 | 
-     In Id |        0 16 21  |        0 13 21  | 
-    In Loc |         20 8 3  |        20 16 3  | 
-BRAM Index |               2 |               0 | 
- Retire At |              23 |              23 | 
+  AU Index |               0 | 
+ Node Name |           U_2_4 | 
+   OP : Id |    mac_sub : 27 | 
+     In Id |        0 13 21  | 
+    In Loc |          6 5 3  | 
+BRAM Index |               0 | 
+ Retire At |              24 | 
 --------------------------------------------------------------------------------------
-0️⃣ Line 13 Window Size 55
+0️⃣ Line 14 Window Size 53
 
   AU Index |               0 | 
  Node Name |           U_3_3 | 
    OP : Id |    mac_sub : 26 | 
      In Id |       17 20 23  | 
-    In Loc |         12 8 2  | 
+    In Loc |          4 3 1  | 
 BRAM Index |               2 | 
- Retire At |              24 | 
+ Retire At |              25 | 
 --------------------------------------------------------------------------------------
-0️⃣ Line 14 Window Size 55
+0️⃣ Line 15 Window Size 53
+
+  AU Index |               0 | 
+ Node Name |    mac_subL_3_2 | 
+   OP : Id |    mac_sub : 25 | 
+     In Id |        0 16 22  | 
+    In Loc |          6 3 4  | 
+BRAM Index |               3 | 
+ Retire At |              26 | 
+--------------------------------------------------------------------------------------
+0️⃣ Line 16 Window Size 53
 
   AU Index | 
  Node Name | 
@@ -409,7 +429,7 @@ BRAM Index |               2 |
 BRAM Index | 
  Retire At | 
 --------------------------------------------------------------------------------------
-0️⃣ Line 15 Window Size 55
+0️⃣ Line 17 Window Size 53
 
   AU Index | 
  Node Name | 
@@ -419,17 +439,7 @@ BRAM Index |
 BRAM Index | 
  Retire At | 
 --------------------------------------------------------------------------------------
-0️⃣ Line 16 Window Size 55
-
-  AU Index |               0 |               1 | 
- Node Name |           U_3_4 |    mac_subL_3_2 | 
-   OP : Id |    mac_sub : 30 |    mac_sub : 25 | 
-     In Id |        0 13 22  |        0 16 22  | 
-    In Loc |       20 16 12  |        20 8 12  | 
-BRAM Index |               1 |               3 | 
- Retire At |              27 |              27 | 
---------------------------------------------------------------------------------------
-0️⃣ Line 17 Window Size 55
+0️⃣ Line 18 Window Size 53
 
   AU Index | 
  Node Name | 
@@ -439,7 +449,7 @@ BRAM Index |               1 |               3 |
 BRAM Index | 
  Retire At | 
 --------------------------------------------------------------------------------------
-0️⃣ Line 18 Window Size 55
+0️⃣ Line 19 Window Size 53
 
   AU Index | 
  Node Name | 
@@ -449,7 +459,7 @@ BRAM Index |
 BRAM Index | 
  Retire At | 
 --------------------------------------------------------------------------------------
-0️⃣ Line 19 Window Size 55
+0️⃣ Line 20 Window Size 53
 
   AU Index | 
  Node Name | 
@@ -459,7 +469,7 @@ BRAM Index |
 BRAM Index | 
  Retire At | 
 --------------------------------------------------------------------------------------
-0️⃣ Line 20 Window Size 55
+0️⃣ Line 21 Window Size 53
 
   AU Index | 
  Node Name | 
@@ -469,37 +479,17 @@ BRAM Index |
 BRAM Index | 
  Retire At | 
 --------------------------------------------------------------------------------------
-0️⃣ Line 21 Window Size 55
+0️⃣ Line 22 Window Size 53
 
-  AU Index | 
- Node Name | 
-   OP : Id | 
-     In Id | 
-    In Loc | 
-BRAM Index | 
- Retire At | 
---------------------------------------------------------------------------------------
-0️⃣ Line 22 Window Size 55
-
-  AU Index | 
- Node Name | 
-   OP : Id | 
-     In Id | 
-    In Loc | 
-BRAM Index | 
- Retire At | 
---------------------------------------------------------------------------------------
-0️⃣ Line 23 Window Size 55
-
-  AU Index |               2 | 
+  AU Index |               1 | 
  Node Name |           L_4_2 | 
    OP : Id |          / : 29 | 
      In Id |          19 24  | 
-    In Loc |            4 0  | 
+    In Loc |            2 0  | 
 BRAM Index |               0 | 
- Retire At |              33 | 
+ Retire At |              32 | 
 --------------------------------------------------------------------------------------
-0️⃣ Line 24 Window Size 55
+0️⃣ Line 23 Window Size 53
 
   AU Index | 
  Node Name | 
@@ -509,7 +499,7 @@ BRAM Index |               0 |
 BRAM Index | 
  Retire At | 
 --------------------------------------------------------------------------------------
-0️⃣ Line 25 Window Size 55
+0️⃣ Line 24 Window Size 53
 
   AU Index | 
  Node Name | 
@@ -519,7 +509,7 @@ BRAM Index |
 BRAM Index | 
  Retire At | 
 --------------------------------------------------------------------------------------
-0️⃣ Line 26 Window Size 55
+0️⃣ Line 25 Window Size 53
 
   AU Index | 
  Node Name | 
@@ -529,17 +519,37 @@ BRAM Index |
 BRAM Index | 
  Retire At | 
 --------------------------------------------------------------------------------------
-0️⃣ Line 27 Window Size 55
+0️⃣ Line 26 Window Size 53
 
-  AU Index |               2 | 
+  AU Index | 
+ Node Name | 
+   OP : Id | 
+     In Id | 
+    In Loc | 
+BRAM Index | 
+ Retire At | 
+--------------------------------------------------------------------------------------
+0️⃣ Line 27 Window Size 53
+
+  AU Index | 
+ Node Name | 
+   OP : Id | 
+     In Id | 
+    In Loc | 
+BRAM Index | 
+ Retire At | 
+--------------------------------------------------------------------------------------
+0️⃣ Line 28 Window Size 53
+
+  AU Index |               1 | 
  Node Name |           L_3_2 | 
    OP : Id |          / : 28 | 
      In Id |          25 24  | 
-    In Loc |           1 12  | 
+    In Loc |            5 4  | 
 BRAM Index |               3 | 
- Retire At |              37 | 
+ Retire At |              38 | 
 --------------------------------------------------------------------------------------
-0️⃣ Line 28 Window Size 55
+0️⃣ Line 29 Window Size 53
 
   AU Index | 
  Node Name | 
@@ -549,7 +559,7 @@ BRAM Index |               3 |
 BRAM Index | 
  Retire At | 
 --------------------------------------------------------------------------------------
-0️⃣ Line 29 Window Size 55
+0️⃣ Line 30 Window Size 53
 
   AU Index | 
  Node Name | 
@@ -559,7 +569,7 @@ BRAM Index |
 BRAM Index | 
  Retire At | 
 --------------------------------------------------------------------------------------
-0️⃣ Line 30 Window Size 55
+0️⃣ Line 31 Window Size 53
 
   AU Index | 
  Node Name | 
@@ -569,37 +579,17 @@ BRAM Index |
 BRAM Index | 
  Retire At | 
 --------------------------------------------------------------------------------------
-0️⃣ Line 31 Window Size 55
-
-  AU Index | 
- Node Name | 
-   OP : Id | 
-     In Id | 
-    In Loc | 
-BRAM Index | 
- Retire At | 
---------------------------------------------------------------------------------------
-0️⃣ Line 32 Window Size 55
-
-  AU Index | 
- Node Name | 
-   OP : Id | 
-     In Id | 
-    In Loc | 
-BRAM Index | 
- Retire At | 
---------------------------------------------------------------------------------------
-0️⃣ Line 33 Window Size 55
+0️⃣ Line 32 Window Size 53
 
   AU Index |               0 | 
  Node Name |           U_4_4 | 
    OP : Id |    mac_sub : 31 | 
-     In Id |       18 27 29  | 
-    In Loc |         12 4 2  | 
+     In Id |       18 32 29  | 
+    In Loc |          4 5 1  | 
 BRAM Index |               2 | 
- Retire At |              44 | 
+ Retire At |              43 | 
 --------------------------------------------------------------------------------------
-0️⃣ Line 34 Window Size 55
+0️⃣ Line 33 Window Size 53
 
   AU Index | 
  Node Name | 
@@ -609,7 +599,7 @@ BRAM Index |               2 |
 BRAM Index | 
  Retire At | 
 --------------------------------------------------------------------------------------
-0️⃣ Line 35 Window Size 55
+0️⃣ Line 34 Window Size 53
 
   AU Index | 
  Node Name | 
@@ -619,7 +609,7 @@ BRAM Index |
 BRAM Index | 
  Retire At | 
 --------------------------------------------------------------------------------------
-0️⃣ Line 36 Window Size 55
+0️⃣ Line 35 Window Size 53
 
   AU Index | 
  Node Name | 
@@ -629,7 +619,7 @@ BRAM Index |
 BRAM Index | 
  Retire At | 
 --------------------------------------------------------------------------------------
-0️⃣ Line 37 Window Size 55
+0️⃣ Line 36 Window Size 53
 
   AU Index | 
  Node Name | 
@@ -639,7 +629,7 @@ BRAM Index |
 BRAM Index | 
  Retire At | 
 --------------------------------------------------------------------------------------
-0️⃣ Line 38 Window Size 55
+0️⃣ Line 37 Window Size 53
 
   AU Index | 
  Node Name | 
@@ -649,7 +639,7 @@ BRAM Index |
 BRAM Index | 
  Retire At | 
 --------------------------------------------------------------------------------------
-0️⃣ Line 39 Window Size 55
+0️⃣ Line 38 Window Size 53
 
   AU Index | 
  Node Name | 
@@ -659,7 +649,7 @@ BRAM Index |
 BRAM Index | 
  Retire At | 
 --------------------------------------------------------------------------------------
-0️⃣ Line 40 Window Size 55
+0️⃣ Line 39 Window Size 53
 
   AU Index | 
  Node Name | 
@@ -669,17 +659,17 @@ BRAM Index |
 BRAM Index | 
  Retire At | 
 --------------------------------------------------------------------------------------
-0️⃣ Line 41 Window Size 55
+0️⃣ Line 40 Window Size 53
 
   AU Index |               0 | 
  Node Name |           U_3_4 | 
    OP : Id |    mac_sub : 30 | 
      In Id |       30 27 28  | 
-    In Loc |         8 4 16  | 
+    In Loc |          3 2 5  | 
 BRAM Index |               1 | 
- Retire At |              52 | 
+ Retire At |              51 | 
 --------------------------------------------------------------------------------------
-0️⃣ Line 42 Window Size 55
+0️⃣ Line 41 Window Size 53
 
   AU Index | 
  Node Name | 
@@ -689,7 +679,7 @@ BRAM Index |               1 |
 BRAM Index | 
  Retire At | 
 --------------------------------------------------------------------------------------
-0️⃣ Line 43 Window Size 55
+0️⃣ Line 42 Window Size 53
 
   AU Index | 
  Node Name | 
@@ -699,7 +689,7 @@ BRAM Index |
 BRAM Index | 
  Retire At | 
 --------------------------------------------------------------------------------------
-0️⃣ Line 44 Window Size 55
+0️⃣ Line 43 Window Size 53
 
   AU Index | 
  Node Name | 
@@ -709,7 +699,7 @@ BRAM Index |
 BRAM Index | 
  Retire At | 
 --------------------------------------------------------------------------------------
-0️⃣ Line 45 Window Size 55
+0️⃣ Line 44 Window Size 53
 
   AU Index | 
  Node Name | 
@@ -719,7 +709,7 @@ BRAM Index |
 BRAM Index | 
  Retire At | 
 --------------------------------------------------------------------------------------
-0️⃣ Line 46 Window Size 55
+0️⃣ Line 45 Window Size 53
 
   AU Index | 
  Node Name | 
@@ -729,7 +719,7 @@ BRAM Index |
 BRAM Index | 
  Retire At | 
 --------------------------------------------------------------------------------------
-0️⃣ Line 47 Window Size 55
+0️⃣ Line 46 Window Size 53
 
   AU Index | 
  Node Name | 
@@ -739,7 +729,7 @@ BRAM Index |
 BRAM Index | 
  Retire At | 
 --------------------------------------------------------------------------------------
-0️⃣ Line 48 Window Size 55
+0️⃣ Line 47 Window Size 53
 
   AU Index | 
  Node Name | 
@@ -749,7 +739,7 @@ BRAM Index |
 BRAM Index | 
  Retire At | 
 --------------------------------------------------------------------------------------
-0️⃣ Line 49 Window Size 55
+0️⃣ Line 48 Window Size 53
 
   AU Index | 
  Node Name | 
@@ -759,7 +749,7 @@ BRAM Index |
 BRAM Index | 
  Retire At | 
 --------------------------------------------------------------------------------------
-0️⃣ Line 50 Window Size 55
+0️⃣ Line 49 Window Size 53
 
   AU Index | 
  Node Name | 
@@ -769,7 +759,7 @@ BRAM Index |
 BRAM Index | 
  Retire At | 
 --------------------------------------------------------------------------------------
-0️⃣ Line 51 Window Size 55
+0️⃣ Line 50 Window Size 53
 
   AU Index | 
  Node Name | 
@@ -779,7 +769,7 @@ BRAM Index |
 BRAM Index | 
  Retire At | 
 --------------------------------------------------------------------------------------
-0️⃣ Line 52 Window Size 55
+0️⃣ Line 51 Window Size 53
 
   AU Index | 
  Node Name | 
@@ -789,17 +779,7 @@ BRAM Index |
 BRAM Index | 
  Retire At | 
 --------------------------------------------------------------------------------------
-0️⃣ Line 53 Window Size 55
-
-  AU Index | 
- Node Name | 
-   OP : Id | 
-     In Id | 
-    In Loc | 
-BRAM Index | 
- Retire At | 
---------------------------------------------------------------------------------------
-0️⃣ Line 54 Window Size 55
+0️⃣ Line 52 Window Size 53
 
   AU Index | 
  Node Name | 
@@ -815,15 +795,35 @@ BRAM Index |
 --------------------------------------------------------------------------------------
 0️⃣ Line 0
 
-BRAM Index |               1 |               0 |               2 | 
- Node Name |           A_2_0 |           A_0_0 |           A_3_0 | 
-Read/Write |            Read |            Read |            Read | 
-   OP : Id |          0 : 15 |          0 : 12 |          0 : 14 | 
-   Port Id |               0 |               0 |               0 | 
-      Addr |               0 |               0 |               0 | 
-   Din Loc |              21 |              21 |              21 | 
+BRAM Index |               1 |               0 | 
+ Node Name |           A_2_0 |           A_0_0 | 
+Read/Write |            Read |            Read | 
+   OP : Id |          0 : 15 |          0 : 12 | 
+   Port Id |               0 |               0 | 
+      Addr |               0 |               0 | 
+   Din Loc |               7 |               7 | 
 --------------------------------------------------------------------------------------
 0️⃣ Line 1
+
+BRAM Index |               2 |               0 |               1 | 
+ Node Name |           A_3_0 |           A_0_0 |           A_0_2 | 
+Read/Write |            Read |            Read |            Read | 
+   OP : Id |          0 : 14 |          0 : 12 |          0 : 16 | 
+   Port Id |               0 |               0 |               0 | 
+      Addr |               0 |               0 |               1 | 
+   Din Loc |               7 |               7 |               7 | 
+--------------------------------------------------------------------------------------
+0️⃣ Line 2
+
+BRAM Index |               0 | 
+ Node Name |      wr_0_A_0_2 | 
+Read/Write |           Write | 
+   OP : Id |          1 : 33 | 
+   Port Id |               0 | 
+      Addr |               4 | 
+   Din Loc |               3 | 
+--------------------------------------------------------------------------------------
+0️⃣ Line 3
 
 BRAM Index |               0 |               3 | 
  Node Name |           A_3_1 |           A_1_1 | 
@@ -831,27 +831,7 @@ Read/Write |            Read |            Read |
    OP : Id |          0 : 11 |          0 : 10 | 
    Port Id |               0 |               0 | 
       Addr |               1 |               0 | 
-   Din Loc |              21 |              21 | 
---------------------------------------------------------------------------------------
-0️⃣ Line 2
-
-BRAM Index | 
- Node Name | 
-Read/Write | 
-   OP : Id | 
-   Port Id | 
-      Addr | 
-   Din Loc | 
---------------------------------------------------------------------------------------
-0️⃣ Line 3
-
-BRAM Index | 
- Node Name | 
-Read/Write | 
-   OP : Id | 
-   Port Id | 
-      Addr | 
-   Din Loc | 
+   Din Loc |               7 |               7 | 
 --------------------------------------------------------------------------------------
 0️⃣ Line 4
 
@@ -915,15 +895,35 @@ Read/Write |
 --------------------------------------------------------------------------------------
 0️⃣ Line 10
 
-BRAM Index |               1 |               3 | 
- Node Name |           A_0_2 |           A_0_4 | 
-Read/Write |            Read |            Read | 
-   OP : Id |          0 : 16 |          0 : 13 | 
-   Port Id |               0 |               0 | 
-      Addr |               1 |               2 | 
-   Din Loc |              21 |              21 | 
+BRAM Index |               0 | 
+ Node Name |      wr_0_A_0_2 | 
+Read/Write |            Read | 
+   OP : Id |          0 : 33 | 
+   Port Id |               0 | 
+      Addr |               4 | 
+   Din Loc |               7 | 
 --------------------------------------------------------------------------------------
 0️⃣ Line 11
+
+BRAM Index |               1 |               3 | 
+ Node Name |           L_2_0 |           A_0_4 | 
+Read/Write |           Write |            Read | 
+   OP : Id |          1 : 21 |          0 : 13 | 
+   Port Id |               0 |               0 | 
+      Addr |               0 |               2 | 
+   Din Loc |               1 |               7 | 
+--------------------------------------------------------------------------------------
+0️⃣ Line 12
+
+BRAM Index |               2 |               3 |               1 | 
+ Node Name |           L_3_0 |           A_0_4 |           L_2_0 | 
+Read/Write |           Write |            Read |            Read | 
+   OP : Id |          1 : 22 |          0 : 13 |          0 : 21 | 
+   Port Id |               0 |               0 |               0 | 
+      Addr |               0 |               2 |               0 | 
+   Din Loc |               1 |               7 |               7 | 
+--------------------------------------------------------------------------------------
+0️⃣ Line 13
 
 BRAM Index |               2 |               1 | 
  Node Name |           A_3_3 |           A_1_3 | 
@@ -931,37 +931,17 @@ Read/Write |            Read |            Read |
    OP : Id |          0 : 17 |          0 : 20 | 
    Port Id |               0 |               0 | 
       Addr |               2 |               2 | 
-   Din Loc |              21 |              21 | 
---------------------------------------------------------------------------------------
-0️⃣ Line 12
-
-BRAM Index |               2 |               1 | 
- Node Name |           L_3_0 |           L_2_0 | 
-Read/Write |           Write |           Write | 
-   OP : Id |          1 : 22 |          1 : 21 | 
-   Port Id |               0 |               0 | 
-      Addr |               0 |               0 | 
-   Din Loc |               2 |               3 | 
---------------------------------------------------------------------------------------
-0️⃣ Line 13
-
-BRAM Index |               0 | 
- Node Name |           L_3_1 | 
-Read/Write |           Write | 
-   OP : Id |          1 : 23 | 
-   Port Id |               0 | 
-      Addr |               1 | 
-   Din Loc |               2 | 
+   Din Loc |               7 |               7 | 
 --------------------------------------------------------------------------------------
 0️⃣ Line 14
 
-BRAM Index |               1 |               2 |               3 | 
- Node Name |           A_0_2 |           L_3_0 |           A_0_4 | 
-Read/Write |            Read |            Read |            Read | 
-   OP : Id |          0 : 16 |          0 : 22 |          0 : 13 | 
+BRAM Index |               0 |               1 |               2 | 
+ Node Name |           L_3_1 |           A_0_2 |           L_3_0 | 
+Read/Write |           Write |            Read |            Read | 
+   OP : Id |          1 : 23 |          0 : 16 |          0 : 22 | 
    Port Id |               0 |               0 |               0 | 
-      Addr |               1 |               0 |               2 | 
-   Din Loc |              21 |              21 |              21 | 
+      Addr |               1 |               1 |               0 | 
+   Din Loc |               1 |               7 |               7 | 
 --------------------------------------------------------------------------------------
 0️⃣ Line 15
 
@@ -1031,29 +1011,39 @@ Read/Write |            Read |
    OP : Id |          0 : 19 | 
    Port Id |               0 | 
       Addr |               2 | 
-   Din Loc |              21 | 
+   Din Loc |               7 | 
 --------------------------------------------------------------------------------------
 0️⃣ Line 22
 
-BRAM Index | 
- Node Name | 
-Read/Write | 
-   OP : Id | 
-   Port Id | 
-      Addr | 
-   Din Loc | 
+BRAM Index |               2 | 
+ Node Name |           U_2_2 | 
+Read/Write |           Write | 
+   OP : Id |          1 : 24 | 
+   Port Id |               0 | 
+      Addr |               1 | 
+   Din Loc |               0 | 
 --------------------------------------------------------------------------------------
 0️⃣ Line 23
 
-BRAM Index |               2 |               0 | 
- Node Name |           U_2_2 |           U_2_4 | 
-Read/Write |           Write |           Write | 
-   OP : Id |          1 : 24 |          1 : 27 | 
-   Port Id |               0 |               0 | 
-      Addr |               1 |               3 | 
-   Din Loc |               0 |               1 | 
+BRAM Index |               1 | 
+ Node Name |           U_3_4 | 
+Read/Write |           Write | 
+   OP : Id |          1 : 30 | 
+   Port Id |               0 | 
+      Addr |               3 | 
+   Din Loc |               0 | 
 --------------------------------------------------------------------------------------
 0️⃣ Line 24
+
+BRAM Index |               0 |               3 | 
+ Node Name |           U_2_4 |      wr_3_U_2_4 | 
+Read/Write |           Write |           Write | 
+   OP : Id |          1 : 27 |          1 : 32 | 
+   Port Id |               0 |               0 | 
+      Addr |               3 |               3 | 
+   Din Loc |               0 |               0 | 
+--------------------------------------------------------------------------------------
+0️⃣ Line 25
 
 BRAM Index |               2 | 
  Node Name |           U_3_3 | 
@@ -1063,35 +1053,25 @@ Read/Write |           Write |
       Addr |               2 | 
    Din Loc |               0 | 
 --------------------------------------------------------------------------------------
-0️⃣ Line 25
-
-BRAM Index |               2 | 
- Node Name |           U_2_2 | 
-Read/Write |            Read | 
-   OP : Id |          0 : 24 | 
-   Port Id |               0 | 
-      Addr |               1 | 
-   Din Loc |              21 | 
---------------------------------------------------------------------------------------
 0️⃣ Line 26
 
-BRAM Index | 
- Node Name | 
-Read/Write | 
-   OP : Id | 
-   Port Id | 
-      Addr | 
-   Din Loc | 
+BRAM Index |               3 | 
+ Node Name |    mac_subL_3_2 | 
+Read/Write |           Write | 
+   OP : Id |          1 : 25 | 
+   Port Id |               0 | 
+      Addr |               1 | 
+   Din Loc |               0 | 
 --------------------------------------------------------------------------------------
 0️⃣ Line 27
 
-BRAM Index |               1 | 
- Node Name |           U_3_4 | 
-Read/Write |           Write | 
-   OP : Id |          1 : 30 | 
-   Port Id |               0 | 
-      Addr |               3 | 
-   Din Loc |               0 | 
+BRAM Index |               3 |               2 | 
+ Node Name |    mac_subL_3_2 |           U_2_2 | 
+Read/Write |            Read |            Read | 
+   OP : Id |          0 : 25 |          0 : 24 | 
+   Port Id |               0 |               0 | 
+      Addr |               1 |               1 | 
+   Din Loc |               7 |               7 | 
 --------------------------------------------------------------------------------------
 0️⃣ Line 28
 
@@ -1125,15 +1105,25 @@ Read/Write |
 --------------------------------------------------------------------------------------
 0️⃣ Line 31
 
-BRAM Index |               2 |               0 | 
- Node Name |           A_4_4 |           U_2_4 | 
+BRAM Index |               2 |               3 | 
+ Node Name |           A_4_4 |      wr_3_U_2_4 | 
 Read/Write |            Read |            Read | 
-   OP : Id |          0 : 18 |          0 : 27 | 
+   OP : Id |          0 : 18 |          0 : 32 | 
    Port Id |               0 |               0 | 
       Addr |               3 |               3 | 
-   Din Loc |              21 |              21 | 
+   Din Loc |               7 |               7 | 
 --------------------------------------------------------------------------------------
 0️⃣ Line 32
+
+BRAM Index |               0 | 
+ Node Name |           L_4_2 | 
+Read/Write |           Write | 
+   OP : Id |          1 : 29 | 
+   Port Id |               0 | 
+      Addr |               2 | 
+   Din Loc |               1 | 
+--------------------------------------------------------------------------------------
+0️⃣ Line 33
 
 BRAM Index | 
  Node Name | 
@@ -1142,16 +1132,6 @@ Read/Write |
    Port Id | 
       Addr | 
    Din Loc | 
---------------------------------------------------------------------------------------
-0️⃣ Line 33
-
-BRAM Index |               0 | 
- Node Name |           L_4_2 | 
-Read/Write |           Write | 
-   OP : Id |          1 : 29 | 
-   Port Id |               0 | 
-      Addr |               2 | 
-   Din Loc |               2 | 
 --------------------------------------------------------------------------------------
 0️⃣ Line 34
 
@@ -1185,16 +1165,6 @@ Read/Write |
 --------------------------------------------------------------------------------------
 0️⃣ Line 37
 
-BRAM Index |               3 | 
- Node Name |           L_3_2 | 
-Read/Write |           Write | 
-   OP : Id |          1 : 28 | 
-   Port Id |               0 | 
-      Addr |               1 | 
-   Din Loc |               2 | 
---------------------------------------------------------------------------------------
-0️⃣ Line 38
-
 BRAM Index | 
  Node Name | 
 Read/Write | 
@@ -1202,6 +1172,16 @@ Read/Write |
    Port Id | 
       Addr | 
    Din Loc | 
+--------------------------------------------------------------------------------------
+0️⃣ Line 38
+
+BRAM Index |               3 | 
+ Node Name |           L_3_2 | 
+Read/Write |           Write | 
+   OP : Id |          1 : 28 | 
+   Port Id |               0 | 
+      Addr |               1 | 
+   Din Loc |               1 | 
 --------------------------------------------------------------------------------------
 0️⃣ Line 39
 
@@ -1211,7 +1191,7 @@ Read/Write |            Read |            Read |            Read |
    OP : Id |          0 : 30 |          0 : 27 |          0 : 28 | 
    Port Id |               0 |               0 |               0 | 
       Addr |               3 |               3 |               1 | 
-   Din Loc |              21 |              21 |              21 | 
+   Din Loc |               7 |               7 |               7 | 
 --------------------------------------------------------------------------------------
 0️⃣ Line 40
 
@@ -1245,16 +1225,6 @@ Read/Write |
 --------------------------------------------------------------------------------------
 0️⃣ Line 43
 
-BRAM Index | 
- Node Name | 
-Read/Write | 
-   OP : Id | 
-   Port Id | 
-      Addr | 
-   Din Loc | 
---------------------------------------------------------------------------------------
-0️⃣ Line 44
-
 BRAM Index |               2 | 
  Node Name |           U_4_4 | 
 Read/Write |           Write | 
@@ -1262,6 +1232,16 @@ Read/Write |           Write |
    Port Id |               0 | 
       Addr |               3 | 
    Din Loc |               0 | 
+--------------------------------------------------------------------------------------
+0️⃣ Line 44
+
+BRAM Index | 
+ Node Name | 
+Read/Write | 
+   OP : Id | 
+   Port Id | 
+      Addr | 
+   Din Loc | 
 --------------------------------------------------------------------------------------
 0️⃣ Line 45
 
@@ -1325,16 +1305,6 @@ Read/Write |
 --------------------------------------------------------------------------------------
 0️⃣ Line 51
 
-BRAM Index | 
- Node Name | 
-Read/Write | 
-   OP : Id | 
-   Port Id | 
-      Addr | 
-   Din Loc | 
---------------------------------------------------------------------------------------
-0️⃣ Line 52
-
 BRAM Index |               1 | 
  Node Name |           U_3_4 | 
 Read/Write |           Write | 
@@ -1343,17 +1313,7 @@ Read/Write |           Write |
       Addr |               3 | 
    Din Loc |               0 | 
 --------------------------------------------------------------------------------------
-0️⃣ Line 53
-
-BRAM Index | 
- Node Name | 
-Read/Write | 
-   OP : Id | 
-   Port Id | 
-      Addr | 
-   Din Loc | 
---------------------------------------------------------------------------------------
-0️⃣ Line 54
+0️⃣ Line 52
 
 BRAM Index | 
  Node Name | 

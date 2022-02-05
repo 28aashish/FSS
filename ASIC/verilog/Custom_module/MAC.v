@@ -25,8 +25,8 @@ module design_MAC_wrapper(
         rstn
         );
 
-        input     clk;
-        input     rst;
+        input     aclk;
+        input     rstn;
 
   input     [31:0] input_a;
   input     input_a_stb;
@@ -111,9 +111,9 @@ module design_MAC_wrapper(
                 pack         = 5'd18,
                 put_ans         = 5'd19;
 
-  always @(posedge clk)
+  always @(posedge aclk)
   begin
-    if (!rst) begin
+    if (!rstn) begin
                 state <= get_value;
                 s_input_a_ack <= 0;
                 s_input_b_ack <= 0;
@@ -565,7 +565,7 @@ module design_MAC_wrapper(
   assign input_a_ack = s_input_a_ack;
   assign input_b_ack = s_input_b_ack;
   assign input_c_ack = s_input_c_ack;
-  assign input_c_ack = s_input_op_ack;
+  assign input_op_ack = s_input_op_ack;
   assign output_ans_stb = s_output_ans_stb;
   assign output_ans = s_output_ans;
 

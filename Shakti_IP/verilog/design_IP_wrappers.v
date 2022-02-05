@@ -55,15 +55,15 @@ module design_CTRL_wrapper
     BRAM_PORTA_0_we);
   input [11:0]BRAM_PORTA_0_addr;
   input BRAM_PORTA_0_clk;
-  input [306:0]BRAM_PORTA_0_din;
-  output [306:0]BRAM_PORTA_0_dout;
+  input [71:0]BRAM_PORTA_0_din;
+  output [71:0]BRAM_PORTA_0_dout;
   input BRAM_PORTA_0_en;
   input [0:0]BRAM_PORTA_0_we;
 
   wire [11:0]BRAM_PORTA_0_addr;
   wire BRAM_PORTA_0_clk;
-  wire [306:0]BRAM_PORTA_0_din;
-  wire [306:0]BRAM_PORTA_0_dout;
+  wire [71:0]BRAM_PORTA_0_din;
+  wire [71:0]BRAM_PORTA_0_dout;
   wire BRAM_PORTA_0_en;
   wire [0:0]BRAM_PORTA_0_we;
 

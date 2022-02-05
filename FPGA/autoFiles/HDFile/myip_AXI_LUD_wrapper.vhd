@@ -8,9 +8,9 @@ entity myip_AXI_LUD_wrapper is
         -- Users to add parameters here
         ADDR_WIDTH : integer := 12; --Instruction BRAM
         ADDR_WIDTH_DATA_BRAM : integer := 10;
-        CTRL_WIDTH : integer := 307;
-        AU_SEL_WIDTH : integer := 5;
-        BRAM_SEL_WIDTH : integer := 5;
+        CTRL_WIDTH : integer := 72;
+        AU_SEL_WIDTH : integer := 3;
+        BRAM_SEL_WIDTH : integer := 3;
         -- User parameters ends
         -- Do not modify the parameters beyond this line
 
@@ -22,8 +22,7 @@ entity myip_AXI_LUD_wrapper is
     port (
         -- Users to add ports here
         clk_1x : in std_logic;
-        clk_2x : in std_logic;
-
+        
         -- User ports ends
         -- Do not modify the ports beyond this line
 
@@ -59,9 +58,9 @@ architecture arch_imp of myip_AXI_LUD_wrapper is
 	    --User Defined
         ADDR_WIDTH : integer := 12; --Instruction BRAM
         ADDR_WIDTH_DATA_BRAM : integer := 10;
-        CTRL_WIDTH : integer := 307;
-        AU_SEL_WIDTH : integer := 5;
-        BRAM_SEL_WIDTH : integer := 5;
+        CTRL_WIDTH : integer := 72;
+        AU_SEL_WIDTH : integer := 3;
+        BRAM_SEL_WIDTH : integer := 3;
         -- User parameters ends
         -- Do not modify the parameters beyond this line
 
@@ -72,8 +71,7 @@ architecture arch_imp of myip_AXI_LUD_wrapper is
     port (
         -- Users to add ports here
         clk_1x : in std_logic;
-        clk_2x : in std_logic;
-
+        
 		S_AXI_ACLK	: in std_logic;
 		S_AXI_ARESETN	: in std_logic;
 		S_AXI_AWADDR	: in std_logic_vector(C_S_AXI_ADDR_WIDTH-1 downto 0);
@@ -116,7 +114,6 @@ myip_LUdecomposition_v2_v1_0_S00_AXI_inst : myip_AXI_LUD
 	port map (
 		--user defined
 	    clk_1x => clk_1x,
-clk_2x => clk_2x,
 
 	            
 		S_AXI_ACLK	=> s00_axi_aclk,

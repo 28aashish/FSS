@@ -27,7 +27,7 @@ if __name__ == "__main__":
     # list 
     # Closing file
     f.close()
-    SW = open('./Hardware/C_files/SW.c','w')
+    SW = open('./FPGA/C_files/SW.c','w')
     SW.write("""
 #include <stdio.h>
 #include "platform.h"

@@ -1,7 +1,34 @@
 make --dry-run --keep-going --print-directory
 make: Entering directory '/home/aashish/FSS'
+(cd Scheduler/cppFiles; make cleanall)
+(cd Scheduler/cppFiles; make buildPreprocessTests)
+(cd Scheduler/cppFiles; make preprocessTests)
  
-Makefile:77: *** missing separator.  Stop.
- 
+(cd Scheduler/cppFiles; make all TEST_MATRIX=)
+(cd Scheduler/cppFiles; ./main )
+(yes | cp -if ./Scheduler/cppFiles/IO.json ./FPGA/IO.json)
+(yes | cp -if ./Scheduler/cppFiles/*.svh ./FPGA/autoFiles/SVFile)
+(yes | cp -if ./Scheduler/cppFiles/FPGA*.h ./FPGA/C_files)
+(yes | cp -if ./Scheduler/cppFiles/float_to_int.h ./FPGA/C_files)
+(yes | cp -if ./Scheduler/cppFiles/int_to_float.h ./FPGA/C_files)
+(cd ./FPGA;python3 ../Scheduler/pyFiles/HDL_inteconnect.py)
+(cd ./FPGA;python3 ../Scheduler/pyFiles/Verilog_inteconnect.py)
+python3 ./Scheduler/pyFiles/SW_Code.py
+(yes | cp -if ./Scheduler/cppFiles/IO.json ./Shakti_IP/IO.json)
+(cd ./Shakti_IP/verilog;rm -f ./*.v)
+(cp ./FPGA/autoFiles/VFile/*.v ./Shakti_IP/verilog)
+(cp ./FPGA/autoFiles/VFile/const_file/*.v ./Shakti_IP/verilog)
+(cd ./Shakti_IP/C_files;rm -f ./*.h)
+(cd ./Shakti_IP/C_files;rm -f ./*.c)
+(yes | cp -if ./Scheduler/cppFiles/FPGA*.h ./Shakti_IP/C_files)
+(yes | cp -if ./Scheduler/cppFiles/float_to_int.h ./Shakti_IP/C_files)
+(yes | cp -if ./Scheduler/cppFiles/int_to_float.h ./Shakti_IP/C_files)
+(yes | cp -if ./FPGA/C_files/SW.c ./Shakti_IP/C_files)
+(cd ./Shakti_IP;python3 ../Scheduler/pyFiles/Shakti_IP.py)
+(yes | cp -if ./Scheduler/cppFiles/IO.json ./ASIC/IO.json)
+(cd ./ASIC/verilog/autoFiles;rm -f ./*.v)
+(cp ./FPGA/autoFiles/VFile/*.v ./ASIC/verilog/autoFiles)
+(cp ./FPGA/autoFiles/VFile/const_file/*.v ./ASIC/verilog/autoFiles)
+(cd ./ASIC;python3 ../Scheduler/pyFiles/ASIC_IP.py)
 make: Leaving directory '/home/aashish/FSS'
  

@@ -42,7 +42,7 @@ num_rw_ports=1
 # Output directory for the results
 output_path = "CTRL"
 # Output file base name
-output_name = "sram_{{0}}_{{1}}_{{2}}".format(word_size,num_words,tech_name)
+output_name = "CTRL_{{0}}_{{1}}_{{2}}".format(word_size,num_words,tech_name)
 
 # Disable analytical models for full characterization (WARNING: slow!)
 # analytical_delay = False
@@ -75,7 +75,7 @@ num_rw_ports={1}
 # Output directory for the results
 output_path = "DATA"
 # Output file base name
-output_name = "sram_{{0}}_{{1}}_{{2}}".format(word_size,num_words,tech_name)
+output_name = "DATA_{{0}}_{{1}}_{{2}}".format(word_size,num_words,tech_name)
 
 # Disable analytical models for full characterization (WARNING: slow!)
 # analytical_delay = False
@@ -169,9 +169,163 @@ def alterLUD():
         lines = sources.readlines()
     with open(file_name, "w") as sources:
         for line in lines:
-            sources.write(re.sub('.aclk\(CLK_100\)', '.aclk(CLK_100),.rstn(locked)', line))    
+            sources.write(re.sub('.aclk\(CLK_100\)', '.aclk(CLK_100),.rstn(locked)', line))   
 
 
+    with open(file_name, "r") as sources:
+        lines = sources.readlines()
+    with open(file_name, "w") as sources:
+        for line in lines:
+            sources.write(re.sub('design_BRAM_A_wrapper', 'DATA_{0}_{1}_{2}'.format("""32""",2**ADDR_WIDTH_DATA_BRAM,"""sky130A"""), line))      
+
+    with open(file_name, "r") as sources:
+        lines = sources.readlines()
+    with open(file_name, "w") as sources:
+        for line in lines:
+            sources.write(re.sub('BRAM_PORTA_addr','addr0', line))                 
+    with open(file_name, "r") as sources:
+        lines = sources.readlines()
+    with open(file_name, "w") as sources:
+        for line in lines:
+            sources.write(re.sub('BRAM_PORTA_clk','clk0', line))      
+    with open(file_name, "r") as sources:
+        lines = sources.readlines()
+    with open(file_name, "w") as sources:
+        for line in lines:
+            sources.write(re.sub('BRAM_PORTA_din','din0', line))      
+    with open(file_name, "r") as sources:
+        lines = sources.readlines()
+    with open(file_name, "w") as sources:
+        for line in lines:
+            sources.write(re.sub('BRAM_PORTA_dout','dout0', line))      
+    with open(file_name, "r") as sources:
+        lines = sources.readlines()
+    with open(file_name, "w") as sources:
+        for line in lines:
+            sources.write(re.sub('BRAM_PORTA_en','csb0', line))                                          
+    with open(file_name, "r") as sources:
+        lines = sources.readlines()
+    with open(file_name, "w") as sources:
+        for line in lines:
+            sources.write(re.sub('BRAM_PORTA_we','web0', line))    
+
+    file_name=str("./verilog/autoFiles/hardwareTester.v")
+    with open(file_name, "r") as sources:
+        lines = sources.readlines()
+    with open(file_name, "w") as sources:
+        for line in lines:
+            sources.write(re.sub('design_CTRL_wrapper', 'CTRL_{0}_{1}_{2}'.format(CTRL_WIDTH,2**ADDR_WIDTH,"""sky130A"""), line))      
+
+    with open(file_name, "r") as sources:
+        lines = sources.readlines()
+    with open(file_name, "w") as sources:
+        for line in lines:
+            sources.write(re.sub('BRAM_PORTA_addr','addr0', line))                 
+    with open(file_name, "r") as sources:
+        lines = sources.readlines()
+    with open(file_name, "w") as sources:
+        for line in lines:
+            sources.write(re.sub('BRAM_PORTA_clk','clk0', line))      
+    with open(file_name, "r") as sources:
+        lines = sources.readlines()
+    with open(file_name, "w") as sources:
+        for line in lines:
+            sources.write(re.sub('BRAM_PORTA_din','din0', line))      
+    with open(file_name, "r") as sources:
+        lines = sources.readlines()
+    with open(file_name, "w") as sources:
+        for line in lines:
+            sources.write(re.sub('BRAM_PORTA_dout','dout0', line))      
+    with open(file_name, "r") as sources:
+        lines = sources.readlines()
+    with open(file_name, "w") as sources:
+        for line in lines:
+            sources.write(re.sub('BRAM_PORTA_en','csb0', line))                                          
+    with open(file_name, "r") as sources:
+        lines = sources.readlines()
+    with open(file_name, "w") as sources:
+        for line in lines:
+            sources.write(re.sub('BRAM_PORTA_we','web0', line))    
+
+def CustomMem():
+    Mem=open("./verilog/Custom_module/Memory.v", 'w')
+    stringer="""
+module CTRL_{0}_{1}_sky130A(
+// Port 0: RW
+    clk0,csb0,web0,addr0,din0,dout0
+  );
+
+  parameter DATA_WIDTH = {0} ;
+  parameter ADDR_WIDTH = {2} ;
+  parameter RAM_DEPTH = 1 << ADDR_WIDTH;
+  input  clk0; // clock
+  input   csb0; // active low chip select
+  input  web0; // active low write control
+  input [ADDR_WIDTH-1:0]  addr0;
+  input [DATA_WIDTH-1:0]  din0;
+  output reg [DATA_WIDTH-1:0] dout0;
+
+  reg [DATA_WIDTH-1:0]    mem [0:RAM_DEPTH-1];
+
+  // All inputs are registers
+  always @(posedge clk0)
+  begin
+    if ( !csb0 && !web0 ) 
+        mem[addr0]<= din0;
+    if (!csb0 && web0)
+       dout0 <= mem[addr0];
+
+  end
+
+endmodule
+
+
+module DATA_32_{3}_sky130A(
+// Port 0: RW
+    clk0,csb0,web0,addr0,din0,dout0
+  );
+
+  parameter DATA_WIDTH = 32 ;
+  parameter ADDR_WIDTH = {4} ;
+  parameter RAM_DEPTH = 1 << ADDR_WIDTH;
+  input  clk0; // clock
+  input   csb0; // active low chip select
+  input  web0; // active low write control
+  input [ADDR_WIDTH-1:0]  addr0;
+  input [DATA_WIDTH-1:0]  din0;
+  output reg [DATA_WIDTH-1:0] dout0;
+
+  reg [DATA_WIDTH-1:0]    mem [0:RAM_DEPTH-1];
+
+
+  // All inputs are registers
+  always @(posedge clk0)
+  begin
+
+    if ( !csb0 && !web0 ) 
+        mem[addr0]<= din0;
+    if (!csb0 && web0)
+       dout0 <= mem[addr0];
+
+  end
+
+endmodule
+
+    """
+    Mem.write(stringer.format(CTRL_WIDTH,2**ADDR_WIDTH,ADDR_WIDTH,2**ADDR_WIDTH_DATA_BRAM,ADDR_WIDTH_DATA_BRAM))
+    Mem.close()
+
+def baseSDC():
+    SDCC=open("./base.sdc", 'w')
+    SDCC.write("""
+###############################################################################
+current_design LUDH_TEST_WRAPPER
+###############################################################################
+# Timing Constraints
+###############################################################################
+create_clock -name CLK_100  -period 20.0000 [get_ports {CLK_100}]
+    """)
+    stinger="""set_input_delay 15.0000 -clock [get_clocks clk1] -add_delay [get_ports {{[*]}}]"""
 
 if __name__ == "__main__":
     os.makedirs("./OpenRAM_config", exist_ok=True)
@@ -200,5 +354,6 @@ if __name__ == "__main__":
     f.close()
     make_config()
     alterLUD()
-
+#    baseSDC()
+    CustomMem()
 

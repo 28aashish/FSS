@@ -1,19 +1,17 @@
 
     `timescale 1ns / 1ps
 module simTester_verilog();
-reg CLK_100, CLK_200, locked, RST_IN,start_sig;
+reg CLK_100, locked, RST_IN,start_sig;
         
 wire  completed;
 localparam time t_100 = 40;
-localparam time t_200 = 20;
-
 localparam integer ADDR_WIDTH = 12;
 localparam integer INST_BRAM_SIZE = 4096;//(2**ADDR_WIDTH)
 localparam integer ADDR_WIDTH_DATA_BRAM = 10;
 localparam integer DATA_BRAM_SIZE = 1024;//(2**ADDR_WIDTH_DATA_BRAM)
-localparam integer CTRL_WIDTH = 307;
-localparam integer AU_SEL_WIDTH = 5;
-localparam integer BRAM_SEL_WIDTH = 5;
+localparam integer CTRL_WIDTH = 72;
+localparam integer AU_SEL_WIDTH = 3;
+localparam integer BRAM_SEL_WIDTH = 3;
 
 `include "systemVerilog_A_INST.svh"
 
@@ -58,24 +56,10 @@ wire bram_ZYNQ_INST_we;
   
 wire [31:0]bram_ZYNQ_INST_din_part_0;  
 wire [31:0]bram_ZYNQ_INST_din_part_1;  
-wire [31:0]bram_ZYNQ_INST_din_part_2;  
-wire [31:0]bram_ZYNQ_INST_din_part_3;  
-wire [31:0]bram_ZYNQ_INST_din_part_4;  
-wire [31:0]bram_ZYNQ_INST_din_part_5;  
-wire [31:0]bram_ZYNQ_INST_din_part_6;  
-wire [31:0]bram_ZYNQ_INST_din_part_7;  
-wire [31:0]bram_ZYNQ_INST_din_part_8;  
-wire [31:0]bram_ZYNQ_INST_din_part_9;
+wire [31:0]bram_ZYNQ_INST_din_part_2;
 wire [31:0]bram_ZYNQ_INST_dout_part_0;
 wire [31:0]bram_ZYNQ_INST_dout_part_1;
 wire [31:0]bram_ZYNQ_INST_dout_part_2;
-wire [31:0]bram_ZYNQ_INST_dout_part_3;
-wire [31:0]bram_ZYNQ_INST_dout_part_4;
-wire [31:0]bram_ZYNQ_INST_dout_part_5;
-wire [31:0]bram_ZYNQ_INST_dout_part_6;
-wire [31:0]bram_ZYNQ_INST_dout_part_7;
-wire [31:0]bram_ZYNQ_INST_dout_part_8;
-wire [31:0]bram_ZYNQ_INST_dout_part_9;
 //debug signals
 wire [1:0]debug_state;
 
@@ -188,13 +172,6 @@ wire [31:0]mux_dataBRAM_D_din_out;
 reg [31:0]instBRAM_part0_din;
 reg [31:0]instBRAM_part1_din;
 reg [31:0]instBRAM_part2_din;
-reg [31:0]instBRAM_part3_din;
-reg [31:0]instBRAM_part4_din;
-reg [31:0]instBRAM_part5_din;
-reg [31:0]instBRAM_part6_din;
-reg [31:0]instBRAM_part7_din;
-reg [31:0]instBRAM_part8_din;
-reg [31:0]instBRAM_part9_din;
 reg instBRAM_en = 0;
 reg instBRAM_we = 0;
 reg [ADDR_WIDTH-1:0]instBRAM_addr;
@@ -218,8 +195,7 @@ reg complete_sig;
 
 LUDH_TEST_WRAPPER #(ADDR_WIDTH,ADDR_WIDTH_DATA_BRAM,CTRL_WIDTH,AU_SEL_WIDTH,BRAM_SEL_WIDTH) uut (
 CLK_100,
-CLK_200,
-        locked,
+locked,
 RST_IN,
 start_sig,
 completed,
@@ -259,23 +235,9 @@ bram_ZYNQ_INST_we,
 bram_ZYNQ_INST_din_part_0,
     bram_ZYNQ_INST_din_part_1,
     bram_ZYNQ_INST_din_part_2,
-    bram_ZYNQ_INST_din_part_3,
-    bram_ZYNQ_INST_din_part_4,
-    bram_ZYNQ_INST_din_part_5,
-    bram_ZYNQ_INST_din_part_6,
-    bram_ZYNQ_INST_din_part_7,
-    bram_ZYNQ_INST_din_part_8,
-    bram_ZYNQ_INST_din_part_9,
     bram_ZYNQ_INST_dout_part_0,
     bram_ZYNQ_INST_dout_part_1,
     bram_ZYNQ_INST_dout_part_2,
-    bram_ZYNQ_INST_dout_part_3,
-    bram_ZYNQ_INST_dout_part_4,
-    bram_ZYNQ_INST_dout_part_5,
-    bram_ZYNQ_INST_dout_part_6,
-    bram_ZYNQ_INST_dout_part_7,
-    bram_ZYNQ_INST_dout_part_8,
-    bram_ZYNQ_INST_dout_part_9,
     //debug signals
 debug_state
 );
@@ -283,11 +245,6 @@ debug_state
 initial begin
 CLK_100 = 1'b1;
 forever #(t_100/2) CLK_100 = ~CLK_100;
-end
-
-initial begin
-CLK_200 = 1'b1;
-forever #(t_200/2) CLK_200 = ~CLK_200;
 end
 //Initiallizing the mux to be used for DATA BRAMS address multiplexing
 //For address
@@ -432,13 +389,6 @@ assign bram_ZYNQ_INST_we = instBRAM_we;
 assign bram_ZYNQ_INST_din_part_0 = instBRAM_part0_din;
 assign bram_ZYNQ_INST_din_part_1 = instBRAM_part1_din;
 assign bram_ZYNQ_INST_din_part_2 = instBRAM_part2_din;
-assign bram_ZYNQ_INST_din_part_3 = instBRAM_part3_din;
-assign bram_ZYNQ_INST_din_part_4 = instBRAM_part4_din;
-assign bram_ZYNQ_INST_din_part_5 = instBRAM_part5_din;
-assign bram_ZYNQ_INST_din_part_6 = instBRAM_part6_din;
-assign bram_ZYNQ_INST_din_part_7 = instBRAM_part7_din;
-assign bram_ZYNQ_INST_din_part_8 = instBRAM_part8_din;
-assign bram_ZYNQ_INST_din_part_9 = instBRAM_part9_din;
 
 //Always block for full run
 always@(posedge CLK_100) begin
@@ -467,9 +417,9 @@ end
 
 //Always block to dump bram contents    
     
-always@(posedge CLK_200) begin
-if(CLK_200 == 1 && start_mem_dump == 1 && mem_dump_complete != 1)begin 
-        
+always@(posedge CLK_100) begin
+if(CLK_100 == 1 && start_mem_dump == 1 && mem_dump_complete != 1)begin 
+
     if(count == -1) begin
         fptr = $fopen("BRAM_dump.h","w");
         $fdisplay(fptr,"float bram_dump[%d][%d];",BRAM_LIMIT_IND_DEBUG,DATA_BRAM_SIZE);
@@ -522,14 +472,14 @@ if(CLK_200 == 1 && start_mem_dump == 1 && mem_dump_complete != 1)begin
     mux_dataBRAM_D_en0 = 1'b0;
     end
 end
-else if(CLK_200 == 1 && start_mem_dump == 0)
+else if(CLK_100 == 1 && start_mem_dump == 0)
     mem_dump_complete = 0;
 end
 
 
 //Always block to erase data BRAM contents
-always@(posedge CLK_200) begin
-if(CLK_200 == 1 && start_dataBRAM_erase == 1 && dataBRAM_erase_complete != 1)begin 
+always@(posedge CLK_100) begin
+if(CLK_100 == 1 && start_dataBRAM_erase == 1 && dataBRAM_erase_complete != 1)begin 
 
     if(count <= DATA_BRAM_SIZE-2 && count >= -1)begin
         if(count == -1) begin
@@ -567,13 +517,13 @@ if(CLK_200 == 1 && start_dataBRAM_erase == 1 && dataBRAM_erase_complete != 1)beg
     mux_dataBRAM_D_we1 = 1'b0; 
         end
 end
-else if(CLK_200 == 1 && start_dataBRAM_erase == 0)
+else if(CLK_100 == 1 && start_dataBRAM_erase == 0)
     dataBRAM_erase_complete = 0;
 end
 
 //Always block to load the A matrix in data bram
-always@(posedge CLK_200) begin
-if(CLK_200 == 1 && start_A_load == 1 && A_load_complete != 1)begin 
+always@(posedge CLK_100) begin
+if(CLK_100 == 1 && start_A_load == 1 && A_load_complete != 1)begin 
 
     if(count <= A_size-2 && count >= -1)begin
         if(count == -1) //Initialization of en signals
@@ -615,7 +565,7 @@ end
     mux_dataBRAM_D_we2 = 1'b0;
         end
 end
-        else if(CLK_200 == 1 && start_A_load == 0)
+        else if(CLK_100 == 1 && start_A_load == 0)
         A_load_complete = 0;
 end
 
@@ -631,13 +581,6 @@ if(CLK_100 == 1 && start_instBRAM_erase == 1 && instBRAM_erase_complete != 1)beg
     instBRAM_part0_din = 0;
     instBRAM_part1_din = 0;
     instBRAM_part2_din = 0;
-    instBRAM_part3_din = 0;
-    instBRAM_part4_din = 0;
-    instBRAM_part5_din = 0;
-    instBRAM_part6_din = 0;
-    instBRAM_part7_din = 0;
-    instBRAM_part8_din = 0;
-    instBRAM_part9_din = 0;
         end
         count = count + 1;
         instBRAM_addr = count[ADDR_WIDTH-1:0];
@@ -667,13 +610,6 @@ if(CLK_100 == 1 && start_inst_load == 1 && inst_load_complete != 1)begin
     instBRAM_part0_din = Inst[count][0]; 
     instBRAM_part1_din = Inst[count][1]; 
     instBRAM_part2_din = Inst[count][2]; 
-    instBRAM_part3_din = Inst[count][3]; 
-    instBRAM_part4_din = Inst[count][4]; 
-    instBRAM_part5_din = Inst[count][5]; 
-    instBRAM_part6_din = Inst[count][6]; 
-    instBRAM_part7_din = Inst[count][7]; 
-    instBRAM_part8_din = Inst[count][8]; 
-    instBRAM_part9_din = Inst[count][9]; 
         instBRAM_addr = count[ADDR_WIDTH-1:0];
     end
     else if (count == total_instructions-1) begin

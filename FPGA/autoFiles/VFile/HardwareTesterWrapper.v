@@ -2,13 +2,13 @@ module LUDH_TEST_WRAPPER
     #(
         ADDR_WIDTH = 12, //Instruction BRAM
         ADDR_WIDTH_DATA_BRAM = 10,
-        CTRL_WIDTH = 307,
-        AU_SEL_WIDTH = 5,
-        BRAM_SEL_WIDTH = 5
+        CTRL_WIDTH = 72,
+        AU_SEL_WIDTH = 3,
+        BRAM_SEL_WIDTH = 3
     )
     (
         input CLK_100,
-    input CLK_200,
+    
         input locked,
         input RST_IN,
         input START,
@@ -52,13 +52,6 @@ module LUDH_TEST_WRAPPER
         input [31:0] bram_ZYNQ_INST_din_part_0,
         input [31:0] bram_ZYNQ_INST_din_part_1,
         input [31:0] bram_ZYNQ_INST_din_part_2,
-        input [31:0] bram_ZYNQ_INST_din_part_3,
-        input [31:0] bram_ZYNQ_INST_din_part_4,
-        input [31:0] bram_ZYNQ_INST_din_part_5,
-        input [31:0] bram_ZYNQ_INST_din_part_6,
-        input [31:0] bram_ZYNQ_INST_din_part_7,
-        input [31:0] bram_ZYNQ_INST_din_part_8,
-        input [31:0] bram_ZYNQ_INST_din_part_9,
     	
 
         output [31:0] bram_ZYNQ_INST_dout_part_0,
@@ -66,20 +59,6 @@ module LUDH_TEST_WRAPPER
         output [31:0] bram_ZYNQ_INST_dout_part_1,
 
         output [31:0] bram_ZYNQ_INST_dout_part_2,
-
-        output [31:0] bram_ZYNQ_INST_dout_part_3,
-
-        output [31:0] bram_ZYNQ_INST_dout_part_4,
-
-        output [31:0] bram_ZYNQ_INST_dout_part_5,
-
-        output [31:0] bram_ZYNQ_INST_dout_part_6,
-
-        output [31:0] bram_ZYNQ_INST_dout_part_7,
-
-        output [31:0] bram_ZYNQ_INST_dout_part_8,
-
-        output [31:0] bram_ZYNQ_INST_dout_part_9,
 
 
         //debug signals
@@ -90,22 +69,15 @@ module LUDH_TEST_WRAPPER
     
     //Instruction memory
     
-    wire [319:0] bram_ZYNQ_INST_din; 
-    wire [319:0] bram_ZYNQ_INST_dout;
+    wire [95:0] bram_ZYNQ_INST_din; 
+    wire [95:0] bram_ZYNQ_INST_dout;
     
     assign bram_ZYNQ_INST_din ={
-bram_ZYNQ_INST_din_part_9 , bram_ZYNQ_INST_din_part_8 , bram_ZYNQ_INST_din_part_7 , bram_ZYNQ_INST_din_part_6 , bram_ZYNQ_INST_din_part_5 , bram_ZYNQ_INST_din_part_4 , bram_ZYNQ_INST_din_part_3 , bram_ZYNQ_INST_din_part_2 , bram_ZYNQ_INST_din_part_1 , bram_ZYNQ_INST_din_part_0};
+bram_ZYNQ_INST_din_part_2 , bram_ZYNQ_INST_din_part_1 , bram_ZYNQ_INST_din_part_0};
 	
     assign bram_ZYNQ_INST_dout_part_0 = bram_ZYNQ_INST_dout[31 : 0];
     assign bram_ZYNQ_INST_dout_part_1 = bram_ZYNQ_INST_dout[63 : 32];
-    assign bram_ZYNQ_INST_dout_part_2 = bram_ZYNQ_INST_dout[95 : 64];
-    assign bram_ZYNQ_INST_dout_part_3 = bram_ZYNQ_INST_dout[127 : 96];
-    assign bram_ZYNQ_INST_dout_part_4 = bram_ZYNQ_INST_dout[159 : 128];
-    assign bram_ZYNQ_INST_dout_part_5 = bram_ZYNQ_INST_dout[191 : 160];
-    assign bram_ZYNQ_INST_dout_part_6 = bram_ZYNQ_INST_dout[223 : 192];
-    assign bram_ZYNQ_INST_dout_part_7 = bram_ZYNQ_INST_dout[255 : 224];
-    assign bram_ZYNQ_INST_dout_part_8 = bram_ZYNQ_INST_dout[287 : 256];
-    assign bram_ZYNQ_INST_dout_part_9 = { 13'b0000000000000 , bram_ZYNQ_INST_dout[CTRL_WIDTH-1 : 288]};
+    assign bram_ZYNQ_INST_dout_part_2 = { 24'b000000000000000000000000 , bram_ZYNQ_INST_dout[CTRL_WIDTH-1 : 64]};
 	    
     LUDH_TESTER #(ADDR_WIDTH, CTRL_WIDTH) tester  (
         CLK_100,
@@ -127,8 +99,7 @@ bram_ZYNQ_INST_din_part_9 , bram_ZYNQ_INST_din_part_8 , bram_ZYNQ_INST_din_part_
 
 
     LUDHardware #(ADDR_WIDTH_DATA_BRAM, CTRL_WIDTH,AU_SEL_WIDTH,BRAM_SEL_WIDTH) LUDH (
-        CLK_100,CLK_200,
-	    
+        CLK_100,
 		locked,
         ctrl_signal,
         
