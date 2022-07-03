@@ -779,13 +779,13 @@ def hardwareTesterWrapper_verilog():
         input [31:0] bram_ZYNQ_block_{0}_din,
         output [31:0] bram_ZYNQ_block_{0}_dout,
         input bram_ZYNQ_block_{0}_en,
-        input [3:0] bram_ZYNQ_block_{0}_we,
+        input bram_ZYNQ_block_{0}_we,
     
     """
 	for idx in range(65, 65 + NUM_BRAM):
 		vhdFile.write(stringer.format(chr(idx)))
 	vhdFile.write("""
-        input [31:0]bram_ZYNQ_INST_addr,
+        input [ADDR_WIDTH-1:0]bram_ZYNQ_INST_addr,
         input bram_ZYNQ_INST_en,
         input bram_ZYNQ_INST_we,
     """)
@@ -869,7 +869,7 @@ def hardwareTesterWrapper_verilog():
         bram_ZYNQ_block_{0}_din,
         bram_ZYNQ_block_{0}_dout,
         bram_ZYNQ_block_{0}_en,
-        bram_ZYNQ_block_{0}_we[0],
+        bram_ZYNQ_block_{0}_we,
     """
 	for idx in range(65, 65 + NUM_BRAM):
 	    vhdFile.write(stringer.format(chr(idx)))
@@ -1335,14 +1335,14 @@ def AXI_V() :
             slv_reg{1}[31:0],
             slv_reg{2}_out[31:0], //output
             slv_reg{3}[0],
-            slv_reg{4}[3:0],
+            slv_reg{4}[0],
             """
     for i in range(NUM_BRAM):
         vhdFile.write(stringer.format(i+4,i+4+NUM_BRAM,i+4+2*NUM_BRAM,i+4+3*NUM_BRAM,i+4+4*NUM_BRAM))
     stringer="""
             
             
-            slv_reg{0},
+            slv_reg{0}[ADDR_WIDTH - 1 : 0],
             slv_reg{1}[0],
             slv_reg{2}[0],
             

@@ -6,9 +6,9 @@ use ieee.numeric_std.all;
 entity myip_AXI_LUD_wrapper is
     generic (
         -- Users to add parameters here
-        ADDR_WIDTH : integer := 12; --Instruction BRAM
-        ADDR_WIDTH_DATA_BRAM : integer := 10;
-        CTRL_WIDTH : integer := 72;
+        ADDR_WIDTH : integer := 10; --Instruction BRAM
+        ADDR_WIDTH_DATA_BRAM : integer := 7;
+        CTRL_WIDTH : integer := 60;
         AU_SEL_WIDTH : integer := 3;
         BRAM_SEL_WIDTH : integer := 3;
         -- User parameters ends
@@ -56,9 +56,9 @@ architecture arch_imp of myip_AXI_LUD_wrapper is
 	component myip_AXI_LUD is
 		generic (
 	    --User Defined
-        ADDR_WIDTH : integer := 12; --Instruction BRAM
-        ADDR_WIDTH_DATA_BRAM : integer := 10;
-        CTRL_WIDTH : integer := 72;
+        ADDR_WIDTH : integer := 10; --Instruction BRAM
+        ADDR_WIDTH_DATA_BRAM : integer := 7;
+        CTRL_WIDTH : integer := 60;
         AU_SEL_WIDTH : integer := 3;
         BRAM_SEL_WIDTH : integer := 3;
         -- User parameters ends

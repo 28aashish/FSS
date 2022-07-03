@@ -1,8 +1,8 @@
 # Data word size
-word_size = 72
+word_size = 60
 
 # Number of words in the memory
-num_words = 4096
+num_words = 1024
 
 # Technology to use in $OPENRAM_TECH
 tech_name = "sky130A"

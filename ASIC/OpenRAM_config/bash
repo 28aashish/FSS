@@ -1,0 +1,16 @@
+python3 $OPENRAM_HOME/openram.py CTRL.py
+python3 $OPENRAM_HOME/openram.py DATA.py
+sed -i "s/vdd/VPWR/g" ./CTRL/*.l*
+sed -i "s/gnd/VGND/g" ./CTRL/*.l*
+sed -i "s/m1/met1/g" ./CTRL/*.l*
+sed -i "s/m2/met2/g" ./CTRL/*.l*
+sed -i "s/m3/met3/g" ./CTRL/*.l*
+sed -i "s/m4/met4/g" ./CTRL/*.l*
+sed -i "s/m5/met5/g" ./CTRL/*.l*
+sed -i "s/vdd/VPWR/g" ./DATA/*.l*
+sed -i "s/gnd/VGND/g" ./DATA/*.l*
+sed -i "s/m1/met1/g" ./DATA/*.l*
+sed -i "s/m2/met2/g" ./DATA/*.l*
+sed -i "s/m3/met3/g" ./DATA/*.l*
+sed -i "s/m4/met4/g" ./DATA/*.l*
+sed -i "s/m5/met5/g" ./DATA/*.l*

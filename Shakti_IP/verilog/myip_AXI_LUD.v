@@ -3,9 +3,9 @@
     module myip_AXI_LUD #
     (
         // Users to add parameters here
-        ADDR_WIDTH = 12, //Instruction BRAM
-        ADDR_WIDTH_DATA_BRAM = 10,
-        CTRL_WIDTH = 72,
+        ADDR_WIDTH = 10, //Instruction BRAM
+        ADDR_WIDTH_DATA_BRAM = 7,
+        CTRL_WIDTH = 60,
         AU_SEL_WIDTH = 3,
         BRAM_SEL_WIDTH = 3,
         // User parameters ends
@@ -18,6 +18,7 @@
     )
     (
         // Users to add ports here
+    input wire clk_1x,
         
         // User ports ends
         // Do not modify the ports beyond this line
@@ -246,14 +247,11 @@
     //User Definnd Output Signals  
     
     wire [C_S_AXI_DATA_WIDTH-1 : 0] slv_reg3_out;
-    wire [C_S_AXI_DATA_WIDTH-1 : 0] slv_reg12_out;
-    wire [C_S_AXI_DATA_WIDTH-1 : 0] slv_reg13_out;
-    wire [C_S_AXI_DATA_WIDTH-1 : 0] slv_reg14_out;
-    wire [C_S_AXI_DATA_WIDTH-1 : 0] slv_reg15_out;
-    wire [C_S_AXI_DATA_WIDTH-1 : 0] slv_reg30_out;
-    wire [C_S_AXI_DATA_WIDTH-1 : 0] slv_reg31_out;
-    wire [C_S_AXI_DATA_WIDTH-1 : 0] slv_reg32_out;
-    wire [C_S_AXI_DATA_WIDTH-1 : 0] slv_reg33_out;
+    wire [C_S_AXI_DATA_WIDTH-1 : 0] slv_reg8_out;
+    wire [C_S_AXI_DATA_WIDTH-1 : 0] slv_reg9_out;
+    wire [C_S_AXI_DATA_WIDTH-1 : 0] slv_reg19_out;
+    wire [C_S_AXI_DATA_WIDTH-1 : 0] slv_reg20_out;
+    wire [C_S_AXI_DATA_WIDTH-1 : 0] slv_reg21_out;
 
     // I/O Connections assignments
 
@@ -1640,20 +1638,20 @@
     7'd5 : reg_data_out <= slv_reg5;
     7'd6 : reg_data_out <= slv_reg6;
     7'd7 : reg_data_out <= slv_reg7;
-    7'd8 : reg_data_out <= slv_reg8;
-    7'd9 : reg_data_out <= slv_reg9;
+    7'd8 : reg_data_out <= slv_reg8_out;
+    7'd9 : reg_data_out <= slv_reg9_out;
     7'd10 : reg_data_out <= slv_reg10;
     7'd11 : reg_data_out <= slv_reg11;
-    7'd12 : reg_data_out <= slv_reg12_out;
-    7'd13 : reg_data_out <= slv_reg13_out;
-    7'd14 : reg_data_out <= slv_reg14_out;
-    7'd15 : reg_data_out <= slv_reg15_out;
+    7'd12 : reg_data_out <= slv_reg12;
+    7'd13 : reg_data_out <= slv_reg13;
+    7'd14 : reg_data_out <= slv_reg14;
+    7'd15 : reg_data_out <= slv_reg15;
     7'd16 : reg_data_out <= slv_reg16;
     7'd17 : reg_data_out <= slv_reg17;
     7'd18 : reg_data_out <= slv_reg18;
-    7'd19 : reg_data_out <= slv_reg19;
-    7'd20 : reg_data_out <= slv_reg20;
-    7'd21 : reg_data_out <= slv_reg21;
+    7'd19 : reg_data_out <= slv_reg19_out;
+    7'd20 : reg_data_out <= slv_reg20_out;
+    7'd21 : reg_data_out <= slv_reg21_out;
     7'd22 : reg_data_out <= slv_reg22;
     7'd23 : reg_data_out <= slv_reg23;
     7'd24 : reg_data_out <= slv_reg24;
@@ -1662,10 +1660,10 @@
     7'd27 : reg_data_out <= slv_reg27;
     7'd28 : reg_data_out <= slv_reg28;
     7'd29 : reg_data_out <= slv_reg29;
-    7'd30 : reg_data_out <= slv_reg30_out;
-    7'd31 : reg_data_out <= slv_reg31_out;
-    7'd32 : reg_data_out <= slv_reg32_out;
-    7'd33 : reg_data_out <= slv_reg33_out;
+    7'd30 : reg_data_out <= slv_reg30;
+    7'd31 : reg_data_out <= slv_reg31;
+    7'd32 : reg_data_out <= slv_reg32;
+    7'd33 : reg_data_out <= slv_reg33;
     7'd34 : reg_data_out <= slv_reg34;
     7'd35 : reg_data_out <= slv_reg35;
     7'd36 : reg_data_out <= slv_reg36;
@@ -1786,53 +1784,39 @@
     // Add user logic here
     LUDH_TEST_WRAPPER #(ADDR_WIDTH,ADDR_WIDTH_DATA_BRAM,CTRL_WIDTH) HARDware 
     (
-    S_AXI_ACLK,
+    clk_1x,
             slv_reg0[0],
             slv_reg1[0],
             slv_reg2[0],
             slv_reg3_out[0], // output
     
             slv_reg4[ADDR_WIDTH_DATA_BRAM - 1 : 0],
-            slv_reg8[31:0],
-            slv_reg12_out[31:0], //output
-            slv_reg16[0],
-            slv_reg20[3:0],
+            slv_reg6[31:0],
+            slv_reg8_out[31:0], //output
+            slv_reg10[0],
+            slv_reg12[0],
             
             slv_reg5[ADDR_WIDTH_DATA_BRAM - 1 : 0],
-            slv_reg9[31:0],
-            slv_reg13_out[31:0], //output
-            slv_reg17[0],
-            slv_reg21[3:0],
-            
-            slv_reg6[ADDR_WIDTH_DATA_BRAM - 1 : 0],
-            slv_reg10[31:0],
-            slv_reg14_out[31:0], //output
-            slv_reg18[0],
-            slv_reg22[3:0],
-            
-            slv_reg7[ADDR_WIDTH_DATA_BRAM - 1 : 0],
-            slv_reg11[31:0],
-            slv_reg15_out[31:0], //output
-            slv_reg19[0],
-            slv_reg23[3:0],
+            slv_reg7[31:0],
+            slv_reg9_out[31:0], //output
+            slv_reg11[0],
+            slv_reg13[0],
             
             
             
-            slv_reg24,
-            slv_reg25[0],
-            slv_reg26[0],
+            slv_reg14[ADDR_WIDTH - 1 : 0],
+            slv_reg15[0],
+            slv_reg16[0],
             
     
-            slv_reg27,
-            slv_reg28,
-            slv_reg29,
+            slv_reg17,
+            slv_reg18,
     
-            slv_reg30_out,
-            slv_reg31_out,
-            slv_reg32_out,
+            slv_reg19_out,
+            slv_reg20_out,
             
             //debug signals
-    slv_reg33_out[1:0]
+    slv_reg21_out[1:0]
         );
 
 	// User logic ends

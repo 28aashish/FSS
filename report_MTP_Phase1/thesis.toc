@@ -1,0 +1,22 @@
+\babel@toc {english}{}
+\contentsline {chapter}{List of Figures}{v}{chapter*.6}
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Motivation}{1}{section.1.1}
+\contentsline {section}{\numberline {1.2}Organization of Thesis}{2}{section.1.2}
+\contentsline {chapter}{\numberline {2}Literature Review}{3}{chapter.2}
+\contentsline {chapter}{\numberline {3}Background}{5}{chapter.3}
+\contentsline {section}{\numberline {3.1}Sparse Matrix Data Structures}{5}{section.3.1}
+\contentsline {section}{\numberline {3.2}Sparse LU Decomposition}{6}{section.3.2}
+\contentsline {section}{\numberline {3.3}Pre-processing of Matrix}{6}{section.3.3}
+\contentsline {section}{\numberline {3.4}Gilbert-Peierls' Algorithm}{7}{section.3.4}
+\contentsline {chapter}{\numberline {4}Scheduler}{9}{chapter.4}
+\contentsline {section}{\numberline {4.1}Matrix Data and Hardware Constraints}{9}{section.4.1}
+\contentsline {section}{\numberline {4.2}Symbolic analysis}{10}{section.4.2}
+\contentsline {section}{\numberline {4.3}Priority Ordering}{11}{section.4.3}
+\contentsline {section}{\numberline {4.4}Priority List Based Scheduling}{11}{section.4.4}
+\contentsline {chapter}{\numberline {5}Hardware Design}{14}{chapter.5}
+\contentsline {section}{\numberline {5.1}Block Memory Generator (BRAM Unit) IP}{15}{section.5.1}
+\contentsline {section}{\numberline {5.2}Floating-point IP}{15}{section.5.2}
+\contentsline {section}{\numberline {5.3}Crossbar switch box}{16}{section.5.3}
+\contentsline {chapter}{\numberline {6}Conclusion}{17}{chapter.6}
+\contentsline {chapter}{Bibliography}{}{chapter*.23}

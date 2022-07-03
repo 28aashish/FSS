@@ -1,0 +1,26 @@
+s=load('rajat01.mat');
+A=s.Problem.A;
+Pamd=amd(A);
+C=A(Pamd,Pamd);
+[Lc, Uc, Pc] = lu(C);
+[La, Ua, Pa] = lu(A);
+ALUc = Pc * C;
+
+subplot(2,3,1)
+spy(A)
+title('Original A')
+subplot(2,3,2)
+spy(La)
+title('L')
+subplot(2,3,3)
+spy(Ua)
+title('U')
+subplot(2,3,4)
+spy(C)
+title('AMD ordered A')
+subplot(2,3,5)
+spy(Lc)
+title('L')
+subplot(2,3,6)
+spy(Uc)
+title('U')

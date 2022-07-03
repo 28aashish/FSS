@@ -2,9 +2,9 @@
     module myip_AXI_LUD_wrapper #
     (
         // Users to add parameters here
-        ADDR_WIDTH = 12, //Instruction BRAM
-        ADDR_WIDTH_DATA_BRAM = 10,
-        CTRL_WIDTH = 72,
+        ADDR_WIDTH = 10, //Instruction BRAM
+        ADDR_WIDTH_DATA_BRAM = 7,
+        CTRL_WIDTH = 60,
         AU_SEL_WIDTH = 3,
         BRAM_SEL_WIDTH = 3,
         // User parameters ends

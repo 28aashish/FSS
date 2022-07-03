@@ -8,9 +8,9 @@ use work.types.all;
 
 entity LUDH_TEST_WRAPPER is
     generic(
-        ADDR_WIDTH : integer := 12; --Instruction BRAM
-        ADDR_WIDTH_DATA_BRAM : integer := 10;
-        CTRL_WIDTH : integer := 72;
+        ADDR_WIDTH : integer := 10; --Instruction BRAM
+        ADDR_WIDTH_DATA_BRAM : integer := 7;
+        CTRL_WIDTH : integer := 60;
         AU_SEL_WIDTH : integer := 3;
         BRAM_SEL_WIDTH : integer := 3
     );
@@ -26,40 +26,24 @@ entity LUDH_TEST_WRAPPER is
         bram_ZYNQ_block_A_din : in std_logic_vector(31 downto 0);
         bram_ZYNQ_block_A_dout : out std_logic_vector(31 downto 0);
         bram_ZYNQ_block_A_en : in std_logic;
-        bram_ZYNQ_block_A_we : in std_logic_vector(3 downto 0);
+        bram_ZYNQ_block_A_we : in std_logic;
     
 
 		bram_ZYNQ_block_B_addr : in std_logic_vector(ADDR_WIDTH_DATA_BRAM - 1 downto 0);
         bram_ZYNQ_block_B_din : in std_logic_vector(31 downto 0);
         bram_ZYNQ_block_B_dout : out std_logic_vector(31 downto 0);
         bram_ZYNQ_block_B_en : in std_logic;
-        bram_ZYNQ_block_B_we : in std_logic_vector(3 downto 0);
+        bram_ZYNQ_block_B_we : in std_logic;
     
-
-		bram_ZYNQ_block_C_addr : in std_logic_vector(ADDR_WIDTH_DATA_BRAM - 1 downto 0);
-        bram_ZYNQ_block_C_din : in std_logic_vector(31 downto 0);
-        bram_ZYNQ_block_C_dout : out std_logic_vector(31 downto 0);
-        bram_ZYNQ_block_C_en : in std_logic;
-        bram_ZYNQ_block_C_we : in std_logic_vector(3 downto 0);
-    
-
-		bram_ZYNQ_block_D_addr : in std_logic_vector(ADDR_WIDTH_DATA_BRAM - 1 downto 0);
-        bram_ZYNQ_block_D_din : in std_logic_vector(31 downto 0);
-        bram_ZYNQ_block_D_dout : out std_logic_vector(31 downto 0);
-        bram_ZYNQ_block_D_en : in std_logic;
-        bram_ZYNQ_block_D_we : in std_logic_vector(3 downto 0);
-    
-        bram_ZYNQ_INST_addr : in std_logic_vector(31 downto 0);
+        bram_ZYNQ_INST_addr : in std_logic_vector(9 downto 0);
         bram_ZYNQ_INST_en : in STD_LOGIC_VECTOR ( 0 to 0 );
         bram_ZYNQ_INST_we : in STD_LOGIC_VECTOR ( 0 to 0 );
     
     	bram_ZYNQ_INST_din_part_0 : in std_logic_vector(31 downto 0);
     	bram_ZYNQ_INST_din_part_1 : in std_logic_vector(31 downto 0);
-    	bram_ZYNQ_INST_din_part_2 : in std_logic_vector(31 downto 0);
     	
     	bram_ZYNQ_INST_dout_part_0 : out std_logic_vector(31 downto 0);
     	bram_ZYNQ_INST_dout_part_1 : out std_logic_vector(31 downto 0);
-    	bram_ZYNQ_INST_dout_part_2 : out std_logic_vector(31 downto 0);
 
 		--debug signals
         debug_state : out std_logic_vector(1 downto 0)
@@ -72,16 +56,15 @@ architecture justConnect of LUDH_TEST_WRAPPER is
     
     --Instruction memory
     
-    signal bram_ZYNQ_INST_din : std_logic_vector(95 downto 0); 
-    signal bram_ZYNQ_INST_dout : std_logic_vector(95 downto 0);
+    signal bram_ZYNQ_INST_din : std_logic_vector(63 downto 0); 
+    signal bram_ZYNQ_INST_dout : std_logic_vector(63 downto 0);
 
 begin
         bram_ZYNQ_INST_din <= 
-bram_ZYNQ_INST_din_part_2 & bram_ZYNQ_INST_din_part_1 & bram_ZYNQ_INST_din_part_0;
+bram_ZYNQ_INST_din_part_1 & bram_ZYNQ_INST_din_part_0;
 	
     bram_ZYNQ_INST_dout_part_0 <= bram_ZYNQ_INST_dout(31 downto 0);
-    bram_ZYNQ_INST_dout_part_1 <= bram_ZYNQ_INST_dout(63 downto 32);
-	bram_ZYNQ_INST_dout_part_2 <= "000000000000000000000000" & bram_ZYNQ_INST_dout(CTRL_WIDTH-1 downto 64);
+	bram_ZYNQ_INST_dout_part_1 <= "0000" & bram_ZYNQ_INST_dout(CTRL_WIDTH-1 downto 32);
 	    
     tester : entity LUDH_Tester
     generic map(ADDR_WIDTH, CTRL_WIDTH)
@@ -115,25 +98,13 @@ bram_ZYNQ_INST_din_part_2 & bram_ZYNQ_INST_din_part_1 & bram_ZYNQ_INST_din_part_
         bram_ZYNQ_block_A_din => bram_ZYNQ_block_A_din,
         bram_ZYNQ_block_A_dout => bram_ZYNQ_block_A_dout,
         bram_ZYNQ_block_A_en => bram_ZYNQ_block_A_en,
-        bram_ZYNQ_block_A_we => bram_ZYNQ_block_A_we(0),
+        bram_ZYNQ_block_A_we => bram_ZYNQ_block_A_we,
     
 		bram_ZYNQ_block_B_addr => bram_ZYNQ_block_B_addr(ADDR_WIDTH_DATA_BRAM - 1 downto 0),
         bram_ZYNQ_block_B_din => bram_ZYNQ_block_B_din,
         bram_ZYNQ_block_B_dout => bram_ZYNQ_block_B_dout,
         bram_ZYNQ_block_B_en => bram_ZYNQ_block_B_en,
-        bram_ZYNQ_block_B_we => bram_ZYNQ_block_B_we(0),
-    
-		bram_ZYNQ_block_C_addr => bram_ZYNQ_block_C_addr(ADDR_WIDTH_DATA_BRAM - 1 downto 0),
-        bram_ZYNQ_block_C_din => bram_ZYNQ_block_C_din,
-        bram_ZYNQ_block_C_dout => bram_ZYNQ_block_C_dout,
-        bram_ZYNQ_block_C_en => bram_ZYNQ_block_C_en,
-        bram_ZYNQ_block_C_we => bram_ZYNQ_block_C_we(0),
-    
-		bram_ZYNQ_block_D_addr => bram_ZYNQ_block_D_addr(ADDR_WIDTH_DATA_BRAM - 1 downto 0),
-        bram_ZYNQ_block_D_din => bram_ZYNQ_block_D_din,
-        bram_ZYNQ_block_D_dout => bram_ZYNQ_block_D_dout,
-        bram_ZYNQ_block_D_en => bram_ZYNQ_block_D_en,
-        bram_ZYNQ_block_D_we => bram_ZYNQ_block_D_we(0),
+        bram_ZYNQ_block_B_we => bram_ZYNQ_block_B_we,
             
         bram_ZYNQ_sel => START(0)
     );

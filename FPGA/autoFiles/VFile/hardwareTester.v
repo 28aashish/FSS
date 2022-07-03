@@ -1,5 +1,5 @@
-module LUDH_TESTER #(ADDR_WIDTH = 12,
-        CTRL_WIDTH = 72)
+module LUDH_TESTER #(ADDR_WIDTH = 10,
+        CTRL_WIDTH = 60)
         (CLK_100,locked,RST,CTRL_SIGNAL,COMPLETED,START,
         bram_ZYNQ_INST_addr,
         bram_ZYNQ_INST_din,

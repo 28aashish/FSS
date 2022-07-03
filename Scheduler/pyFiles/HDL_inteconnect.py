@@ -30,7 +30,7 @@ set fpver [ get_ipdefs -filter {NAME == floating_point} ]
 ##############
 create_bd_design "design_BRAM_A"
 create_bd_cell -type ip -vlnv $memver blk_mem_gen_0
-set_property -dict [list CONFIG.Memory_Type {{True_Dual_Port_RAM}} CONFIG.Write_Depth_A {{{0}}} CONFIG.Register_PortA_Output_of_Memory_Primitives {{false}} CONFIG.Register_PortB_Output_of_Memory_Primitives {{false}} CONFIG.use_bram_block {{Stand_Alone}} CONFIG.Enable_32bit_Address {{false}} CONFIG.Use_Byte_Write_Enable {{false}} CONFIG.Byte_Size {{9}} CONFIG.Enable_B {{Use_ENB_Pin}} CONFIG.Use_RSTA_Pin {{false}} CONFIG.Use_RSTB_Pin {{false}} CONFIG.Port_B_Clock {{100}} CONFIG.Port_B_Write_Rate {{50}} CONFIG.Port_B_Enable_Rate {{100}}] [get_bd_cells blk_mem_gen_0]
+set_property -dict [list CONFIG.Memory_Type {{True_Dual_Port_RAM}} CONFIG.Write_Width_A {{32}} CONFIG.Read_Width_A {{32}} CONFIG.Write_Width_B {{32}} CONFIG.Read_Width_B {{32}} CONFIG.Write_Depth_A {{{0}}} CONFIG.Register_PortA_Output_of_Memory_Primitives {{false}} CONFIG.Register_PortB_Output_of_Memory_Primitives {{false}} CONFIG.use_bram_block {{Stand_Alone}} CONFIG.Enable_32bit_Address {{false}} CONFIG.Use_Byte_Write_Enable {{false}} CONFIG.Byte_Size {{9}} CONFIG.Enable_B {{Use_ENB_Pin}} CONFIG.Use_RSTA_Pin {{false}} CONFIG.Use_RSTB_Pin {{false}} CONFIG.Port_B_Clock {{100}} CONFIG.Port_B_Write_Rate {{50}} CONFIG.Port_B_Enable_Rate {{100}}] [get_bd_cells blk_mem_gen_0]
 make_bd_pins_external  [get_bd_cells blk_mem_gen_0]
 make_bd_intf_pins_external  [get_bd_cells blk_mem_gen_0]
 save_bd_design
@@ -42,7 +42,7 @@ close_bd_design [get_bd_designs design_BRAM_A]
 ##############
 create_bd_design "design_BRAM_A"
 create_bd_cell -type ip -vlnv $memver blk_mem_gen_0
-set_property -dict [list CONFIG.Memory_Type {{Single_port_RAM}} CONFIG.Write_Depth_A {{{0}}} CONFIG.Register_PortA_Output_of_Memory_Primitives {{false}} CONFIG.use_bram_block {{Stand_Alone}} CONFIG.Enable_32bit_Address {{false}} CONFIG.Use_Byte_Write_Enable {{false}} CONFIG.Byte_Size {{9}} CONFIG.Enable_B {{Use_ENB_Pin}} CONFIG.Use_RSTA_Pin {{false}}] [get_bd_cells blk_mem_gen_0]
+set_property -dict [list CONFIG.Memory_Type {{Single_port_RAM}} CONFIG.Write_Width_A {{32}} CONFIG.Read_Width_A {{32}} CONFIG.Write_Width_B {{32}} CONFIG.Read_Width_B {{32}} CONFIG.Write_Depth_A {{{0}}} CONFIG.Register_PortA_Output_of_Memory_Primitives {{false}} CONFIG.use_bram_block {{Stand_Alone}} CONFIG.Enable_32bit_Address {{false}} CONFIG.Use_Byte_Write_Enable {{false}} CONFIG.Byte_Size {{9}} CONFIG.Enable_B {{Use_ENB_Pin}} CONFIG.Use_RSTA_Pin {{false}}] [get_bd_cells blk_mem_gen_0]
 make_bd_pins_external  [get_bd_cells blk_mem_gen_0]
 make_bd_intf_pins_external  [get_bd_cells blk_mem_gen_0]
 save_bd_design
@@ -60,7 +60,7 @@ close_bd_design [get_bd_designs design_BRAM_A]
 create_bd_design "design_CTRL"
 #update_compile_order -fileset sources_1
 create_bd_cell -type ip -vlnv $memver blk_mem_gen_0
-set_property -dict [list CONFIG.Write_Width_A {{{0}}} CONFIG.Write_Depth_A {{{1}}} CONFIG.Register_PortA_Output_of_Memory_Primitives {{false}} CONFIG.use_bram_block {{Stand_Alone}} CONFIG.Enable_32bit_Address {{false}} CONFIG.Use_Byte_Write_Enable {{false}} CONFIG.Byte_Size {{9}} CONFIG.Read_Width_A {{{0}}} CONFIG.Write_Width_B {{{0}}} CONFIG.Read_Width_B {{{0}}} CONFIG.Use_RSTA_Pin {{false}}] [get_bd_cells blk_mem_gen_0]
+set_property -dict [list CONFIG.Memory_Type {{Single_port_RAM}}  CONFIG.Write_Width_A {{{0}}} CONFIG.Read_Width_A {{{0}}} CONFIG.Write_Width_B {{{0}}} CONFIG.Read_Width_B {{{0}}} CONFIG.Write_Depth_A {{{1}}} CONFIG.Register_PortA_Output_of_Memory_Primitives {{false}} CONFIG.use_bram_block {{Stand_Alone}} CONFIG.Enable_32bit_Address {{false}} CONFIG.Use_Byte_Write_Enable {{false}} CONFIG.Byte_Size {{9}} CONFIG.Use_RSTA_Pin {{false}}] [get_bd_cells blk_mem_gen_0]
 make_bd_pins_external  [get_bd_cells blk_mem_gen_0]
 make_bd_intf_pins_external  [get_bd_cells blk_mem_gen_0]
 save_bd_design
@@ -987,15 +987,16 @@ entity LUDH_TEST_WRAPPER is
         bram_ZYNQ_block_{0}_din : in std_logic_vector(31 downto 0);
         bram_ZYNQ_block_{0}_dout : out std_logic_vector(31 downto 0);
         bram_ZYNQ_block_{0}_en : in std_logic;
-        bram_ZYNQ_block_{0}_we : in std_logic_vector(3 downto 0);
+        bram_ZYNQ_block_{0}_we : in std_logic;
     """
 	for idx in range(65, 65 + NUM_BRAM):
 		vhdFile.write(stringer.format(chr(idx)))
-	vhdFile.write("""
-        bram_ZYNQ_INST_addr : in std_logic_vector(31 downto 0);
+	stringer="""
+        bram_ZYNQ_INST_addr : in std_logic_vector({0} downto 0);
         bram_ZYNQ_INST_en : in STD_LOGIC_VECTOR ( 0 to 0 );
         bram_ZYNQ_INST_we : in STD_LOGIC_VECTOR ( 0 to 0 );
-    """)
+    """
+	vhdFile.write(stringer.format(ADDR_WIDTH-1))
 	stringer="""
     	bram_ZYNQ_INST_din_part_{0} : in std_logic_vector(31 downto 0);"""
 	for idx in range(math.ceil(CTRL_WIDTH/32.0)):
@@ -1081,7 +1082,7 @@ begin
         bram_ZYNQ_block_{0}_din => bram_ZYNQ_block_{0}_din,
         bram_ZYNQ_block_{0}_dout => bram_ZYNQ_block_{0}_dout,
         bram_ZYNQ_block_{0}_en => bram_ZYNQ_block_{0}_en,
-        bram_ZYNQ_block_{0}_we => bram_ZYNQ_block_{0}_we(0),
+        bram_ZYNQ_block_{0}_we => bram_ZYNQ_block_{0}_we,
     """
 	for idx in range(65, 65 + NUM_BRAM):
 	    vhdFile.write(stringer.format(chr(idx)))
@@ -1530,14 +1531,14 @@ begin
             bram_ZYNQ_block_{5}_din => slv_reg{1}(31 downto 0),
             bram_ZYNQ_block_{5}_dout => slv_reg{2}_out(31 downto 0), --output
             bram_ZYNQ_block_{5}_en => slv_reg{3}(0),
-            bram_ZYNQ_block_{5}_we => slv_reg{4}(3 downto 0),
+            bram_ZYNQ_block_{5}_we => slv_reg{4}(0),
             """
     for i in range(NUM_BRAM):
         vhdFile.write(stringer.format(i+4,i+4+NUM_BRAM,i+4+2*NUM_BRAM,i+4+3*NUM_BRAM,i+4+4*NUM_BRAM,chr(i+65)))
     vhdFile.write("""
             
             
-            bram_ZYNQ_INST_addr => slv_reg44(31 downto 0),
+            bram_ZYNQ_INST_addr => slv_reg44(ADDR_WIDTH-1 downto 0),
             bram_ZYNQ_INST_en => slv_reg45(0 downto 0),
             bram_ZYNQ_INST_we => slv_reg46(0 downto 0),
             

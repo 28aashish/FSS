@@ -1,0 +1,72 @@
+\section{Sparse Matrix Data Structures}
+Relatively fewer non-zero elements characterize sparse matrices. These matrices are standard in circuit simulation, power system modeling, computer vision, and 5G Communication. Some data structures can make storage efficient. Hence it is very crucial to select a storage format for using memory efficiently. Following are an example of data formats:-
+\begin{itemize}
+\item Triplet Format:-In this format, we have three arrays consisting in the structure of ( $A_{ij}, i, j $), i.e. (Value, row indices, column indices) of non zero terms on the matrix. 
+\item Compressed Colum Sparse (CCS):-In this format, the three arrays are used with the following logic:-
+\begin{itemize}
+	\item Non-zero records of the same column are listed one after another
+	\item Row indices of corresponding Non zero records.
+	\item Column pointer where each column starts
+\end{itemize}
+\item Compressed Row Sparse (CRS):-This format is similar to CCS. This includes Non-zero records, column indices, and row pointers where each row starts.
+\end{itemize}
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        $\begin{bmatrix}
+            5 &  0 & -5 &  0 & 6 \\
+            0 &  4 &  0 & -4 & 0 \\
+            2 &  0 &  0 &  0 & 0 \\
+            1 & -3 &  0 & -1 & 0 \\
+            0 &  0 & -2 &  0 & 3 \\
+        \end{bmatrix}$
+        \caption{Example Matrix}
+        \label{fig:sparseDS:example}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.5\textwidth}
+        \centering
+        \resizebox{\textwidth}{!}{\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+            \hline
+            Values & 5 & -5 & 6 & 4 & -4 & 2 & 1 & -3 & -1 & -2 & 3 \\
+            \hline
+            Column Indices & 0 & 2 & 4 & 1 & 3 & 0 & 0 & 1 & 3 & 2 & 4 \\
+            \hline
+            Row Indices & 0 & 0 & 0 & 1 & 1 & 2 & 3 & 3 & 3 & 4 & 4 \\
+            \hline
+        \end{tabular}}
+        \caption{Triplet format}
+        \label{fig:sparseDS:triplet}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \resizebox{\textwidth}{!}{\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+            \hline
+            Values & 5 & 2 & 1 & 4 & -3 & -5 &-2 & -4 & -1 & 6 & 3 & - \\
+            \hline
+            Row Indices & 0 & 2 & 3 & 1 & 3 & 0 & 4 & 1 & 3 & 0 & 4 & - \\
+            \hline
+            Column Pointers & \multicolumn{3}{c|}{0} & \multicolumn{2}{c|}{3} & \multicolumn{2}{c|}{5} & \multicolumn{2}{c|}{7} & \multicolumn{2}{c|}{9} & 11 \\
+            \hline
+        \end{tabular}}
+        \caption{Compresses Column Sparse}
+        \label{fig:sparseDS:ccs}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \resizebox{\textwidth}{!}{\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+            \hline
+            Values & 5 & -5 & 6 & 4 & -4 & 2 & 1 & -3 & -1 & -2 & 3  & -\\
+            \hline
+            Column Indices & 0 & 2 & 4 & 1 & 3 & 0 & 0 & 1 & 3 & 2 & 4 & -\\
+            \hline
+            Row Pointers & \multicolumn{3}{c|}{0} & \multicolumn{2}{c|}{3} & 5 & \multicolumn{3}{c|}{6} & \multicolumn{2}{c|}{9} & 11 \\
+            \hline
+        \end{tabular}}
+        \caption{Compresses Row Sparse}
+        \label{fig:sparseDS:ccs}
+    \end{subfigure}
+    \caption{Storage formats for sparse matrices}
+    \label{fig:sparseDS:formatsExample}
+\end{figure}
+The Gilbert-Peierls’ Algorithm uses a columns-based pointing adjacency list, and for solving $Lx=b$ and LU decomposition and hardware should use memory efficiently. The CCS format suits our requirements for creating directed acyclic graphs, symbolic analysis, and scheduling.

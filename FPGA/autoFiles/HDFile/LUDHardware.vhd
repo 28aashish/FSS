@@ -9,8 +9,8 @@ use work.types.all;
 
 entity LUDHardware is
     generic(
-        ADDR_WIDTH : integer := 10;
-        CTRL_WIDTH : integer := 72;
+        ADDR_WIDTH : integer := 7;
+        CTRL_WIDTH : integer := 60;
         AU_SEL_WIDTH : integer := 3;
         BRAM_SEL_WIDTH : integer := 3
     );
@@ -33,20 +33,6 @@ entity LUDHardware is
         bram_ZYNQ_block_B_we : in std_logic;
         
         
-        bram_ZYNQ_block_C_addr : in std_logic_vector(ADDR_WIDTH - 1 downto 0);
-        bram_ZYNQ_block_C_din : in std_logic_vector(31 downto 0);
-        bram_ZYNQ_block_C_dout : out std_logic_vector(31 downto 0);
-        bram_ZYNQ_block_C_en : in std_logic;
-        bram_ZYNQ_block_C_we : in std_logic;
-        
-        
-        bram_ZYNQ_block_D_addr : in std_logic_vector(ADDR_WIDTH - 1 downto 0);
-        bram_ZYNQ_block_D_din : in std_logic_vector(31 downto 0);
-        bram_ZYNQ_block_D_dout : out std_logic_vector(31 downto 0);
-        bram_ZYNQ_block_D_en : in std_logic;
-        bram_ZYNQ_block_D_we : in std_logic;
-        
-        
                 bram_ZYNQ_sel : in std_logic
         
     );
@@ -57,13 +43,21 @@ architecture yoStyle of LUDHardware is
     component design_BRAM_A_wrapper is
     port (
         
-        BRAM_PORTA_addr : in STD_LOGIC_VECTOR ( 9 downto 0 );
+        
+        BRAM_PORTA_addr : in STD_LOGIC_VECTOR ( 6 downto 0 );
         BRAM_PORTA_clk : in STD_LOGIC;
         BRAM_PORTA_din : in STD_LOGIC_VECTOR ( 31 downto 0 );
         BRAM_PORTA_dout : out STD_LOGIC_VECTOR ( 31 downto 0 );
         BRAM_PORTA_en : in STD_LOGIC;
-        BRAM_PORTA_we : in STD_LOGIC_VECTOR ( 0 to 0 )
+        BRAM_PORTA_we : in STD_LOGIC_VECTOR ( 0 to 0 );    
     
+        BRAM_PORTB_addr : in STD_LOGIC_VECTOR ( 6 downto 0 );
+        BRAM_PORTB_clk : in STD_LOGIC;
+        BRAM_PORTB_din : in STD_LOGIC_VECTOR ( 31 downto 0 );
+        BRAM_PORTB_dout : out STD_LOGIC_VECTOR ( 31 downto 0 );
+        BRAM_PORTB_en : in STD_LOGIC;
+        BRAM_PORTB_we : in STD_LOGIC_VECTOR ( 0 to 0 )   
+	
         );
     end component design_BRAM_A_wrapper;
     
@@ -115,23 +109,23 @@ architecture yoStyle of LUDHardware is
     signal block_A_porta_en   : std_logic;
     signal block_A_porta_we   : std_logic;
     
+    signal block_A_portb_addr : std_logic_vector(ADDR_WIDTH-1 downto 0);
+    signal block_A_portb_din  : std_logic_vector(31 downto 0);
+    signal block_A_portb_dout : std_logic_vector(31 downto 0);
+    signal block_A_portb_en   : std_logic;
+    signal block_A_portb_we   : std_logic;
+    
     signal block_B_porta_addr : std_logic_vector(ADDR_WIDTH-1 downto 0);
     signal block_B_porta_din  : std_logic_vector(31 downto 0);
     signal block_B_porta_dout : std_logic_vector(31 downto 0);
     signal block_B_porta_en   : std_logic;
     signal block_B_porta_we   : std_logic;
     
-    signal block_C_porta_addr : std_logic_vector(ADDR_WIDTH-1 downto 0);
-    signal block_C_porta_din  : std_logic_vector(31 downto 0);
-    signal block_C_porta_dout : std_logic_vector(31 downto 0);
-    signal block_C_porta_en   : std_logic;
-    signal block_C_porta_we   : std_logic;
-    
-    signal block_D_porta_addr : std_logic_vector(ADDR_WIDTH-1 downto 0);
-    signal block_D_porta_din  : std_logic_vector(31 downto 0);
-    signal block_D_porta_dout : std_logic_vector(31 downto 0);
-    signal block_D_porta_en   : std_logic;
-    signal block_D_porta_we   : std_logic;
+    signal block_B_portb_addr : std_logic_vector(ADDR_WIDTH-1 downto 0);
+    signal block_B_portb_din  : std_logic_vector(31 downto 0);
+    signal block_B_portb_dout : std_logic_vector(31 downto 0);
+    signal block_B_portb_en   : std_logic;
+    signal block_B_portb_we   : std_logic;
      
     signal mac_A_result_tdata : std_logic_vector(31 downto 0);
     signal mac_A_result_tready : std_logic;
@@ -175,9 +169,9 @@ architecture yoStyle of LUDHardware is
     signal div_A_b_sel : std_logic_vector(AU_SEL_WIDTH-1 downto 0);
     
         signal block_A_a_sel : std_logic_vector(BRAM_SEL_WIDTH-1 downto 0);
+        signal block_A_b_sel : std_logic_vector(BRAM_SEL_WIDTH-1 downto 0);
         signal block_B_a_sel : std_logic_vector(BRAM_SEL_WIDTH-1 downto 0);
-        signal block_C_a_sel : std_logic_vector(BRAM_SEL_WIDTH-1 downto 0);
-        signal block_D_a_sel : std_logic_vector(BRAM_SEL_WIDTH-1 downto 0);
+        signal block_B_b_sel : std_logic_vector(BRAM_SEL_WIDTH-1 downto 0);
 
     --Mux signals for connection to ZYNQ system
     
@@ -188,28 +182,14 @@ architecture yoStyle of LUDHardware is
     signal bram_decoder_in_block_A : std_logic_vector(31 downto 0);  
     signal bram_mux_out_block_A_en : std_logic;
     signal bram_mux_out_block_A_we : std_logic;
-    
+    signal bram_mux_out_block_A_clock : std_logic;
 
     signal bram_mux_out_block_B_addr : std_logic_vector(ADDR_WIDTH - 1 downto 0);
     signal bram_mux_out_block_B_din : std_logic_vector(31 downto 0);
     signal bram_decoder_in_block_B : std_logic_vector(31 downto 0);  
     signal bram_mux_out_block_B_en : std_logic;
     signal bram_mux_out_block_B_we : std_logic;
-    
-
-    signal bram_mux_out_block_C_addr : std_logic_vector(ADDR_WIDTH - 1 downto 0);
-    signal bram_mux_out_block_C_din : std_logic_vector(31 downto 0);
-    signal bram_decoder_in_block_C : std_logic_vector(31 downto 0);  
-    signal bram_mux_out_block_C_en : std_logic;
-    signal bram_mux_out_block_C_we : std_logic;
-    
-
-    signal bram_mux_out_block_D_addr : std_logic_vector(ADDR_WIDTH - 1 downto 0);
-    signal bram_mux_out_block_D_din : std_logic_vector(31 downto 0);
-    signal bram_decoder_in_block_D : std_logic_vector(31 downto 0);  
-    signal bram_mux_out_block_D_en : std_logic;
-    signal bram_mux_out_block_D_we : std_logic;
-    
+    signal bram_mux_out_block_B_clock : std_logic;
     
 begin
 
@@ -222,7 +202,15 @@ begin
         BRAM_PORTA_din      => bram_mux_out_block_A_din,
         BRAM_PORTA_dout     => bram_decoder_in_block_A,
         BRAM_PORTA_en       => bram_mux_out_block_A_en,
-        BRAM_PORTA_we(0)       => bram_mux_out_block_A_we
+        BRAM_PORTA_we(0)       => bram_mux_out_block_A_we,
+
+        BRAM_PORTB_addr     => block_A_portb_addr,
+        BRAM_PORTB_clk      => CLK_100,
+        BRAM_PORTB_din      => block_A_portb_din,
+        BRAM_PORTB_dout     => block_A_portb_dout,
+        BRAM_PORTB_en       => block_A_portb_en,
+        BRAM_PORTB_we(0)       => block_A_portb_we
+            
     );
     
     bram_ZYNQ_mux_A : entity bram_ZYNQ_mux
@@ -258,7 +246,15 @@ begin
         BRAM_PORTA_din      => bram_mux_out_block_B_din,
         BRAM_PORTA_dout     => bram_decoder_in_block_B,
         BRAM_PORTA_en       => bram_mux_out_block_B_en,
-        BRAM_PORTA_we(0)       => bram_mux_out_block_B_we
+        BRAM_PORTA_we(0)       => bram_mux_out_block_B_we,
+
+        BRAM_PORTB_addr     => block_B_portb_addr,
+        BRAM_PORTB_clk      => CLK_100,
+        BRAM_PORTB_din      => block_B_portb_din,
+        BRAM_PORTB_dout     => block_B_portb_dout,
+        BRAM_PORTB_en       => block_B_portb_en,
+        BRAM_PORTB_we(0)       => block_B_portb_we
+            
     );
     
     bram_ZYNQ_mux_B : entity bram_ZYNQ_mux
@@ -282,78 +278,6 @@ begin
     port map(decoder_in => bram_decoder_in_block_B,
           decoder_out_0 => bram_ZYNQ_block_B_dout,
           decoder_out_1 => block_B_porta_dout,
-          sel => bram_ZYNQ_sel
-          );
-    
-    
-    block_C : design_BRAM_A_wrapper
-    port map (    
-        
-        BRAM_PORTA_addr     => bram_mux_out_block_C_addr,
-        BRAM_PORTA_clk      => CLK_100,
-        BRAM_PORTA_din      => bram_mux_out_block_C_din,
-        BRAM_PORTA_dout     => bram_decoder_in_block_C,
-        BRAM_PORTA_en       => bram_mux_out_block_C_en,
-        BRAM_PORTA_we(0)       => bram_mux_out_block_C_we
-    );
-    
-    bram_ZYNQ_mux_C : entity bram_ZYNQ_mux
-    generic map(ADDR_WIDTH => ADDR_WIDTH)
-    port map(bram_addr_0 => bram_ZYNQ_block_C_addr,
-          bram_din_0 => bram_ZYNQ_block_C_din,
-          bram_en_0 => bram_ZYNQ_block_C_en,
-          bram_we_0 => bram_ZYNQ_block_C_we,
-          bram_addr_1 => block_C_porta_addr,
-          bram_din_1 => block_C_porta_din,
-          bram_en_1 => block_C_porta_en,
-          bram_we_1 => block_C_porta_we,
-          bram_addr_out => bram_mux_out_block_C_addr,
-          bram_din_out => bram_mux_out_block_C_din,
-          bram_en_out => bram_mux_out_block_C_en,
-          bram_we_out => bram_mux_out_block_C_we,
-          sel => bram_ZYNQ_sel
-          );
-    bram_ZYNQ_decoder_C :entity bram_ZYNQ_decoder
-    generic map (width => 32)
-    port map(decoder_in => bram_decoder_in_block_C,
-          decoder_out_0 => bram_ZYNQ_block_C_dout,
-          decoder_out_1 => block_C_porta_dout,
-          sel => bram_ZYNQ_sel
-          );
-    
-    
-    block_D : design_BRAM_A_wrapper
-    port map (    
-        
-        BRAM_PORTA_addr     => bram_mux_out_block_D_addr,
-        BRAM_PORTA_clk      => CLK_100,
-        BRAM_PORTA_din      => bram_mux_out_block_D_din,
-        BRAM_PORTA_dout     => bram_decoder_in_block_D,
-        BRAM_PORTA_en       => bram_mux_out_block_D_en,
-        BRAM_PORTA_we(0)       => bram_mux_out_block_D_we
-    );
-    
-    bram_ZYNQ_mux_D : entity bram_ZYNQ_mux
-    generic map(ADDR_WIDTH => ADDR_WIDTH)
-    port map(bram_addr_0 => bram_ZYNQ_block_D_addr,
-          bram_din_0 => bram_ZYNQ_block_D_din,
-          bram_en_0 => bram_ZYNQ_block_D_en,
-          bram_we_0 => bram_ZYNQ_block_D_we,
-          bram_addr_1 => block_D_porta_addr,
-          bram_din_1 => block_D_porta_din,
-          bram_en_1 => block_D_porta_en,
-          bram_we_1 => block_D_porta_we,
-          bram_addr_out => bram_mux_out_block_D_addr,
-          bram_din_out => bram_mux_out_block_D_din,
-          bram_en_out => bram_mux_out_block_D_en,
-          bram_we_out => bram_mux_out_block_D_we,
-          sel => bram_ZYNQ_sel
-          );
-    bram_ZYNQ_decoder_D :entity bram_ZYNQ_decoder
-    generic map (width => 32)
-    port map(decoder_in => bram_decoder_in_block_D,
-          decoder_out_0 => bram_ZYNQ_block_D_dout,
-          decoder_out_1 => block_D_porta_dout,
           sel => bram_ZYNQ_sel
           );
     
@@ -398,9 +322,9 @@ begin
     inputLocations(0) <= mac_A_result_tdata;
     inputLocations(1) <= div_A_result_tdata;
     inputLocations(2) <= block_A_porta_dout;
-    inputLocations(3) <= block_B_porta_dout;
-    inputLocations(4) <= block_C_porta_dout;
-    inputLocations(5) <= block_D_porta_dout;
+    inputLocations(3) <= block_A_portb_dout;
+    inputLocations(4) <= block_B_porta_dout;
+    inputLocations(5) <= block_B_portb_dout;
     inputLocations(6) <= (others => '0');     
     
        
@@ -451,6 +375,16 @@ begin
         DOUT => block_A_porta_din
     );
     
+
+    MUX_BRAM_A_b_in : entity MUX_BRAM_IN
+    port map(
+        SEL => block_A_b_sel,
+        DIN => inputLocations(5 downto 0),
+        DOUT => block_A_portb_din
+
+    );
+        
+        
     MUX_BRAM_B_a_in : entity MUX_BRAM_IN
     port map(
         SEL => block_B_a_sel,
@@ -458,45 +392,41 @@ begin
         DOUT => block_B_porta_din
     );
     
-    MUX_BRAM_C_a_in : entity MUX_BRAM_IN
+
+    MUX_BRAM_B_b_in : entity MUX_BRAM_IN
     port map(
-        SEL => block_C_a_sel,
+        SEL => block_B_b_sel,
         DIN => inputLocations(5 downto 0),
-        DOUT => block_C_porta_din
+        DOUT => block_B_portb_din
+
     );
-    
-    MUX_BRAM_D_a_in : entity MUX_BRAM_IN
-    port map(
-        SEL => block_D_a_sel,
-        DIN => inputLocations(5 downto 0),
-        DOUT => block_D_porta_din
-    );
-    
+        
+        
     block_A_porta_addr <= CTRL_Signal(CTRL_WIDTH-0*ADDR_WIDTH-1 downto CTRL_WIDTH-1*ADDR_WIDTH-0);
     block_A_porta_we <= CTRL_Signal(CTRL_WIDTH-1*ADDR_WIDTH-1);
-    block_B_porta_addr <= CTRL_Signal(CTRL_WIDTH-1*ADDR_WIDTH-2 downto CTRL_WIDTH-2*ADDR_WIDTH-1);
-    block_B_porta_we <= CTRL_Signal(CTRL_WIDTH-2*ADDR_WIDTH-2);
-    block_C_porta_addr <= CTRL_Signal(CTRL_WIDTH-2*ADDR_WIDTH-3 downto CTRL_WIDTH-3*ADDR_WIDTH-2);
-    block_C_porta_we <= CTRL_Signal(CTRL_WIDTH-3*ADDR_WIDTH-3);
-    block_D_porta_addr <= CTRL_Signal(CTRL_WIDTH-3*ADDR_WIDTH-4 downto CTRL_WIDTH-4*ADDR_WIDTH-3);
-    block_D_porta_we <= CTRL_Signal(CTRL_WIDTH-4*ADDR_WIDTH-4);
+    block_A_portb_addr <= CTRL_Signal(CTRL_WIDTH-1*ADDR_WIDTH-2 downto CTRL_WIDTH-2*ADDR_WIDTH-1);
+    block_A_portb_we <= CTRL_Signal(CTRL_WIDTH-2*ADDR_WIDTH-2);
+    block_B_porta_addr <= CTRL_Signal(CTRL_WIDTH-2*ADDR_WIDTH-3 downto CTRL_WIDTH-3*ADDR_WIDTH-2);
+    block_B_porta_we <= CTRL_Signal(CTRL_WIDTH-3*ADDR_WIDTH-3);
+    block_B_portb_addr <= CTRL_Signal(CTRL_WIDTH-3*ADDR_WIDTH-4 downto CTRL_WIDTH-4*ADDR_WIDTH-3);
+    block_B_portb_we <= CTRL_Signal(CTRL_WIDTH-4*ADDR_WIDTH-4);
     mac_A_a_sel <= CTRL_Signal(CTRL_WIDTH-4*ADDR_WIDTH-0*AU_SEL_WIDTH-5 downto CTRL_WIDTH-4*ADDR_WIDTH-1*AU_SEL_WIDTH-4);
     mac_A_b_sel <= CTRL_Signal(CTRL_WIDTH-4*ADDR_WIDTH-1*AU_SEL_WIDTH-5 downto CTRL_WIDTH-4*ADDR_WIDTH-2*AU_SEL_WIDTH-4);
     mac_A_c_sel <= CTRL_Signal(CTRL_WIDTH-4*ADDR_WIDTH-2*AU_SEL_WIDTH-5 downto CTRL_WIDTH-4*ADDR_WIDTH-3*AU_SEL_WIDTH-4);
     div_A_a_sel <= CTRL_Signal(CTRL_WIDTH-4*ADDR_WIDTH-3*AU_SEL_WIDTH-5 downto CTRL_WIDTH-4*ADDR_WIDTH-4*AU_SEL_WIDTH-4);
     div_A_b_sel <= CTRL_Signal(CTRL_WIDTH-4*ADDR_WIDTH-4*AU_SEL_WIDTH-5 downto CTRL_WIDTH-4*ADDR_WIDTH-5*AU_SEL_WIDTH-4);
     block_A_a_sel <= CTRL_Signal(CTRL_WIDTH-4*ADDR_WIDTH-5*AU_SEL_WIDTH-0*BRAM_SEL_WIDTH-5 downto CTRL_WIDTH-4*ADDR_WIDTH-5*AU_SEL_WIDTH-1*BRAM_SEL_WIDTH-4);
-    block_B_a_sel <= CTRL_Signal(CTRL_WIDTH-4*ADDR_WIDTH-5*AU_SEL_WIDTH-1*BRAM_SEL_WIDTH-5 downto CTRL_WIDTH-4*ADDR_WIDTH-5*AU_SEL_WIDTH-2*BRAM_SEL_WIDTH-4);
-    block_C_a_sel <= CTRL_Signal(CTRL_WIDTH-4*ADDR_WIDTH-5*AU_SEL_WIDTH-2*BRAM_SEL_WIDTH-5 downto CTRL_WIDTH-4*ADDR_WIDTH-5*AU_SEL_WIDTH-3*BRAM_SEL_WIDTH-4);
-    block_D_a_sel <= CTRL_Signal(CTRL_WIDTH-4*ADDR_WIDTH-5*AU_SEL_WIDTH-3*BRAM_SEL_WIDTH-5 downto CTRL_WIDTH-4*ADDR_WIDTH-5*AU_SEL_WIDTH-4*BRAM_SEL_WIDTH-4);
+    block_A_b_sel <= CTRL_Signal(CTRL_WIDTH-4*ADDR_WIDTH-5*AU_SEL_WIDTH-1*BRAM_SEL_WIDTH-5 downto CTRL_WIDTH-4*ADDR_WIDTH-5*AU_SEL_WIDTH-2*BRAM_SEL_WIDTH-4);
+    block_B_a_sel <= CTRL_Signal(CTRL_WIDTH-4*ADDR_WIDTH-5*AU_SEL_WIDTH-2*BRAM_SEL_WIDTH-5 downto CTRL_WIDTH-4*ADDR_WIDTH-5*AU_SEL_WIDTH-3*BRAM_SEL_WIDTH-4);
+    block_B_b_sel <= CTRL_Signal(CTRL_WIDTH-4*ADDR_WIDTH-5*AU_SEL_WIDTH-3*BRAM_SEL_WIDTH-5 downto CTRL_WIDTH-4*ADDR_WIDTH-5*AU_SEL_WIDTH-4*BRAM_SEL_WIDTH-4);
 
     --  CTRL_Signal(0) is actually a complete signal which is required by this module during debugging
 
     
     block_A_porta_en <= locked;
+    block_A_portb_en <= locked;
     block_B_porta_en <= locked;
-    block_C_porta_en <= locked;
-    block_D_porta_en <= locked;
+    block_B_portb_en <= locked;
     
     RST <= not locked;
 

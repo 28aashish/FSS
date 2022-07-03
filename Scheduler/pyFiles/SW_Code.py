@@ -94,7 +94,7 @@ void printall()
     float val_float;
     printf("float bram_dump[%d][%d]={0};\\r\\n",BRAMs,BRAMs_Size);
 	for(j = 0; j < BRAMs_Size;j++){{
-		for(i=0;i<BRAMs;i++)\{{
+		for(i=0;i<BRAMs;i++){{
     """
     SW.write(stringer.format(Xpara_Name))
     stringer="""

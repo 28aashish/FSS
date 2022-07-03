@@ -1,0 +1,38 @@
+\babel@toc {english}{}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces The overall flow of FPGA Implementation of IP\relax }}{2}{figure.caption.9}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces NOC based hardware configuration (in \cite {Kapre})\relax }}{4}{figure.caption.10}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Crossbar switch based hardware configuration (in \cite {WuWei})\relax }}{5}{figure.caption.11}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Hardware Architecture used by Nechma \cite {Nechma}\relax }}{5}{figure.caption.12}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Storage formats for sparse matrices\relax }}{6}{figure.caption.13}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Non-zero elements of L and U with original matrix A\relax }}{8}{figure.caption.14}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Non-zero elements of L and U with AMD ordered matrix permuted A\relax }}{8}{figure.caption.15}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Naming conventions used in algorithm\relax }}{9}{figure.caption.16}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces ASIC Design Flow\cite {Sunny}\relax }}{10}{figure.caption.17}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Non-zero pattern in LU decomposition\relax }}{14}{figure.caption.18}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Allocation tables used by scheduling algorithm\relax }}{16}{figure.caption.19}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces FPGA Implementation architecture\relax }}{18}{figure.caption.20}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Shakti Processor E-Class based Parashu Configuration\relax }}{22}{figure.caption.22}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Software program flow\relax }}{22}{figure.caption.23}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces SDK architecture\relax }}{23}{figure.caption.24}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Speed up of Design vs Number of SRAM with varying Processing Element\relax }}{25}{figure.caption.26}
+\contentsline {figure}{\numberline {6.2}{\ignorespaces OpenRAM Condition for Data SRAM\relax }}{26}{figure.caption.27}
+\contentsline {figure}{\numberline {6.3}{\ignorespaces OpenRAM Analysis report for Data SRAM\relax }}{26}{figure.caption.28}
+\contentsline {figure}{\numberline {6.4}{\ignorespaces OpenRAM Condition for Instruction SRAM\relax }}{27}{figure.caption.29}
+\contentsline {figure}{\numberline {6.5}{\ignorespaces OpenRAM Analysis report for Instruction SRAM\relax }}{27}{figure.caption.30}
+\contentsline {figure}{\numberline {6.6}{\ignorespaces OpenLane Flow\relax }}{29}{figure.caption.31}
+\contentsline {figure}{\numberline {6.7}{\ignorespaces Processing Element Synthesis Analysis Report\relax }}{29}{figure.caption.32}
+\contentsline {figure}{\numberline {6.8}{\ignorespaces Floorplan of Design\relax }}{32}{figure.caption.33}
+\contentsline {figure}{\numberline {6.9}{\ignorespaces Post Route QoR report\relax }}{34}{figure.caption.34}
+\contentsline {figure}{\numberline {6.10}{\ignorespaces DRC, Placement, Connectivity, Antenna Check report and Power Summarry\relax }}{35}{figure.caption.35}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Workflow of Software\relax }}{36}{figure.caption.36}
+\contentsline {figure}{\numberline {7.2}{\ignorespaces IP generation report\relax }}{37}{figure.caption.37}
+\contentsline {figure}{\numberline {7.3}{\ignorespaces MicroBlaze interconnect\relax }}{37}{figure.caption.38}
+\contentsline {figure}{\numberline {7.4}{\ignorespaces Shakti interconnect report\relax }}{38}{figure.caption.39}
+\contentsline {figure}{\numberline {7.5}{\ignorespaces ASIC Implementation with 8 SRAMs and 4 Processing Elements\relax }}{39}{figure.caption.40}

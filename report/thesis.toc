@@ -1,0 +1,40 @@
+\babel@toc {english}{}
+\contentsline {chapter}{List of Figures}{vi}{chapter*.6}
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Motivation}{1}{section.1.1}
+\contentsline {section}{\numberline {1.2}Organization of Thesis}{2}{section.1.2}
+\contentsline {chapter}{\numberline {2}Literature Review}{4}{chapter.2}
+\contentsline {chapter}{\numberline {3}Background}{6}{chapter.3}
+\contentsline {section}{\numberline {3.1}Sparse Matrix Data Structures}{6}{section.3.1}
+\contentsline {section}{\numberline {3.2}Sparse LU Decomposition}{7}{section.3.2}
+\contentsline {section}{\numberline {3.3}Pre-processing of Matrix}{7}{section.3.3}
+\contentsline {section}{\numberline {3.4}Gilbert-Peierls' Algorithm}{8}{section.3.4}
+\contentsline {section}{\numberline {3.5}ASIC Design Flow}{9}{section.3.5}
+\contentsline {chapter}{\numberline {4}Scheduler}{13}{chapter.4}
+\contentsline {section}{\numberline {4.1}Matrix Data and Hardware Constraints}{13}{section.4.1}
+\contentsline {section}{\numberline {4.2}Symbolic analysis}{14}{section.4.2}
+\contentsline {section}{\numberline {4.3}Priority Ordering}{15}{section.4.3}
+\contentsline {section}{\numberline {4.4}Priority List Based Scheduling}{15}{section.4.4}
+\contentsline {chapter}{\numberline {5}FPGA Implementation}{18}{chapter.5}
+\contentsline {section}{\numberline {5.1}Block Memory Generator (BRAM Unit) IP}{19}{section.5.1}
+\contentsline {section}{\numberline {5.2}Floating-point IP}{19}{section.5.2}
+\contentsline {section}{\numberline {5.3}Crossbar switch box}{20}{section.5.3}
+\contentsline {section}{\numberline {5.4}Shakti Board Integration (PARSHU)}{20}{section.5.4}
+\contentsline {section}{\numberline {5.5}Shakti SDK}{22}{section.5.5}
+\contentsline {chapter}{\numberline {6}ASIC Implementation}{24}{chapter.6}
+\contentsline {section}{\numberline {6.1}OpenRAM}{25}{section.6.1}
+\contentsline {section}{\numberline {6.2}OpenLANE}{28}{section.6.2}
+\contentsline {section}{\numberline {6.3}Cadence Tool : Fount-end design flow}{30}{section.6.3}
+\contentsline {subsection}{\numberline {6.3.1}RTL Design/Coding}{30}{subsection.6.3.1}
+\contentsline {subsection}{\numberline {6.3.2}Synthesis}{30}{subsection.6.3.2}
+\contentsline {subsection}{\numberline {6.3.3}Fuctional Verification}{31}{subsection.6.3.3}
+\contentsline {subsection}{\numberline {6.3.4}DFT}{31}{subsection.6.3.4}
+\contentsline {section}{\numberline {6.4}Cadence Tool : Back-end design flow}{31}{section.6.4}
+\contentsline {subsection}{\numberline {6.4.1}Floor Planning}{31}{subsection.6.4.1}
+\contentsline {subsection}{\numberline {6.4.2}Placements}{32}{subsection.6.4.2}
+\contentsline {subsection}{\numberline {6.4.3}Clock Tree Synthesis}{32}{subsection.6.4.3}
+\contentsline {subsection}{\numberline {6.4.4}Routing}{33}{subsection.6.4.4}
+\contentsline {subsection}{\numberline {6.4.5}Static timing analysis}{33}{subsection.6.4.5}
+\contentsline {subsection}{\numberline {6.4.6}Physical Verification}{33}{subsection.6.4.6}
+\contentsline {chapter}{\numberline {7}Conclusion}{36}{chapter.7}
+\contentsline {chapter}{Bibliography}{}{chapter*.41}

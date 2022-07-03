@@ -1,11 +1,11 @@
 
-module CTRL_72_4096_sky130A(
+module CTRL_60_1024_sky130A(
 // Port 0: RW
     clk0,csb0,web0,addr0,din0,dout0
   );
 
-  parameter DATA_WIDTH = 72 ;
-  parameter ADDR_WIDTH = 12 ;
+  parameter DATA_WIDTH = 60 ;
+  parameter ADDR_WIDTH = 10 ;
   parameter RAM_DEPTH = 1 << ADDR_WIDTH;
   input  clk0; // clock
   input   csb0; // active low chip select
@@ -29,13 +29,13 @@ module CTRL_72_4096_sky130A(
 endmodule
 
 
-module DATA_32_1024_sky130A(
+module DATA_32_128_sky130A(
 // Port 0: RW
     clk0,csb0,web0,addr0,din0,dout0
   );
 
   parameter DATA_WIDTH = 32 ;
-  parameter ADDR_WIDTH = 10 ;
+  parameter ADDR_WIDTH = 7 ;
   parameter RAM_DEPTH = 1 << ADDR_WIDTH;
   input  clk0; // clock
   input   csb0; // active low chip select

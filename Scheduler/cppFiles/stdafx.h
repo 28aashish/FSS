@@ -44,35 +44,32 @@ EXTERN f_type g_errThreshold;
 #define GRAPH_DPI "100"
 
 #define CTRL_DELAY 1
-
+// **************** Edit Start here
 // Hardware Requirements
-#define instBRAMSize 4096
-#define BRAMSize 1024
+#define instBRAMSize 1024
+#define BRAMSize 128
 
 //IP Requirements
         
 //Instruction BRAM Ports
-#define PORT_of_BRAM 1
+#define PORT_of_BRAM 2
 //Total Instruction BRAM 
 //⚠ ⚠ ⚠ ⚠ ⚠ ⚠ ⚠ ⚠ at max 16
-#define Total_BRAMs_for_Data 4
+#define Total_BRAMs_for_Data 2
 //iff numMAC_DIVUnits = 4 i.e. 4 MAC Unit and 4 Div Unit
-#define numMAC_DIVUnits 1   
-
-//#define delay_DIV 31
-//#define delay_MAC 22
-
+#define numMAC_DIVUnits 1
 
 /*
 MAC =1 DIV = 1 => AU = 1
 CTRL_width = Total_BRAMs_for_Data*(BRAMSize+1) 
                 + ceil(log2( Total_BRAMs_for_Data * PORT_of_BRAM+ AUs + 1 )) 
                 + ceil(log2( Total_BRAMs_for_Data * PORT_of_BRAM+ AUs ))
-
-*/
 #define delay_DIV 10
 #define delay_MAC 11
-
+*/
+#define delay_DIV 31
+#define delay_MAC 20
+// ******************** Edit Ends over here
 // Map Delays
 EXTERN map<string, int> opDelay INITIALIZER({{"+", 12}, {"-", 12}, {"*",9}, {"/", delay_DIV}, {"rd", 2}, 
     {"wr", 2}, {"mac_add", delay_MAC}, {"mac_sub",delay_MAC}, {"const", 0}, {"pass", 0}});

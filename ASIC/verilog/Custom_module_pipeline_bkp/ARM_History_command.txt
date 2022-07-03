@@ -1,0 +1,330 @@
+sudo yum install openssh-server openssh-clients
+ping 10.107.90.41
+ip a s
+ifconfig eth1 10.107.90.180
+ip a s
+ping 10.107.90.41
+ifconfig eth0 10.107.90.180
+ping 10.107.90.41
+ip a s
+ping 10.107.90.41
+ip a s
+sudo yum install openssh-server openssh-clients
+vim /etc/network/interfaces
+exit
+ifconfig enp0s3 10.107.90.180
+ip a s
+ifconfig eth0 10.107.90.180
+ip a s
+ping 10.107.90.41
+ip a s
+ping 10.107.90.41
+sudo yum install openssh-server openssh-clients
+sudo status sshd
+sudo status ssh
+sudo systemctl status sshd
+sudo systemctl start sshd
+sudo systemctl enable sshd
+sudo systemctl status sshd
+ssh root@10.107.90.41
+mkdir scripts
+ll
+cd /root/scripts
+cd
+ssh root@10.107.90.41
+ll
+cd scripts
+ll
+gedit Post_install_scripts
+vim Post_install_scripts
+llk
+ll
+cd Post_install_scripts/
+ll
+vim nfs_setup_
+vim nfs_setup_el7.sh
+vim nis_setup_el7.sh
+./nis_setup_el7.sh
+vim nfs_setup_el7.sh
+./nfs_setup_el7.sh
+./post_installation.sh
+yum update 
+./post_installation.sh
+ll
+cd
+lsblk
+udiskctl mount -b /dev/sda
+udisksctl mount -b /dev/sda
+sudo fdisk -l
+mount /dev/sda /mnt
+fdisk -l
+lsblk
+mkdir mnt
+ll
+mount /dev/sda /mnt
+rmdir mnt
+ll
+ls
+ll
+lsblk
+udisksctl mount -b /dev/sda
+lsblk
+df -kh
+cd /
+mkdir data
+ll
+mkdir temp1
+ll
+FSBLK
+fsblk
+flbk
+lsblk
+diskpart
+diskparted
+fdisk /dev/sda 
+parted
+gdisk
+gparted
+yum install gparted
+gparted
+yum install gparted
+rpm -Uvh http://dl.fedoraproject.org/pub/epel/6/x86_64/gparted-0.6.0-1.el6.x86_64.rpm
+sudo yum install gparted
+yum install epel-release
+sudo yum install gparted
+gparted
+lsblk
+mount /dev/sda1 /temp1
+mount /dev/sda2 /data
+df -kh
+passwd root
+exit
+service rpcbind status
+service ypbind status
+exit
+ip a s
+ping 10.130.45.50
+ssh root@10.107.90.32
+ping 10.130.45.50
+ping 10.107.90.32
+ssh root@10.107.90.32
+ip a s
+ssh root@10.107.90.32
+ping 10.107.90.32
+exit
+ll
+exit
+mkdir root/vlsi/pdk/
+cd vlsi
+cd /
+mkdir /vlsi/pdk/arm
+exit
+cd
+ll
+cd Downloads
+ll
+cd
+exit
+ll
+cd /home/
+ll
+cd users/
+ll
+cd ll
+ll
+cd ..
+ll
+cd ..
+ll
+cd /v
+cd /vlsi/
+ll
+cd cad
+ll
+cd 
+ll
+cd scripts/
+ll
+cd Post_install_scripts/
+ll
+vi nis_setup_el7.sh 
+ll
+cd /vlsi/
+ll
+mkdir pdk_new
+ll
+cd 
+ll
+cd scripts/
+ll
+cd scripts
+ll
+cd Post_install_scripts/
+ll
+./nis_setup_el7.sh
+./nfs_setup_el7.sh
+./post_installation.sh 
+./nis_setup_el7.sh
+./nfs_setup_el7.sh
+cd ../..
+cd ..
+cd etc/host.allow
+cd /etc/host.allow
+cd /etc/shadow
+passwd
+/etc/shadow
+open /etc/shadow
+ll
+cd 
+ypbind status
+df -kh
+chsh -s /bin/nologin tecmint
+cd /
+vim /etc/nologin
+chsh -s /bin/nologin tecmint
+chsh -s /sbin/nologin tecmint
+chsh -s /sbin/nologin souvikm
+chsh -s /usr/sbin/nologin souvikm
+usermod souvikm -s /sbin/nologin
+cd
+shutdown
+shutdown now
+ll
+vi /etc/nologin
+vi /etc/pam.d/sshd 
+sudo vim /etc/pam.d/sshd 
+hostname
+hostname vlsi180
+hostname
+ll
+sudo vim /etc/pam.d/sshd 
+vi /etc/nologin 
+ll
+cd /
+cd vlsi
+ll
+cd pdk
+ll
+cd pdk_new
+cd ..
+cd pdk_new
+ll
+cd /
+ll
+cd 
+exit
+pwd
+lscpu
+ls /
+ls /root
+ls /root/arm
+exit
+ll
+vim /etc/pam.d/sshd/
+vim /etc/pam.d/sshd
+cd
+exit
+ll
+cd s
+cd scripts
+ll
+cd Post_install_scripts
+ll
+service ypbind status
+./nis_setup_el7.sh
+vim nis_setup_el7.sh
+./nis_setup_el7.sh
+vim nis_setup_el7.sh
+cd
+exit
+vim nis_setup_el7.sh
+cd scripts
+ll
+rmdir Post_install_scripts
+rmdir -r  Post_install_scripts
+rmdir -R  Post_install_scripts
+rmdir -R  Post_install_scripts/
+rmdir   Post_install_scripts/
+rmdir Post_install_scripts/
+rmdir Post_install_scripts/*
+rmdir -R  Post_install_scripts/*
+rmdir -R Post_install_scripts/*
+rmdir -r Post_install_scripts/*
+rmdir -d Post_install_scripts/*
+rm -r Post_install_scripts/*
+ll
+cd Post_install_scripts
+ll
+cd ..
+rmdir Post_install_scripts/
+cd
+exit
+ll
+df -kh
+lsblk
+cd 
+exit
+df -kh
+cd /
+df -kh
+ll
+cd vlsi
+ll
+cd pdk
+ll
+cd arm
+l
+ll
+cd ..
+cd ../../..
+ll
+cd
+ll
+cd scripts
+ll
+df
+du
+cd
+du -h
+cd
+exit
+history
+du
+rm /*
+du
+rm -d /
+df -kh
+clean /dev/nvme0n1p5/
+clear /dev/nvme0n1p5/
+df
+exit
+service upbind status
+service ypbind status
+service ypbind restart
+service ypbind status
+df -kh
+service rpcbind restwrt
+service rpcbind restart
+service ypbind restart
+df -kh
+cd root
+cd /root
+ll
+cd arm
+ll
+cd /root
+lll
+lf
+lm
+ls
+ll
+clear
+service rpcbind restart
+service ypbind restart
+ll
+cd scripts
+ll
+ssh root@10.107.90.41
+ll
+df -kh
+history

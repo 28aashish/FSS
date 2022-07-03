@@ -39,7 +39,9 @@ buildShakti_IP: buildFPGA
 	(yes | cp -if ./Scheduler/cppFiles/float_to_int.h ./Shakti_IP/C_files)
 	(yes | cp -if ./Scheduler/cppFiles/int_to_float.h ./Shakti_IP/C_files)
 	(yes | cp -if ./FPGA/C_files/SW.c ./Shakti_IP/C_files)
+	(yes | cp -if ./FPGA/init_single.tcl ./Shakti_IP/tcl)
 	(cd ./Shakti_IP;$(PYTHON3) ../Scheduler/pyFiles/Shakti_IP.py)
+	($(SHELL) ./Scheduler/bash/Ver2018.sh ./Shakti_IP/verilog)
 
 buildASIC: buildFPGA
 	(yes | cp -if ./Scheduler/cppFiles/IO.json ./ASIC/IO.json)
@@ -52,7 +54,12 @@ buildHDtest:
 	$(PYTHON3) ./Scheduler/pyFiles/S_Tester.py
 	(cd ./Scheduler/S_tester;$(CXX) automate_Tester.cpp)
 	(cd ./Scheduler/S_tester;./a.out)
-	
+
+buildSHtest:
+	$(PYTHON3) ./Scheduler/pyFiles/S_SH_Tester.py
+	(cd ./Scheduler/S_tester_SHAKTI;$(CXX) automate_Tester.cpp)
+	(cd ./Scheduler/S_tester_SHAKTI;./a.out)
+
 cleanall:
 	(cd Scheduler/cppFiles; make cleanall)
 

@@ -8,8 +8,8 @@ use work.types.all;
 
 entity LUDH_Tester is
     generic(
-        ADDR_WIDTH : integer := 12;
-        CTRL_WIDTH : integer := 72
+        ADDR_WIDTH : integer := 10;
+        CTRL_WIDTH : integer := 60
     );
     port(
         CLK_100 : in std_logic;

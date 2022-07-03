@@ -1,0 +1,138 @@
+DATA=readtable("analysis_speedup.csv");
+new_table = DATA(DATA.delay_DIV ==30 & DATA.delay_MAC == 16,:);
+hold on;
+
+plot(DATA(DATA.NUM_BRAM==4,:),"numMAC_DIVUnits","delay")
+plot(DATA(DATA.NUM_BRAM==8,:),"numMAC_DIVUnits","delay")
+plot(DATA(DATA.NUM_BRAM==12,:),"numMAC_DIVUnits","delay")
+plot(DATA(DATA.NUM_BRAM==16,:),"numMAC_DIVUnits","delay")
+legend("4","8","12","16")
+
+DATA=readtable("MTP_Analysis.csv");
+hold on;
+P=plot(DATA(DATA.numMAC_DIVUnits==2,:),"NUM_BRAM","SpeedUp")
+P.Marker=".";
+P=plot(DATA(DATA.numMAC_DIVUnits==3,:),"NUM_BRAM","SpeedUp")
+P.Marker=".";
+P=plot(DATA(DATA.numMAC_DIVUnits==4,:),"NUM_BRAM","SpeedUp")
+P.Marker=".";
+P=plot(DATA(DATA.numMAC_DIVUnits==5,:),"NUM_BRAM","SpeedUp")
+P.Marker=".";
+P=plot(DATA(DATA.numMAC_DIVUnits==6,:),"NUM_BRAM","SpeedUp")
+P.Marker=".";
+P=plot(DATA(DATA.numMAC_DIVUnits==7,:),"NUM_BRAM","SpeedUp")
+P.Marker=".";
+P=plot(DATA(DATA.numMAC_DIVUnits==8,:),"NUM_BRAM","SpeedUp")
+P.Marker=".";
+lgd=legend("2","3","4","5","6","7","8")
+lgd.Title.String='Number of Processing Elements'
+%title('Speedup with respect to Number of SRAM with differnt number of Processing elements')
+lgd.Location='eastoutside'
+xlabel('Number of SRAMs')
+ylabel('Speed up')
+hold off;
+
+
+
+
+
+
+
+DATA=readtable("analysis_speedup.csv");
+DATA=readtable("MTP_Analysis.csv");
+hold on;
+P=plot(DATA(DATA.NUM_BRAM==4,:),"numMAC_DIVUnits","SpeedUp")
+P.Marker=".";
+P=plot(DATA(DATA.NUM_BRAM==8,:),"numMAC_DIVUnits","SpeedUp")
+P.Marker=".";
+P=plot(DATA(DATA.NUM_BRAM==12,:),"numMAC_DIVUnits","SpeedUp")
+P.Marker=".";
+P=plot(DATA(DATA.NUM_BRAM==16,:),"numMAC_DIVUnits","SpeedUp")
+P.Marker=".";
+lgd=legend("4","8","12","16")
+lgd.Title.String='Number of Storing Elements'
+%title('Speedup with respect to Number of SRAM with different number of Processing elements')
+lgd.Location='eastoutside'
+xlabel('Number of Processing Element')
+ylabel('Speed up')
+xlim([4 16])
+hold off;
+
+
+
+DATA=readtable("MTP_Analysis.csv");
+DATA=readtable("analysis_speedup.csv");
+hold on;
+P=plot(DATA(DATA.numMAC_DIVUnits==4,:),"NUM_BRAM","SpeedUp")
+P.Marker=".";
+P=plot(DATA(DATA.numMAC_DIVUnits==8,:),"NUM_BRAM","SpeedUp")
+P.Marker=".";
+P=plot(DATA(DATA.numMAC_DIVUnits==12,:),"NUM_BRAM","SpeedUp")
+P.Marker=".";
+P=plot(DATA(DATA.numMAC_DIVUnits==16,:),"NUM_BRAM","SpeedUp")
+P.Marker=".";
+lgd=legend("4","8","12","16")
+lgd.Title.String='Number of Processing Elements'
+%title('Speedup with respect to Number of SRAM with differnt number of Processing elements')
+lgd.Location='eastoutside'
+xlabel('Number of SRAMs')
+ylabel('Speed up')
+xlim([4 16])
+hold off;
+
+
+
+
+
+
+plot(8, 1.437956204, 'r.', 'LineWidth', 2, 'MarkerSize', 25);
+plot(16, 1.517040557, 'r.', 'LineWidth', 2, 'MarkerSize', 25);
+
+
+hold on;
+%plot(DATA(DATA.NUM_BRAM==1,:),"numMAC_DIVUnits","SpeedUp")
+plot(DATA(DATA.NUM_BRAM==2,:),"numMAC_DIVUnits","SpeedUp")
+plot(DATA(DATA.NUM_BRAM==3,:),"numMAC_DIVUnits","SpeedUp")
+plot(DATA(DATA.NUM_BRAM==4,:),"numMAC_DIVUnits","SpeedUp")
+plot(DATA(DATA.NUM_BRAM==5,:),"numMAC_DIVUnits","SpeedUp")
+plot(DATA(DATA.NUM_BRAM==6,:),"numMAC_DIVUnits","SpeedUp")
+plot(DATA(DATA.NUM_BRAM==7,:),"numMAC_DIVUnits","SpeedUp")
+plot(DATA(DATA.NUM_BRAM==8,:),"numMAC_DIVUnits","SpeedUp")
+legend("2","3","4","5","6","7","8")
+hold off;
+
+
+%plot(new_table(new_table.NUM_BRAM==1,:),"numMAC_DIVUnits","delay");
+plot(new_table(new_table.NUM_BRAM==2,:),"numMAC_DIVUnits","delay");
+plot(new_table(new_table.NUM_BRAM==3,:),"numMAC_DIVUnits","delay");
+plot(new_table(new_table.NUM_BRAM==4,:),"numMAC_DIVUnits","delay");
+plot(new_table(new_table.NUM_BRAM==5,:),"numMAC_DIVUnits","delay");
+plot(new_table(new_table.NUM_BRAM==6,:),"numMAC_DIVUnits","delay");
+plot(new_table(new_table.NUM_BRAM==7,:),"numMAC_DIVUnits","delay");
+plot(new_table(new_table.NUM_BRAM==8,:),"numMAC_DIVUnits","delay");
+plot(new_table(new_table.NUM_BRAM==9,:),"numMAC_DIVUnits","delay");
+plot(new_table(new_table.NUM_BRAM==10,:),"numMAC_DIVUnits","delay");
+plot(new_table(new_table.NUM_BRAM==11,:),"numMAC_DIVUnits","delay");
+plot(new_table(new_table.NUM_BRAM==12,:),"numMAC_DIVUnits","delay");
+plot(new_table(new_table.NUM_BRAM==13,:),"numMAC_DIVUnits","delay");
+plot(new_table(new_table.NUM_BRAM==14,:),"numMAC_DIVUnits","delay");
+plot(new_table(new_table.NUM_BRAM==15,:),"numMAC_DIVUnits","delay");
+plot(new_table(new_table.NUM_BRAM==16,:),"numMAC_DIVUnits","delay");
+plot(new_table(new_table.NUM_BRAM==17,:),"numMAC_DIVUnits","delay");
+plot(new_table(new_table.NUM_BRAM==18,:),"numMAC_DIVUnits","delay");
+plot(new_table(new_table.NUM_BRAM==19,:),"numMAC_DIVUnits","delay");
+plot(new_table(new_table.NUM_BRAM==20,:),"numMAC_DIVUnits","delay");
+plot(new_table(new_table.NUM_BRAM==21,:),"numMAC_DIVUnits","delay");
+plot(new_table(new_table.NUM_BRAM==22,:),"numMAC_DIVUnits","delay");
+plot(new_table(new_table.NUM_BRAM==23,:),"numMAC_DIVUnits","delay");
+plot(new_table(new_table.NUM_BRAM==24,:),"numMAC_DIVUnits","delay");
+plot(new_table(new_table.NUM_BRAM==25,:),"numMAC_DIVUnits","delay");
+plot(new_table(new_table.NUM_BRAM==26,:),"numMAC_DIVUnits","delay");
+plot(new_table(new_table.NUM_BRAM==27,:),"numMAC_DIVUnits","delay");
+plot(new_table(new_table.NUM_BRAM==28,:),"numMAC_DIVUnits","delay");
+plot(new_table(new_table.NUM_BRAM==29,:),"numMAC_DIVUnits","delay");
+plot(new_table(new_table.NUM_BRAM==30,:),"numMAC_DIVUnits","delay");
+plot(new_table(new_table.NUM_BRAM==31,:),"numMAC_DIVUnits","delay");
+plot(new_table(new_table.NUM_BRAM==32,:),"numMAC_DIVUnits","delay");
+legend("2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32")
+hold off;

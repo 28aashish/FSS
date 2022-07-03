@@ -2,7 +2,7 @@
 word_size = 32
 
 # Number of words in the memory
-num_words = 1024
+num_words = 128
 
 # Technology to use in $OPENRAM_TECH
 tech_name = "sky130A"
@@ -16,7 +16,7 @@ process_corners = ["SS", "TT", "FF"]
 # Voltage corners to characterize
 supply_voltages = [ 1.8 ]
 # supply_voltages = [ 3.0, 3.3, 3.5 ]
-num_rw_ports=1
+num_rw_ports=2
 # Temperature corners to characterize
 # temperatures = [ 0, 25 100]
 

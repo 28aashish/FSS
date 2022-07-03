@@ -1,9 +1,8 @@
-make --dry-run --keep-going --print-directory
+make --dry-run --always-make --keep-going --print-directory
 make: Entering directory '/home/aashish/FSS'
 (cd Scheduler/cppFiles; make cleanall)
 (cd Scheduler/cppFiles; make buildPreprocessTests)
 (cd Scheduler/cppFiles; make preprocessTests)
- 
 (cd Scheduler/cppFiles; make all TEST_MATRIX=)
 (cd Scheduler/cppFiles; ./main )
 (yes | cp -if ./Scheduler/cppFiles/IO.json ./FPGA/IO.json)
@@ -24,7 +23,9 @@ python3 ./Scheduler/pyFiles/SW_Code.py
 (yes | cp -if ./Scheduler/cppFiles/float_to_int.h ./Shakti_IP/C_files)
 (yes | cp -if ./Scheduler/cppFiles/int_to_float.h ./Shakti_IP/C_files)
 (yes | cp -if ./FPGA/C_files/SW.c ./Shakti_IP/C_files)
+(yes | cp -if ./FPGA/init_single.tcl ./Shakti_IP/tcl)
 (cd ./Shakti_IP;python3 ../Scheduler/pyFiles/Shakti_IP.py)
+(/bin/bash ./Scheduler/bash/Ver2018.sh ./Shakti_IP/verilog)
 (yes | cp -if ./Scheduler/cppFiles/IO.json ./ASIC/IO.json)
 (cd ./ASIC/verilog/autoFiles;rm -f ./*.v)
 (cp ./FPGA/autoFiles/VFile/*.v ./ASIC/verilog/autoFiles)

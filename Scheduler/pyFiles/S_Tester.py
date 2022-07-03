@@ -5,7 +5,7 @@ import json
 
 
 if __name__ == "__main__":
-    f = open('./Scheduler/cppFiles/IO.json',)
+    f = open('./Scheduler/cppFiles/IO.json')
     
     # returns JSON object as
     # a dictionary
@@ -23,20 +23,24 @@ if __name__ == "__main__":
     # Closing file
     f.close()
     Tester  = open("./Scheduler/S_tester/automate_Tester.cpp", 'w')
+
     stringer="""
 #include <iostream>
-//#include "BRAM_dump.h"
 using namespace std;
 #define f_type float
 #define BRAM_COUNT {0}
-#define BRAM_DEPTH {1}
-int main(){{
-"""
+#define BRAM_DEPTH {1}"""
     Tester.write(stringer.format(NUM_BRAM, 2**ADDR_WIDTH_DATA_BRAM ))
+    Tester.write("""
+int main(){
+
+""")
     verification = open("./Scheduler/cppFiles/Verification_ALU.txt", 'r')
     Tester.write(verification.read())
+    
     verification = open("./Scheduler/S_tester/BRAM_dump.h", 'r')
     Tester.write(verification.read())
+    
     Tester.write("""
     int i,j,invalid_values;
     float delta,percent_error;
@@ -95,5 +99,4 @@ int main(){{
 
     return 0;
 }
-    
     """)
